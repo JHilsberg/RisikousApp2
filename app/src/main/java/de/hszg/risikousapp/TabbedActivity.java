@@ -126,7 +126,7 @@ public class TabbedActivity extends Fragment {
                     textView.setText(R.string.section1_text);
                     break;
                 case 2:
-                    //textView.setText(R.string.section2_text);
+                    textView.setVisibility(View.INVISIBLE);
                     imageView.setImageResource(R.drawable.cirs);
                     break;
                 case 3:
