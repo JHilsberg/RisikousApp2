@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DrawerNavigationTabs</string>
+    <string name="app_name">Risikous App</string>
     <string name="action_settings">Settings</string>
 
     <string-array name="drawer_titles">
@@ -18,5 +18,8 @@
     <string name="title_section4">Veröffentlichung</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="connection_error">Verbindung zum Internet fehlgeschlagen!</string>
+    <string name="maximumChars">Maximale Zeichenzahl:</string>
+    <string name="incidentDescription">incidentDescription</string>
+    <string name="reportingArea">reportingArea</string>
 
 </resources>

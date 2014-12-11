@@ -135,8 +135,8 @@ public class MainActivity extends FragmentActivity {
 			getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-						WebViewFragment.newInstance(),
-						WebViewFragment.TAG).commit();
+						QuestionnaireFragment.newInstance(),
+						QuestionnaireFragment.TAG).commit();
 			break;
 		}
 	}

@@ -26,40 +26,15 @@ public class QuestionnaireSkeletonParser {
     private XPath xpath;
 
     public QuestionnaireSkeletonParser(String questionnaireXml) {
-        InputSource source = new InputSource(new StringReader(questionnaireXml));
-
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = null;
-        try {
-            builder = factory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        try {
-            questionnaireDoc = builder.parse(source);
-        } catch (SAXException e) {
-            Log.e("Parsing", "Builder failed");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        XmlDocumentParser parser = new XmlDocumentParser(questionnaireXml);
+        questionnaireDoc = parser.getXmlDoc();
 
         xpath = XPathFactory.newInstance().newXPath();
     }
 
-    public String getReportingAreaCaption(){
+    public String getQuestionCaption(String questionName){
         try {
-            return (String) xpath.evaluate("string(/questionnaire/reportingArea/@text)", questionnaireDoc,
-                      XPathConstants.STRING);
-        } catch (XPathExpressionException e) {
-            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
-        }
-        return "";
-    }
-
-    public String getIncidentDescriptionCaption() {
-        try {
-            return (String) xpath.evaluate("string(/questionnaire/incidentDescription/@text)", questionnaireDoc,
+            return (String) xpath.evaluate("string(//" + questionName + "/@text)", questionnaireDoc,
                     XPathConstants.STRING);
         } catch (XPathExpressionException e) {
             Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
@@ -67,9 +42,9 @@ public class QuestionnaireSkeletonParser {
         return "";
     }
 
-    public String getIncidentDescriptionHint() {
+    public String getAnswerMaxChars(String question) {
         try {
-            return (String) xpath.evaluate("string(/questionnaire/incidentDescription/@maximumOfCharacters)", questionnaireDoc,
+            return (String) xpath.evaluate("string(//"+ question +"/@maximumOfCharacters)", questionnaireDoc,
                     XPathConstants.STRING);
         } catch (XPathExpressionException e) {
             Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
