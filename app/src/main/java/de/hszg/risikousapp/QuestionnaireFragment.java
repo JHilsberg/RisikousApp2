@@ -1,16 +1,20 @@
 package de.hszg.risikousapp;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.xmlParser.QuestionnaireSkeletonParser;
+import de.hszg.risikousapp.xmlParser.ReportingAreasParser;
 
 /**
  * Created by Julian on 08.12.2014.
@@ -54,20 +58,38 @@ public class QuestionnaireFragment extends Fragment {
                 setTextToAllElements(parser);
             }
         }.execute("questionnaire");
+
+        new GetXmlFromRisikous(getActivity()) {
+            @Override
+            public void onPostExecute(String result) {
+                ReportingAreasParser parser = new ReportingAreasParser(result);
+                setReportingAreaSpinner(parser);
+            }
+        }.execute("reportingareas");
     }
 
-    public void setTextToAllElements(QuestionnaireSkeletonParser questionnaire) {
-        setReportingArea(questionnaire);
+    private void setReportingAreaSpinner(ReportingAreasParser areas) {
+        Spinner reportingAreaSpinner = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
+        ArrayList<String> reportingAreasNames = areas.getReportingAreasNames();
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,
+                reportingAreasNames);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        reportingAreaSpinner.setAdapter(spinnerArrayAdapter);
+    }
+
+    private void setTextToAllElements(QuestionnaireSkeletonParser questionnaire) {
+        setReportingAreaText(questionnaire);
         setIncidentDescription(questionnaire);
     }
 
-    public void setReportingArea(QuestionnaireSkeletonParser questionnaire) {
-        TextView reportingText = (TextView) getActivity().findViewById(R.id.reportingArea);
+    private void setReportingAreaText(QuestionnaireSkeletonParser questionnaire) {
+        TextView reportingAreaText = (TextView) getActivity().findViewById(R.id.reportingArea);
 
-        reportingText.setText(questionnaire.getQuestionCaption(getResources().getString(R.string.reportingArea)));
+        reportingAreaText.setText(questionnaire.getQuestionCaption(getResources().getString(R.string.reportingArea)));
     }
 
-    public void setIncidentDescription(QuestionnaireSkeletonParser questionnaire) {
+    private void setIncidentDescription(QuestionnaireSkeletonParser questionnaire) {
         String incidenDescription = getResources().getString(R.string.incidentDescription);
         TextView incidentDescriptionCaption = (TextView) getActivity().findViewById(R.id.incidentDescription);
         EditText incidentDescriptionEdit = (EditText) getActivity().findViewById(R.id.incidentDescriptionEdit);
