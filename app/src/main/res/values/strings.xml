@@ -3,19 +3,20 @@
 
     <string name="app_name">DrawerNavigationTabs</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
 
     <string-array name="drawer_titles">
-        <item>Tabs</item>
+        <item>Wilkommen</item>
         <item>WebView</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_item_one">ItemOne</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Einführung</string>
+    <string name="title_section2">CIRS-Prozess</string>
+    <string name="title_section3">Meldung</string>
+    <string name="title_section4">Veröffentlichung</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="connection_error">Verbindung zum Internet fehlgeschlagen!</string>
 
 </resources>
