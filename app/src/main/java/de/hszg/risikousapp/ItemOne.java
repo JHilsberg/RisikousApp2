@@ -1,14 +1,10 @@
 package de.hszg.risikousapp;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerTitleStrip;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.*;
+import android.support.v4.view.*;
+import android.view.*;
+
 
 public class ItemOne extends Fragment {
 

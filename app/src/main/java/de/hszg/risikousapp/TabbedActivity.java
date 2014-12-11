@@ -78,19 +78,20 @@ public class TabbedActivity extends Fragment {
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 3;
+			return 4;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			Locale l = Locale.getDefault();
 			switch (position) {
 			case 0:
-				return getString(R.string.title_section1).toUpperCase(l);
+				return getString(R.string.title_section1);
 			case 1:
-				return getString(R.string.title_section2).toUpperCase(l);
+				return getString(R.string.title_section2);
 			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
+				return getString(R.string.title_section3);
+            case 3:
+                return getString(R.string.title_section4);
 			}
 			return null;
 		}
@@ -106,6 +107,7 @@ public class TabbedActivity extends Fragment {
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
+        //int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
 		public DummySectionFragment() {
 		}
@@ -113,13 +115,29 @@ public class TabbedActivity extends Fragment {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+
 			View rootView = inflater.inflate(R.layout.fragment_tabbed_dummy,
 					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
-			return rootView;
+
+            int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+            switch(sectionNumber) {
+                case 1:
+                    dummyTextView.setText(R.string.section1_text);
+                    break;
+                case 2:
+                    dummyTextView.setText("test 2");
+                    break;
+                case 3:
+                    dummyTextView.setText(R.string.section3_text);
+                    break;
+                case 4:
+                    dummyTextView.setText("test 4");
+                    break;
+            }
+
+            return rootView;
+
 		}
 	}
 
