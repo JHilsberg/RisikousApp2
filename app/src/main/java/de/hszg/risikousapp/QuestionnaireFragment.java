@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
+import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.xmlParser.QuestionnaireSkeletonParser;
 import de.hszg.risikousapp.xmlParser.ReportingAreasParser;
 
