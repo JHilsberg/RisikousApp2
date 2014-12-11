@@ -114,6 +114,7 @@ public class MainActivity extends FragmentActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			Log.v(TAG, "ponies");
 			navigateTo(position);
+            mDrawerLayout.closeDrawers();
 		}
 	}
 	
