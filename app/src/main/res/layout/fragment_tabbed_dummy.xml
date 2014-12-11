@@ -17,6 +17,7 @@
         android:editable="false"
         android:background="@drawable/rounded_corners"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:textColor="#fff"
         android:padding="10dp"
         android:layout_centerInParent="true" />
 

@@ -27,20 +27,22 @@ public class ReportingAreasParser {
         xpath = XPathFactory.newInstance().newXPath();
     }
 
-    private NodeList getReportingAreasNodeList() throws XPathExpressionException {
+    private NodeList getReportingAreasNodeList() {
         String expression = "/reportingAreas/reportingArea/name";
 
-        return (NodeList) xpath.compile(expression).evaluate(reportingAreasDoc,
-                    XPathConstants.NODESET);
+        try {
+            return (NodeList) xpath.compile(expression).evaluate(reportingAreasDoc,
+                        XPathConstants.NODESET);
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public ArrayList<String> getReportingAreasNames(){
-        NodeList areasNodeList = null;
-        try {
-            areasNodeList = getReportingAreasNodeList();
-        } catch (XPathExpressionException e) {
-            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
-        }
+        NodeList areasNodeList = getReportingAreasNodeList();
+        Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
 
         ArrayList<String> areasNames = new ArrayList<String>();
         for (int i = 0; i < areasNodeList.getLength(); i++) {
