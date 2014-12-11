@@ -90,12 +90,12 @@ public class QuestionnaireFragment extends Fragment {
     }
 
     private void setIncidentDescription(QuestionnaireSkeletonParser questionnaire) {
-        String incidenDescription = getResources().getString(R.string.incidentDescription);
+        String incidentDescription = getResources().getString(R.string.incidentDescription);
         TextView incidentDescriptionCaption = (TextView) getActivity().findViewById(R.id.incidentDescription);
         EditText incidentDescriptionEdit = (EditText) getActivity().findViewById(R.id.incidentDescriptionEdit);
 
-        incidentDescriptionCaption.setText(questionnaire.getQuestionCaption(incidenDescription));
-        incidentDescriptionEdit.setHint(maxCharsLabel + questionnaire.getAnswerMaxChars(incidenDescription));
+        incidentDescriptionCaption.setText(questionnaire.getQuestionCaption(incidentDescription));
+        incidentDescriptionEdit.setHint(maxCharsLabel + questionnaire.getAnswerMaxChars(incidentDescription));
     }
 
 }
