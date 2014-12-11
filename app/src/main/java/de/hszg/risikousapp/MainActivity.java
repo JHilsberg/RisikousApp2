@@ -73,7 +73,7 @@ public class MainActivity extends FragmentActivity {
 		// Set the default content area to item 0
 		// when the app opens for the first time
 		if(savedInstanceState == null) {
-			navigateTo(1);
+			navigateTo(0);
 		}
 	
 	}

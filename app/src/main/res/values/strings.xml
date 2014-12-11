@@ -12,7 +12,6 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="title_activity_item_one">ItemOne</string>
     <string name="title_section1">Einführung</string>
     <string name="title_section2">CIRS-Prozess</string>
     <string name="title_section3">Meldung</string>
@@ -25,6 +24,7 @@
         im Arbeitsumfeld zu berichten. Durch seine einfache und flexible Handhabung kann Risikous einen wichtigen Beitrag zur Erkennung von
         Schwachstellen leisten. Damit hilft dieses Reporting System, eine interne Fehlerkultur zu etablieren und trägt so zur Verbesserung der
         (Patienten-) Sicherheit bei.</string>
+    <string name="section2_text"></string>
     <string name="section3_text">Unter dem Menüpunkt \'Meldung\' haben Sie die Möglichkeit, den Meldebogen für einen Beinahefehler auszufüllen.
         Die ersten drei Fragen sind Pflichtfragen, müssen also ausgefüllt werden. Alle weiteren Angaben sind freiwillig und dienen lediglich
         der detaillierten Beschreibung des Ereignisses. Das Hinzufügen von Dateianhängen wie Bildern oder Dokumenten ist ebenfalls möglich.

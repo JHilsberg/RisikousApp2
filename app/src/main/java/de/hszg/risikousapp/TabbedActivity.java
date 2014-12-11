@@ -1,7 +1,5 @@
 package de.hszg.risikousapp;
 
-import java.util.Locale;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TabbedActivity extends Fragment {
@@ -120,19 +119,21 @@ public class TabbedActivity extends Fragment {
 					container, false);
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+            TextView textView = (TextView) rootView.findViewById(R.id.textView);
+            ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
             switch(sectionNumber) {
                 case 1:
-                    dummyTextView.setText(R.string.section1_text);
+                    textView.setText(R.string.section1_text);
                     break;
                 case 2:
-                    dummyTextView.setText("test 2");
+                    //textView.setText(R.string.section2_text);
+                    imageView.setImageResource(R.drawable.cirs);
                     break;
                 case 3:
-                    dummyTextView.setText(R.string.section3_text);
+                    textView.setText(R.string.section3_text);
                     break;
                 case 4:
-                    dummyTextView.setText("test 4");
+                    textView.setText(R.string.section4_text);
                     break;
             }
 

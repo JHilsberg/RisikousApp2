@@ -9,17 +9,20 @@
     tools:context=".TabbedActivity$DummySectionFragment" >
 
     <TextView
-        android:id="@+id/section_label"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="186dp" />
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:editable="false"
+        android:background="@drawable/rounded_corners"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        />
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/imageView" />
 
 </RelativeLayout>
