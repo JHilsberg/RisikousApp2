@@ -123,6 +123,7 @@ public class TabbedActivity extends Fragment {
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             TextView textView = (TextView) rootView.findViewById(R.id.textView);
             ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+            // TODO ...hässlich gelöst, mit den sichbarkeiten von image- und textview, oder?!
             imageView.setVisibility(View.INVISIBLE);
             switch(sectionNumber) {
                 case 1:
