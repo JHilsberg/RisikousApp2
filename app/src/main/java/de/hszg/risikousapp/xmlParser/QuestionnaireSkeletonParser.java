@@ -37,7 +37,7 @@ public class QuestionnaireSkeletonParser {
             return (String) xpath.evaluate("string(//" + questionName + "/@text)", questionnaireDoc,
                     XPathConstants.STRING);
         } catch (XPathExpressionException e) {
-            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
+            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser Caption");
         }
         return "";
     }
@@ -47,7 +47,7 @@ public class QuestionnaireSkeletonParser {
             return (String) xpath.evaluate("string(//"+ question +"/@maximumOfCharacters)", questionnaireDoc,
                     XPathConstants.STRING);
         } catch (XPathExpressionException e) {
-            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
+            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser max Chars");
         }
         return "";
     }

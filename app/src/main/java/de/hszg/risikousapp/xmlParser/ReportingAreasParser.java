@@ -34,7 +34,7 @@ public class ReportingAreasParser {
             return (NodeList) xpath.compile(expression).evaluate(reportingAreasDoc,
                         XPathConstants.NODESET);
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            Log.e("Parser", "Fehler beim Parsen der Namen der reporting areas");
         }
 
         return null;
@@ -42,7 +42,6 @@ public class ReportingAreasParser {
 
     public ArrayList<String> getReportingAreasNames(){
         NodeList areasNodeList = getReportingAreasNodeList();
-        Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks");
 
         ArrayList<String> areasNames = new ArrayList<String>();
         for (int i = 0; i < areasNodeList.getLength(); i++) {
