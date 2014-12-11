@@ -1,5 +1,7 @@
 package de.hszg.risikousapp;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -76,7 +78,7 @@ public class TabbedActivity extends Fragment {
 
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
+			// Show 4 total pages.
 			return 4;
 		}
 
@@ -121,12 +123,14 @@ public class TabbedActivity extends Fragment {
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             TextView textView = (TextView) rootView.findViewById(R.id.textView);
             ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+            imageView.setVisibility(View.INVISIBLE);
             switch(sectionNumber) {
                 case 1:
                     textView.setText(R.string.section1_text);
                     break;
                 case 2:
                     textView.setVisibility(View.INVISIBLE);
+                    imageView.setVisibility(View.VISIBLE);
                     imageView.setImageResource(R.drawable.cirs);
                     break;
                 case 3:
