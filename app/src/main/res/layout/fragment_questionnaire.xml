@@ -11,7 +11,8 @@
 
             android:id="@+id/reportingArea"
             android:layout_row="0"
-            android:text="@string/wait"/>
+            android:text="@string/wait"
+            android:padding="10dp" />
         <Spinner
             android:id="@+id/reportingAreaSelection"
             android:layout_row="1"
@@ -23,7 +24,8 @@
 
             android:id="@+id/incidentDescription"
             android:layout_row="2"
-            android:text="@string/wait"/>
+            android:text="@string/wait"
+            android:padding="10dp" />
         <EditText
             android:id="@+id/incidentDescriptionEdit"
             android:layout_row="3"
