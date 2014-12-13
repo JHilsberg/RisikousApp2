@@ -12,6 +12,8 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    
+    <!-- For welcome-screen -->
     <string name="title_section1">Einführung</string>
     <string name="title_section2">CIRS-Prozess</string>
     <string name="title_section3">Meldung</string>
@@ -34,9 +36,29 @@
         Detailinformationen einsehen. Wurde die Bearbeitung der Meldung bereits abgeschlossen, ist zudem die festgelegte Maßnahme sichtbar.
         Sie erhalten somit ein direktes Feedback sowie Informationen über den aktuellen Status ihrer Meldungen. Außerdem ist es möglich,
         die Veröffentlichung zu kommentieren. Somit können Sie weiter konstruktiv auf den Prozess einwirken.</string>
-    <string name="maximumChars">Maximale Zeichenzahl:</string>
-    <string name="incidentDescription">incidentDescription</string>
+
+    <!--For Questionnaire Skeleton -->
     <string name="reportingArea">reportingArea</string>
+    <string name="incidentDescription">incidentDescription</string>
+    <string name="riskEstimation">riskEstimation</string>
+    <string name="occuranceRating">occurenceRating</string>
+    <string name="detectionRating">detectionRating</string>
+    <string name="significance">significance</string>
+    <string name="pointOfTime">pointOfTime</string>
+    <string name="date">date</string>
+    <string name="time">time</string>
+    <string name="location">location</string>
+    <string name="immediateMeasure">immediateMeasure</string>
+    <string name="consequences">consequences</string>
+    <string name="opinionOfReporter">opinionOfReporter</string>
+    <string name="personalFactors">personalFactors</string>
+    <string name="organisationalFactors">organisationalFactors</string>
+    <string name="additionalNotes">additionalNotes</string>
+    <string name="files">files</string>
+    <string name="contactInformation">contactInformation</string>
+        
+    <string name="maximumChars">Maximale Zeichenzahl: </string>
+    <string name="maximumSize">Maximale Dateigröße: </string>
     <string name="wait">Wait...</string>
 
 </resources>

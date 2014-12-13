@@ -20,12 +20,12 @@ import javax.xml.xpath.XPathFactory;
 /**
  * Created by Julian on 08.12.2014.
  */
-public class QuestionnaireSkeletonParser {
+public class QuestionnaireSkeleton {
 
     private Document questionnaireDoc;
     private XPath xpath;
 
-    public QuestionnaireSkeletonParser(String questionnaireXml) {
+    public QuestionnaireSkeleton(String questionnaireXml) {
         XmlDocumentParser parser = new XmlDocumentParser(questionnaireXml);
         questionnaireDoc = parser.getXmlDoc();
 

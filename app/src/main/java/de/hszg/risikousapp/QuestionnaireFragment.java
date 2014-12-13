@@ -13,8 +13,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
-import de.hszg.risikousapp.xmlParser.QuestionnaireSkeletonParser;
-import de.hszg.risikousapp.xmlParser.ReportingAreasParser;
+import de.hszg.risikousapp.xmlParser.QuestionnaireSkeleton;
+import de.hszg.risikousapp.xmlParser.ReportingAreas;
 
 /**
  * Created by Julian on 08.12.2014.
@@ -54,21 +54,26 @@ public class QuestionnaireFragment extends Fragment {
         new GetXmlFromRisikous(getActivity()) {
             @Override
             public void onPostExecute(String result) {
-                QuestionnaireSkeletonParser parser = new QuestionnaireSkeletonParser(result);
-                setTextToAllElements(parser);
+                QuestionnaireSkeleton parser = new QuestionnaireSkeleton(result);
+                setTextToAllQuestionnaireElements(parser);
             }
         }.execute("questionnaire");
 
         new GetXmlFromRisikous(getActivity()) {
             @Override
             public void onPostExecute(String result) {
-                ReportingAreasParser parser = new ReportingAreasParser(result);
+                ReportingAreas parser = new ReportingAreas(result);
                 setReportingAreaSpinner(parser);
             }
         }.execute("reportingareas");
     }
 
-    private void setReportingAreaSpinner(ReportingAreasParser areas) {
+    private void setTextToAllQuestionnaireElements(QuestionnaireSkeleton questionnaire) {
+        setReportingAreaText(questionnaire);
+        setIncidentDescription(questionnaire);
+    }
+
+    private void setReportingAreaSpinner(ReportingAreas areas) {
         Spinner reportingAreaSpinner = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
         ArrayList<String> reportingAreasNames = areas.getReportingAreasNames();
 
@@ -78,18 +83,14 @@ public class QuestionnaireFragment extends Fragment {
         reportingAreaSpinner.setAdapter(spinnerArrayAdapter);
     }
 
-    private void setTextToAllElements(QuestionnaireSkeletonParser questionnaire) {
-        setReportingAreaText(questionnaire);
-        setIncidentDescription(questionnaire);
-    }
 
-    private void setReportingAreaText(QuestionnaireSkeletonParser questionnaire) {
+    private void setReportingAreaText(QuestionnaireSkeleton questionnaire) {
         TextView reportingAreaText = (TextView) getActivity().findViewById(R.id.reportingArea);
 
         reportingAreaText.setText(questionnaire.getQuestionCaption(getResources().getString(R.string.reportingArea)));
     }
 
-    private void setIncidentDescription(QuestionnaireSkeletonParser questionnaire) {
+    private void setIncidentDescription(QuestionnaireSkeleton questionnaire) {
         String incidentDescription = getResources().getString(R.string.incidentDescription);
         TextView incidentDescriptionCaption = (TextView) getActivity().findViewById(R.id.incidentDescription);
         EditText incidentDescriptionEdit = (EditText) getActivity().findViewById(R.id.incidentDescriptionEdit);
@@ -98,4 +99,35 @@ public class QuestionnaireFragment extends Fragment {
         incidentDescriptionEdit.setHint(maxCharsLabel + questionnaire.getAnswerMaxChars(incidentDescription));
     }
 
+    private void setRiskEstimitation(QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setPointOfTime(QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setLocation(QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setImmediateMeasure(QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setConsequences (QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setOpinionOfReporter (QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setUploadFileText (QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
+
+    private void setContactInformation (QuestionnaireSkeleton questionnaire){
+        //TODO
+    }
 }

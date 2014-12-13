@@ -17,7 +17,7 @@ public class ItemOneContentFragment extends Fragment {
 	private int position;
 	
 	public ItemOneContentFragment() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public static ItemOneContentFragment newInstance(int position) {

@@ -112,14 +112,13 @@ public class MainActivity extends FragmentActivity {
 	private class DrawerItemClickListener implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Log.v(TAG, "ponies");
 			navigateTo(position);
             mDrawerLayout.closeDrawers();
 		}
 	}
 	
 	private void navigateTo(int position) {
-		Log.v(TAG, "List View Item: " + position);
+		Log.i(TAG, "List View Item: " + position);
 		
 		switch(position) {
 		case 0:

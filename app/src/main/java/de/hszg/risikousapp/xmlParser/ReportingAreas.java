@@ -15,20 +15,20 @@ import javax.xml.xpath.XPathFactory;
 /**
  * Created by Julian on 11.12.2014.
  */
-public class ReportingAreasParser {
+public class ReportingAreas {
 
     private Document reportingAreasDoc;
     private XPath xpath;
 
-    public ReportingAreasParser(String questionnaireXml) {
+    public ReportingAreas(String questionnaireXml) {
         XmlDocumentParser parser = new XmlDocumentParser(questionnaireXml);
         reportingAreasDoc = parser.getXmlDoc();
 
         xpath = XPathFactory.newInstance().newXPath();
     }
 
-    private NodeList getReportingAreasNodeList() {
-        String expression = "/reportingAreas/reportingArea/name";
+    private NodeList getReportingAreasNodeList(String element) {
+        String expression = "/reportingAreas/reportingArea/" + element;
 
         try {
             return (NodeList) xpath.compile(expression).evaluate(reportingAreasDoc,
@@ -41,11 +41,22 @@ public class ReportingAreasParser {
     }
 
     public ArrayList<String> getReportingAreasNames(){
-        NodeList areasNodeList = getReportingAreasNodeList();
+        NodeList areasNodeList = getReportingAreasNodeList("name");
 
         ArrayList<String> areasNames = new ArrayList<String>();
         for (int i = 0; i < areasNodeList.getLength(); i++) {
             areasNames.add(i, areasNodeList.item(i).getLastChild().getNodeValue());
+        }
+
+        return areasNames;
+    }
+
+    public ArrayList<String> getReportingAreasShortcuts(){
+        NodeList areasNodeList = getReportingAreasNodeList("shortcut");
+
+        ArrayList<String> areasNames = new ArrayList<String>();
+        for (int i = 0; i < areasNodeList.getLength(); i++) {
+            areasNames.add(i, areasNodeList.item(i).getFirstChild().getNodeValue());
         }
 
         return areasNames;
