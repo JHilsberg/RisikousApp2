@@ -46,7 +46,9 @@
     <string name="significance">significance</string>
     <string name="pointOfTime">pointOfTime</string>
     <string name="date">date</string>
+    <string name="button_dateChoose">Datum auswählen...</string>
     <string name="time">time</string>
+    <string name="button_timeChoose">Zeit auswählen</string>
     <string name="location">location</string>
     <string name="immediateMeasure">immediateMeasure</string>
     <string name="consequences">consequences</string>

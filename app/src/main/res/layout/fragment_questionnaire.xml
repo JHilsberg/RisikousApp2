@@ -112,24 +112,40 @@
                 android:text="@string/pointOfTime"
                 android:id="@+id/pointOfTime" />
 
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/date"
-                android:id="@+id/date" />
-            <EditText
-                style="@style/QuestionnaireEdits"
-                android:id="@+id/dateEdit"
-                android:inputType="date"
-                android:ems="10"/>
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/date"
+        android:id="@+id/date" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/button_dateChoose"
+        android:layout_margin="15dp"
+        android:id="@+id/dateChoose"
+        android:textColor="#ADD8E6"
+        android:onClick="showDatePickerDialog"/>
+    <TextView
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/dateEdit"/>
 
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/time"
-                android:id="@+id/time" />
-            <EditText
-                style="@style/QuestionnaireEdits"
-                android:id="@+id/timeEdit"
-                android:inputType="datetime"/>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/time"
+        android:id="@+id/time"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/button_timeChoose"
+        android:id="@+id/timeButton"
+        android:layout_margin="15dp"
+        android:textColor="#ADD8E6"
+        android:onClick="showTimePickerDialog"/>
+
+    <TextView
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/timeEdit"/>
 
 
             <TextView
