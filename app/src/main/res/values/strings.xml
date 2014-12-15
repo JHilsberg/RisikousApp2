@@ -41,7 +41,7 @@
     <string name="reportingArea">reportingArea</string>
     <string name="incidentDescription">incidentDescription</string>
     <string name="riskEstimation">riskEstimation</string>
-    <string name="occuranceRating">occurenceRating</string>
+    <string name="occurrenceRating">occurrenceRating</string>
     <string name="detectionRating">detectionRating</string>
     <string name="significance">significance</string>
     <string name="pointOfTime">pointOfTime</string>
@@ -60,5 +60,11 @@
     <string name="maximumChars">Maximale Zeichenzahl: </string>
     <string name="maximumSize">Maximale Dateigröße: </string>
     <string name="wait">Wait...</string>
+
+    <string name="ratingHigh">Hoch</string>
+    <string name="ratingMid">Mittel</string>
+    <string name="ratingLow">Gering</string>
+    <string name="button_addFile">Datei(en)auswählen</string>
+    <string name="button_send">Abschicken</string>
 
 </resources>

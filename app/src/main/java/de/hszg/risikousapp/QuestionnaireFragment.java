@@ -49,7 +49,7 @@ public class QuestionnaireFragment extends Fragment {
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
 
-        maxCharsLabel = getActivity().getResources().getString(R.string.maximumChars);
+        maxCharsLabel = getString(R.string.maximumChars);
 
         new GetXmlFromRisikous(getActivity()) {
             @Override
@@ -71,6 +71,7 @@ public class QuestionnaireFragment extends Fragment {
     private void setTextToAllQuestionnaireElements(QuestionnaireSkeleton questionnaire) {
         setReportingAreaText(questionnaire);
         setIncidentDescription(questionnaire);
+        setRiskEstimitation(questionnaire);
     }
 
     private void setReportingAreaSpinner(ReportingAreas areas) {
@@ -87,11 +88,11 @@ public class QuestionnaireFragment extends Fragment {
     private void setReportingAreaText(QuestionnaireSkeleton questionnaire) {
         TextView reportingAreaText = (TextView) getActivity().findViewById(R.id.reportingArea);
 
-        reportingAreaText.setText(questionnaire.getQuestionCaption(getResources().getString(R.string.reportingArea)));
+        reportingAreaText.setText(questionnaire.getQuestionCaption(getString(R.string.reportingArea)));
     }
 
     private void setIncidentDescription(QuestionnaireSkeleton questionnaire) {
-        String incidentDescription = getResources().getString(R.string.incidentDescription);
+        String incidentDescription = getString(R.string.incidentDescription);
         TextView incidentDescriptionCaption = (TextView) getActivity().findViewById(R.id.incidentDescription);
         EditText incidentDescriptionEdit = (EditText) getActivity().findViewById(R.id.incidentDescriptionEdit);
 
@@ -100,7 +101,15 @@ public class QuestionnaireFragment extends Fragment {
     }
 
     private void setRiskEstimitation(QuestionnaireSkeleton questionnaire){
-        //TODO
+        TextView riskEstimation = (TextView) getActivity().findViewById(R.id.riskEstimation);
+        TextView occuranceRating = (TextView) getActivity().findViewById(R.id.occurenceRating);
+        TextView detectionRating = (TextView) getActivity().findViewById(R.id.detectionRating);
+        TextView significance = (TextView) getActivity().findViewById(R.id.significance);
+
+        riskEstimation.setText(questionnaire.getQuestionCaption(getString(R.string.riskEstimation)));
+        occuranceRating.setText(questionnaire.getQuestionCaption(getString(R.string.occurrenceRating)));
+        detectionRating.setText(questionnaire.getQuestionCaption(getString(R.string.detectionRating)));
+        significance.setText(questionnaire.getQuestionCaption(getString(R.string.significance)));
     }
 
     private void setPointOfTime(QuestionnaireSkeleton questionnaire){

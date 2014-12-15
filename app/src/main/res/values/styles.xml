@@ -24,9 +24,41 @@
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:background">@drawable/rounded_corners</item>
         <item name="android:textColor">#fff</item>
-        <item name="android:layout_marginBottom">5dp</item>
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_margin">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="QuestionnaireCaptionsLevel2" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:background">@drawable/rounded_corners</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="QuestionnaireEdits" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:layout_marginStart">@dimen/leftMarginQuestionnaire</item>
+        <item name="android:layout_marginLeft">@dimen/leftMarginQuestionnaire</item>
+        <item name="android:layout_marginEnd">@dimen/leftMarginQuestionnaire</item>
+        <item name="android:layout_marginRight">@dimen/leftMarginQuestionnaire</item>
+        <item name="android:scrollHorizontally">false</item>
+    </style>
+
+    <style name="QuestionnaireRadioButtons">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:checked">false</item>
+        <item name="android:layout_marginStart">@dimen/leftMarginQuestionnaire</item>
+        <item name="android:layout_marginLeft">@dimen/leftMarginQuestionnaire</item>
+        <item name="android:textColor">#fff</item>
     </style>
 
 </resources>
