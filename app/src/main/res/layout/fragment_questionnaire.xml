@@ -11,229 +11,328 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:id="@+id/reportingArea"
-        android:text="@string/reportingArea"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/reportingArea"
+            android:text="@string/reportingArea"
+            />
+        <Spinner
+            android:id="@+id/reportingAreaSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/leftMarginQuestionnaire"
+            android:layout_marginLeft="@dimen/leftMarginQuestionnaire"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/incidentDescription"
+            android:text="@string/incidentDescription" />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/incidentDescriptionEdit"
+            android:inputType="textMultiLine"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/riskEstimation"
+            android:text="@string/riskEstimation"/>
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/occurrenceRating"
+            android:id="@+id/occurenceRating" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingHigh"
+                android:id="@+id/occurenceRatingHigh" />
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingMid"
+                android:id="@+id/occurenceRatingMid" />
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingLow"
+                android:id="@+id/occurenceRatingLow" />
+        </TableRow>
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/detectionRating"
+            android:id="@+id/detectionRating" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingHigh"
+                android:id="@+id/detectionRatingHigh" />
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingMid"
+                android:id="@+id/detectionRatingMid" />
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingLow"
+                android:id="@+id/detectionRatingLow" />
+        </TableRow>
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/significance"
+            android:id="@+id/significance" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingHigh"
+                android:id="@+id/significanceHigh" />
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingMid"
+                android:id="@+id/significanceMid" />
+            <RadioButton
+                style="@style/QuestionnaireRadioButtons"
+                android:text="@string/ratingLow"
+                android:id="@+id/significanceLow" />
+        </TableRow>
+    </LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="@string/pointOfTime"
+            android:id="@+id/pointOfView" />
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/date"
+            android:id="@+id/date" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/button_dateChoose"
+            android:layout_margin="15dp"
+            android:id="@+id/dateChoose"
+            android:textColor="#ADD8E6"
+            android:onClick="showDatePickerDialog"/>
+        <TextView
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/dateEdit"/>
+
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/time"
+            android:id="@+id/time"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/button_timeChoose"
+            android:id="@+id/timeButton"
+            android:layout_margin="15dp"
+            android:textColor="#ADD8E6"
+            android:onClick="showTimePickerDialog"/>
+
+        <TextView
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/timeEdit"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="@string/location"
+            android:id="@+id/location" />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/locationEdit"
+            android:inputType="textMultiLine"
         />
-    <Spinner
-        android:id="@+id/reportingAreaSelection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/leftMarginQuestionnaire"
-        android:layout_marginLeft="@dimen/leftMarginQuestionnaire"/>
+    </LinearLayout>
 
 
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:id="@+id/incidentDescription"
-        android:text="@string/incidentDescription" />
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/incidentDescriptionEdit"
-        android:inputType="textMultiLine"/>
-
-
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:id="@+id/riskEstimation"
-        android:text="@string/riskEstimation"/>
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/occurrenceRating"
-        android:id="@+id/occurenceRating" />
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingHigh"
-            android:id="@+id/occurenceRatingHigh" />
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingMid"
-            android:id="@+id/occurenceRatingMid" />
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingLow"
-            android:id="@+id/occurenceRatingLow" />
-    </TableRow>
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/detectionRating"
-        android:id="@+id/detectionRating" />
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingHigh"
-            android:id="@+id/detectionRatingHigh" />
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingMid"
-            android:id="@+id/detectionRatingMid" />
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingLow"
-            android:id="@+id/detectionRatingLow" />
-    </TableRow>
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/significance"
-        android:id="@+id/significance" />
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingHigh"
-            android:id="@+id/significanceHigh" />
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingMid"
-            android:id="@+id/significanceMid" />
-        <RadioButton
-            style="@style/QuestionnaireRadioButtons"
-            android:text="@string/ratingLow"
-            android:id="@+id/significanceLow" />
-    </TableRow>
-
-
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:text="@string/pointOfTime"
-        android:id="@+id/pointOfView" />
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/date"
-        android:id="@+id/date" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/button_dateChoose"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
         android:layout_margin="15dp"
-        android:id="@+id/dateChoose"
-        android:textColor="#ADD8E6"
-        android:onClick="showDatePickerDialog"/>
-    <TextView
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/dateEdit"/>
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="@string/immediateMeasure"
+            android:id="@+id/immediateMeasure" />
+
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/MassnahmeDescriptionEdit"
+            android:inputType="textMultiLine"
+        />
+    </LinearLayout>
 
 
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/time"
-        android:id="@+id/time"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/button_timeChoose"
-        android:id="@+id/timeButton"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
         android:layout_margin="15dp"
-        android:textColor="#ADD8E6"
-        android:onClick="showTimePickerDialog"/>
-
-    <TextView
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/timeEdit"/>
-
-
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:text="@string/location"
-        android:id="@+id/location" />
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/locationEdit"
-        android:inputType="textMultiLine"
-    />
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="@string/consequences"
+            android:id="@+id/consequences" />
 
 
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:text="@string/immediateMeasure"
-        android:id="@+id/immediateMeasure" />
-
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/MassnahmeDescriptionEdit"
-        android:inputType="textMultiLine"
-    />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/consequencesEdit"
+            android:inputType="textMultiLine"/>
+    </LinearLayout>
 
 
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:text="@string/consequences"
-        android:id="@+id/consequences" />
-
-
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/consequencesEdit"
-        android:inputType="textMultiLine"/>
-
-
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:text="@string/opinionOfReporter"
-        android:id="@+id/opinionOfReporter" />
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/personalFactors"
-        android:id="@+id/personalFactors" />
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/personalFactorsEdit"
-        android:inputType="textMultiLine"/>
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/organisationalFactors"
-        android:id="@+id/organisationalFactors" />
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/organisationalFactorsEdit"
-        android:inputType="textMultiLine"/>
-
-    <TextView
-        style="@style/QuestionnaireCaptionsLevel2"
-        android:text="@string/additionalNotes"
-        android:id="@+id/additionalNotes" />
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/additionalNotesEdit"
-        android:inputType="textMultiLine"/>
-
-
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:text="@string/files"
-        android:id="@+id/filesCaption" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/button_addFile"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
         android:layout_margin="15dp"
-        android:id="@+id/fileupload"
-        android:textColor="#ADD8E6"/>
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="@string/opinionOfReporter"
+            android:id="@+id/opinionOfReporter" />
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/personalFactors"
+            android:id="@+id/personalFactors" />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/personalFactorsEdit"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/organisationalFactors"
+            android:id="@+id/organisationalFactors" />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/organisationalFactorsEdit"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:text="@string/additionalNotes"
+            android:id="@+id/additionalNotes" />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/additionalNotesEdit"
+            android:inputType="textMultiLine"/>
+    </LinearLayout>
 
 
-    <TextView
-        style="@style/QuestionnaireCaptions"
-        android:id="@+id/contactInformation"
-        android:text="@string/contactInformation" />
-    <EditText
-        style="@style/QuestionnaireEdits"
-        android:id="@+id/contactInformationEdit"
-        android:inputType="textMultiLine"/>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="@string/files"
+            android:id="@+id/filesCaption" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/button_addFile"
+            android:layout_margin="15dp"
+            android:id="@+id/fileupload"
+            android:textColor="#ADD8E6"/>
+    </LinearLayout>
 
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="15dp"
+        android:baselineAligned="false">
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/contactInformation"
+            android:text="@string/contactInformation" />
+        <EditText
+            style="@style/QuestionnaireEdits"
+            android:id="@+id/contactInformationEdit"
+            android:inputType="textMultiLine"/>
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
