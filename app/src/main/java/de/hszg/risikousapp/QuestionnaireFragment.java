@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.xmlParser.QuestionnaireSkeleton;
@@ -115,6 +118,9 @@ public class QuestionnaireFragment extends Fragment {
 
     private void setPointOfTime(QuestionnaireSkeleton questionnaire){
         //TODO
+        TextView date = (TextView) getActivity().findViewById(R.id.dateEdit);
+        TextView time = (TextView) getActivity().findViewById(R.id.timeEdit);
+
     }
 
     private void setLocation(QuestionnaireSkeleton questionnaire){
