@@ -132,12 +132,12 @@ public class QuestionnaireFragment extends Fragment {
     private void setPointOfTime(QuestionnaireSkeleton questionnaire){
         TextView pointOfTime = (TextView) getActivity().findViewById(R.id.pointOfTime);
 
-        TextView date = (TextView) getActivity().findViewById(R.id.date);
-        TextView time = (TextView) getActivity().findViewById(R.id.time);
+        //TextView date = (TextView) getActivity().findViewById(R.id.date);
+        //TextView time = (TextView) getActivity().findViewById(R.id.time);
 
         pointOfTime.setText(questionnaire.getQuestionCaption(getString(R.string.pointOfTime)));
-        date.setText(questionnaire.getQuestionCaption(getString(R.string.date)));
-        time.setText(questionnaire.getQuestionCaption(getString(R.string.time)));
+        //date.setText(questionnaire.getQuestionCaption(getString(R.string.date)));
+        //time.setText(questionnaire.getQuestionCaption(getString(R.string.time)));
     }
 
     private void setLocation(QuestionnaireSkeleton questionnaire){
@@ -189,7 +189,7 @@ public class QuestionnaireFragment extends Fragment {
     }
 
     private void setUploadFileText (QuestionnaireSkeleton questionnaire){
-        TextView uploadFileCaption = (TextView) getActivity().findViewById(R.id.fileUploadCaption);
+        TextView uploadFileCaption = (TextView) getActivity().findViewById(R.id.filesCaption);
 
         uploadFileCaption.setText(questionnaire.getQuestionCaption(getString(R.string.files)));
     }

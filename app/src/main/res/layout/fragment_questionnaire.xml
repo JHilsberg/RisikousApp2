@@ -1,284 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     >
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:id="@+id/reportingArea"
-            android:text="@string/reportingArea"
-            />
-        <Spinner
-            android:id="@+id/reportingAreaSelection"
-            android:layout_width="fill_parent"
+    <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/questionnaireContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/leftMarginQuestionnaire"
-            android:layout_marginLeft="@dimen/leftMarginQuestionnaire"
-            android:theme="@android:style/Theme.Holo"
-            android:layout_marginRight="10dp" />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:id="@+id/reportingArea"
+                    android:text="@string/reportingArea"
+                    />
+                <Spinner
+                    android:id="@+id/reportingAreaSelection"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/leftMarginQuestionnaire"
+                    android:layout_marginLeft="@dimen/leftMarginQuestionnaire"
+                    android:theme="@android:style/Theme.Holo"
+                    android:layout_marginRight="10dp" />
+            </LinearLayout>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:id="@+id/incidentDescription"
-            android:text="@string/incidentDescription" />
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/incidentDescriptionEdit"
-            android:inputType="textMultiLine"
-            android:background="#ffffffff" />
-    </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:id="@+id/incidentDescription"
+                    android:text="@string/incidentDescription" />
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/incidentDescriptionEdit"
+                    android:inputType="textMultiLine"
+                    android:background="#ffffffff" />
+            </LinearLayout>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:id="@+id/riskEstimation"
-            android:text="@string/riskEstimation"/>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:id="@+id/riskEstimation"
+                    android:text="@string/riskEstimation"/>
 
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/occurrenceRating"
-            android:id="@+id/occurenceRating" />
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingHigh"
-                android:id="@+id/occurenceRatingHigh" />
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingMid"
-                android:id="@+id/occurenceRatingMid" />
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingLow"
-                android:id="@+id/occurenceRatingLow" />
-        </TableRow>
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/occurrenceRating"
+                    android:id="@+id/occurenceRating" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingHigh"
+                        android:id="@+id/occurenceRatingHigh" />
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingMid"
+                        android:id="@+id/occurenceRatingMid" />
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingLow"
+                        android:id="@+id/occurenceRatingLow" />
+                </TableRow>
 
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/detectionRating"
-            android:id="@+id/detectionRating" />
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingHigh"
-                android:id="@+id/detectionRatingHigh" />
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingMid"
-                android:id="@+id/detectionRatingMid" />
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingLow"
-                android:id="@+id/detectionRatingLow" />
-        </TableRow>
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/detectionRating"
+                    android:id="@+id/detectionRating" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingHigh"
+                        android:id="@+id/detectionRatingHigh" />
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingMid"
+                        android:id="@+id/detectionRatingMid" />
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingLow"
+                        android:id="@+id/detectionRatingLow" />
+                </TableRow>
 
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/significance"
-            android:id="@+id/significance" />
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingHigh"
-                android:id="@+id/significanceHigh" />
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingMid"
-                android:id="@+id/significanceMid" />
-            <RadioButton
-                style="@style/QuestionnaireRadioButtons"
-                android:text="@string/ratingLow"
-                android:id="@+id/significanceLow" />
-        </TableRow>
-    </LinearLayout>
-
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="@string/pointOfTime"
-            android:id="@+id/pointOfView" />
-
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/date"
-            android:id="@+id/date" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/button_dateChoose"
-            android:layout_margin="15dp"
-            android:id="@+id/dateChoose"
-            android:textColor="#fff"
-            android:onClick="showDatePickerDialog"/>
-
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/time"
-            android:id="@+id/time"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/button_timeChoose"
-            android:id="@+id/timeButton"
-            android:layout_margin="15dp"
-            android:textColor="#fff"
-            android:onClick="showTimePickerDialog"/>
-
-    </LinearLayout>
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/significance"
+                    android:id="@+id/significance" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingHigh"
+                        android:id="@+id/significanceHigh" />
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingMid"
+                        android:id="@+id/significanceMid" />
+                    <RadioButton
+                        style="@style/QuestionnaireRadioButtons"
+                        android:text="@string/ratingLow"
+                        android:id="@+id/significanceLow" />
+                </TableRow>
+            </LinearLayout>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="@string/location"
-            android:id="@+id/location" />
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/locationEdit"
-            android:inputType="textMultiLine"
-        />
-    </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/pointOfTime"
+                    android:id="@+id/pointOfTime" />
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="@string/immediateMeasure"
-            android:id="@+id/immediateMeasure" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/button_dateChoose"
+                    android:layout_margin="15dp"
+                    android:id="@+id/dateChoose"
+                    android:textColor="#fff"
+                    android:onClick="showDatePickerDialog"/>
 
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/MassnahmeDescriptionEdit"
-            android:inputType="textMultiLine"
-        />
-    </LinearLayout>
+                <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button_timeChoose"
+                android:layout_margin="15dp"
+                android:id="@+id/timeChoose"
+                android:textColor="#fff"
+                android:onClick="showTimePickerDialog"/>
 
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="@string/consequences"
-            android:id="@+id/consequences" />
+            </LinearLayout>
 
 
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/consequencesEdit"
-            android:inputType="textMultiLine"/>
-    </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/location"
+                    android:id="@+id/location" />
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/locationEdit"
+                    android:inputType="textMultiLine"
+                />
+            </LinearLayout>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="@string/opinionOfReporter"
-            android:id="@+id/opinionOfReporter" />
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/immediateMeasure"
+                    android:id="@+id/immediateMeasure" />
 
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/personalFactors"
-            android:id="@+id/personalFactors" />
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/personalFactorsEdit"
-            android:inputType="textMultiLine"/>
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/immediateMeasureEdit"
+                    android:inputType="textMultiLine"
+                />
+            </LinearLayout>
 
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/organisationalFactors"
-            android:id="@+id/organisationalFactors" />
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/organisationalFactorsEdit"
-            android:inputType="textMultiLine"/>
-
-        <TextView
-            style="@style/QuestionnaireCaptionsLevel2"
-            android:text="@string/additionalNotes"
-            android:id="@+id/additionalNotes" />
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/additionalNotesEdit"
-            android:inputType="textMultiLine"/>
-    </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/consequences"
+                    android:id="@+id/consequences" />
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="@string/files"
-            android:id="@+id/filesCaption" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/button_addFile"
-            android:layout_margin="15dp"
-            android:id="@+id/fileupload"
-            android:textColor="#ADD8E6"/>
-    </LinearLayout>
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/consequencesEdit"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/QuestionnaireLayout">
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:id="@+id/contactInformation"
-            android:text="@string/contactInformation" />
-        <EditText
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/contactInformationEdit"
-            android:inputType="textMultiLine"/>
-    </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/opinionOfReporter"
+                    android:id="@+id/opinionOfReporter" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:text="@string/button_send"
-        android:textColorHighlight="#000000"
-        android:background="#FFFF00"
-        android:id="@+id/send"
-        android:textColor="#000000"/>
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/personalFactors"
+                    android:id="@+id/personalFactors" />
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/personalFactorsEdit"
+                    android:inputType="textMultiLine"/>
 
-</LinearLayout>
-</ScrollView>
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/organisationalFactors"
+                    android:id="@+id/organisationalFactors" />
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/organisationalFactorsEdit"
+                    android:inputType="textMultiLine"/>
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/additionalNotes"
+                    android:id="@+id/additionalNotes" />
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/additionalNotesEdit"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/files"
+                    android:id="@+id/filesCaption" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/button_addFile"
+                    android:layout_margin="15dp"
+                    android:id="@+id/fileupload"
+                    android:textColor="#ADD8E6"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:id="@+id/contactInformation"
+                    android:text="@string/contactInformation" />
+                <EditText
+                    style="@style/QuestionnaireEdits"
+                    android:id="@+id/contactInformationEdit"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:text="@string/button_send"
+                android:textColorHighlight="#000000"
+                android:background="#FFFF00"
+                android:id="@+id/send"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar android:id="@+id/loading_spinner"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+</FrameLayout>
