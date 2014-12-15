@@ -13,13 +13,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:id="@+id/reportingArea"
@@ -27,22 +21,18 @@
             />
         <Spinner
             android:id="@+id/reportingAreaSelection"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/leftMarginQuestionnaire"
-            android:layout_marginLeft="@dimen/leftMarginQuestionnaire"/>
+            android:layout_marginLeft="@dimen/leftMarginQuestionnaire"
+            android:theme="@android:style/Theme.Holo"
+            android:layout_marginRight="10dp" />
     </LinearLayout>
 
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:id="@+id/incidentDescription"
@@ -50,19 +40,14 @@
         <EditText
             style="@style/QuestionnaireEdits"
             android:id="@+id/incidentDescriptionEdit"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:background="#ffffffff" />
     </LinearLayout>
 
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:id="@+id/riskEstimation"
@@ -135,13 +120,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:text="@string/pointOfTime"
@@ -157,12 +136,8 @@
             android:text="@string/button_dateChoose"
             android:layout_margin="15dp"
             android:id="@+id/dateChoose"
-            android:textColor="#ADD8E6"
+            android:textColor="#fff"
             android:onClick="showDatePickerDialog"/>
-        <TextView
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/dateEdit"/>
-
 
         <TextView
             style="@style/QuestionnaireCaptionsLevel2"
@@ -175,24 +150,15 @@
             android:text="@string/button_timeChoose"
             android:id="@+id/timeButton"
             android:layout_margin="15dp"
-            android:textColor="#ADD8E6"
+            android:textColor="#fff"
             android:onClick="showTimePickerDialog"/>
 
-        <TextView
-            style="@style/QuestionnaireEdits"
-            android:id="@+id/timeEdit"/>
     </LinearLayout>
 
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:text="@string/location"
@@ -207,13 +173,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:text="@string/immediateMeasure"
@@ -229,13 +189,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:text="@string/consequences"
@@ -251,13 +205,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:text="@string/opinionOfReporter"
@@ -294,13 +242,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:text="@string/files"
@@ -317,13 +259,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp"
-        android:background="@drawable/rounded_corners"
-        android:layout_margin="15dp"
-        android:baselineAligned="false">
+        style="@style/QuestionnaireLayout">
         <TextView
             style="@style/QuestionnaireCaptions"
             android:id="@+id/contactInformation"
