@@ -59,9 +59,9 @@
     <string name="files">files</string>
     <string name="contactInformation">contactInformation</string>
         
-    <string name="maximumChars">Maximale Zeichenzahl: </string>
-    <string name="maximumSize">Maximale Dateigröße: </string>
-    <string name="wait">Wait...</string>
+    <string name="maximumChars">Maximale Zeichenzahl:&#160;</string>
+    <string name="maximumSize">Maximale Dateigröße:&#160;</string>
+    <string name="wait">Bitte warten...</string>
 
     <string name="ratingHigh">Hoch</string>
     <string name="ratingMid">Mittel</string>
