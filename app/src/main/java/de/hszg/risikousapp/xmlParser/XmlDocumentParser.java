@@ -6,8 +6,10 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,7 +23,16 @@ public class XmlDocumentParser {
     private Document xmlDoc;
 
     public XmlDocumentParser(String xmlData){
-        InputSource source = new InputSource(new StringReader(xmlData));
+        ByteArrayInputStream xmlStream = null;
+
+        try {
+            xmlStream = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Log.e("Codierung", "Die Codierung wird nicht unterstützt");
+        }
+
+        InputSource source = new InputSource(xmlStream);
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;

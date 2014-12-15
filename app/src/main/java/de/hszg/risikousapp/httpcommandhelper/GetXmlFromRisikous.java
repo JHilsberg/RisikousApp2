@@ -1,5 +1,7 @@
 package de.hszg.risikousapp.httpcommandhelper;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -24,13 +26,13 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
     private Context appContext;
 
     public GetXmlFromRisikous(Context context){
-        appContext = context;
+        this.appContext = context;
     }
 
     @Override
     protected String doInBackground(String... actions) {
         try {
-            return getQuestionnaireXml(actions[0]);
+            return getXmlAsString(actions[0]);
         } catch (IOException e) {
             return appContext.getResources().getString(R.string.connection_error);
         }
@@ -43,7 +45,7 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         String url = PROTOCOL + "://" + HOST + PATH;
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url + URLEncoder.encode(action, "UTF-8"));
+        HttpGet request = new HttpGet(url + URLEncoder.encode(action, "utf-8"));
         request.addHeader("Accept", "application/xml");
         HttpResponse response = client.execute(request);
         Log.i("Response Status-Code", "Status-Code: " + response.getStatusLine().getStatusCode());
@@ -51,12 +53,13 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         return response;
     }
 
-    private String getQuestionnaireXml(String action) throws IOException {
+    private String getXmlAsString(String action) throws IOException {
         HttpResponse response = getXmlFromRisikous(action);
         HttpEntity entity = response.getEntity();
 
-        String xmlData = EntityUtils.toString(entity);
+        String xmlData = EntityUtils.toString(entity, "UTF-8");
 
         return xmlData;
     }
+
 }
