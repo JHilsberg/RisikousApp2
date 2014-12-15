@@ -32,22 +32,22 @@ public class QuestionnaireSkeleton {
         xpath = XPathFactory.newInstance().newXPath();
     }
 
-    public String getQuestionCaption(String questionName){
+    public String getQuestionCaption(String questionnaireElementName){
         try {
-            return (String) xpath.evaluate("string(//" + questionName + "/@text)", questionnaireDoc,
+            return (String) xpath.evaluate("string(//" + questionnaireElementName + "/@text)", questionnaireDoc,
                     XPathConstants.STRING);
         } catch (XPathExpressionException e) {
-            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser Caption");
+            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser, caption");
         }
         return "";
     }
 
-    public String getAnswerMaxChars(String question) {
+    public String getAnswerMaxChars(String questionnaireElement) {
         try {
-            return (String) xpath.evaluate("string(//"+ question +"/@maximumOfCharacters)", questionnaireDoc,
+            return (String) xpath.evaluate("string(//"+ questionnaireElement +"/@maximumOfCharacters)", questionnaireDoc,
                     XPathConstants.STRING);
         } catch (XPathExpressionException e) {
-            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser max Chars");
+            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser, max Chars");
         }
         return "";
     }

@@ -4,5 +4,6 @@
 /.idea/libraries
 /.idea/modules.xml
 /.idea/gradle.xml
+/.idea
 .DS_Store
 /build

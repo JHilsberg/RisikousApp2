@@ -1,38 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:id="@+id/reportingArea"
+        android:text="@string/reportingArea"
+        />
+    <Spinner
+        android:id="@+id/reportingAreaSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/leftMarginQuestionnaire"
+        android:layout_marginLeft="@dimen/leftMarginQuestionnaire"/>
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:id="@+id/incidentDescription"
+        android:text="@string/incidentDescription" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/incidentDescriptionEdit"
+        android:inputType="textMultiLine"/>
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:id="@+id/riskEstimation"
+        android:text="@string/riskEstimation"/>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/occurrenceRating"
+        android:id="@+id/occurenceRating" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingHigh"
+            android:id="@+id/occurenceRatingHigh" />
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingMid"
+            android:id="@+id/occurenceRatingMid" />
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingLow"
+            android:id="@+id/occurenceRatingLow" />
+    </TableRow>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/detectionRating"
+        android:id="@+id/detectionRating" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingHigh"
+            android:id="@+id/detectionRatingHigh" />
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingMid"
+            android:id="@+id/detectionRatingMid" />
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingLow"
+            android:id="@+id/detectionRatingLow" />
+    </TableRow>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/significance"
+        android:id="@+id/significance" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingHigh"
+            android:id="@+id/significanceHigh" />
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingMid"
+            android:id="@+id/significanceMid" />
+        <RadioButton
+            style="@style/QuestionnaireRadioButtons"
+            android:text="@string/ratingLow"
+            android:id="@+id/significanceLow" />
+    </TableRow>
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:text="@string/pointOfTime"
+        android:id="@+id/pointOfView" />
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/date"
+        android:id="@+id/date" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/dateEdit"
+        android:inputType="date"
+        android:ems="10"/>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/time"
+        android:id="@+id/time" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/timeEdit"
+        android:inputType="datetime"/>
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:text="@string/location"
+        android:id="@+id/location" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/locationEdit"
+        android:inputType="textMultiLine"
+    />
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:text="@string/immediateMeasure"
+        android:id="@+id/immediateMeasure" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/MassnahmeDescriptionEdit"
+        android:inputType="textMultiLine"
+    />
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:text="@string/consequences"
+        android:id="@+id/consequences" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/consequencesEdit"
+        android:inputType="textMultiLine"/>
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:text="@string/opinionOfReporter"
+        android:id="@+id/opinionOfReporter" />
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/personalFactors"
+        android:id="@+id/personalFactors" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/personalFactorsEdit"
+        android:inputType="textMultiLine"/>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/organisationalFactors"
+        android:id="@+id/organisationalFactors" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/organisationalFactorsEdit"
+        android:inputType="textMultiLine"/>
+
+    <TextView
+        style="@style/QuestionnaireCaptionsLevel2"
+        android:text="@string/additionalNotes"
+        android:id="@+id/additionalNotes" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/additionalNotesEdit"
+        android:inputType="textMultiLine"/>
+
+
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:text="@string/files"
+        android:id="@+id/filesCaption" />
+    <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="1"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:text="@string/button_addFile"
+        android:layout_margin="15dp"
+        android:id="@+id/fileupload"
+        android:textColor="#ADD8E6"/>
 
-        <TextView
-            style="@style/QuestionnaireCaptions"
 
-            android:id="@+id/reportingArea"
-            android:layout_row="0"
-            android:text="@string/wait"
-            android:padding="10dp" />
-        <Spinner
-            android:id="@+id/reportingAreaSelection"
-            android:layout_row="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            style="@style/QuestionnaireCaptions"
+    <TextView
+        style="@style/QuestionnaireCaptions"
+        android:id="@+id/contactInformation"
+        android:text="@string/contactInformation" />
+    <EditText
+        style="@style/QuestionnaireEdits"
+        android:id="@+id/contactInformationEdit"
+        android:inputType="textMultiLine"/>
 
-            android:id="@+id/incidentDescription"
-            android:layout_row="2"
-            android:text="@string/wait"
-            android:padding="10dp" />
-        <EditText
-            android:id="@+id/incidentDescriptionEdit"
-            android:layout_row="3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:lines="3"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:text="@string/button_send"
+        android:textColorHighlight="#000000"
+        android:background="#FFFF00"
+        android:id="@+id/send"
+        android:textColor="#000000"/>
 
 </LinearLayout>
+</ScrollView>
