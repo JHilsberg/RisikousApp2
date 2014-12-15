@@ -1,5 +1,6 @@
 package de.hszg.risikousapp;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -13,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
+import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
 
 public class MainActivity extends FragmentActivity {
 
@@ -150,5 +154,15 @@ public class MainActivity extends FragmentActivity {
 		mTitle = title;
 		getActionBar().setTitle(mTitle);
 	}
+    public void showDatePickerDialog(View v) {
+
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+
+    public void showTimePickerDialog(View v){
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
 	
 }

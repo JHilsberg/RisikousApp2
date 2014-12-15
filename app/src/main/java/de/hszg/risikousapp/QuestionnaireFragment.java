@@ -1,5 +1,6 @@
 package de.hszg.risikousapp;
 
+
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.xmlParser.QuestionnaireSkeleton;
 import de.hszg.risikousapp.xmlParser.ReportingAreas;
@@ -20,6 +19,7 @@ import de.hszg.risikousapp.xmlParser.ReportingAreas;
  * Created by Julian on 08.12.2014.
  */
 public class QuestionnaireFragment extends Fragment {
+
 
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
 
@@ -36,6 +36,7 @@ public class QuestionnaireFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
     }
 
     @Override
@@ -139,4 +140,6 @@ public class QuestionnaireFragment extends Fragment {
     private void setContactInformation (QuestionnaireSkeleton questionnaire){
         //TODO
     }
+
+
 }
