@@ -13,8 +13,15 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="Theme.Risikoustheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Risikoustheme</item>
+    </style>
+
+    <style name="ActionBar.Solid.Risikoustheme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_risikoustheme</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_risikoustheme</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_risikoustheme</item>
     </style>
 
     <style name="QuestionnaireLayout">

@@ -1,7 +1,5 @@
 package de.hszg.risikousapp;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -117,7 +115,7 @@ public class TabbedActivity extends Fragment {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
-			View rootView = inflater.inflate(R.layout.fragment_tabbed_dummy,
+			View rootView = inflater.inflate(R.layout.fragment_tabbed,
 					container, false);
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);

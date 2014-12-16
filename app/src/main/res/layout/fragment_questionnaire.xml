@@ -72,7 +72,8 @@
                     android:text="@string/occurrenceRating"
                     android:id="@+id/occurenceRating" />
 
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                <RadioGroup
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
