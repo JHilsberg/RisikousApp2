@@ -171,7 +171,7 @@ public class QuestionnaireFragment extends Fragment {
         EditText personalFactorsEdit = (EditText) getActivity().findViewById(R.id.personalFactorsEdit);
 
         TextView organisationalFactors = (TextView) getActivity().findViewById(R.id.organisationalFactors);
-        EditText organisationalFactorsEdit = (EditText) getActivity().findViewById(R.id.personalFactorsEdit);
+        EditText organisationalFactorsEdit = (EditText) getActivity().findViewById(R.id.organisationalFactorsEdit);
 
         TextView additionalNotes = (TextView) getActivity().findViewById(R.id.additionalNotes);
         EditText additionalNotesEdit = (EditText) getActivity().findViewById(R.id.additionalNotesEdit);
