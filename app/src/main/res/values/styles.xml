@@ -14,14 +14,13 @@
 
     <!-- Application theme. -->
     <style name="Theme.Risikoustheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background</item>
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Risikoustheme</item>
     </style>
 
     <style name="ActionBar.Solid.Risikoustheme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:background">@drawable/ab_solid_risikoustheme</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_risikoustheme</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_risikoustheme</item>
+        <item name="android:background">#edf3f8</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid</item>
     </style>
 
     <style name="QuestionnaireLayout">
