@@ -3,7 +3,7 @@ package de.hszg.risikousapp;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.content.res.Configuration;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -56,8 +56,7 @@ public class MainActivity extends FragmentActivity {
 		
 		mDrawerToggle = new ActionBarDrawerToggle(
 				this, 
-				mDrawerLayout, 
-				R.drawable.ic_drawer, 
+				mDrawerLayout,
 				R.string.drawer_open, 
 				R.string.drawer_close
 				) {
