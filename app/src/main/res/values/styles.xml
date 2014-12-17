@@ -61,11 +61,11 @@
         <item name="android:padding">10dp</item>
     </style>
 
-    <style name="QuestionnaireEdits" parent="@android:style/TextAppearance.Medium">
+    <style name="QuestionnaireEdits" parent="@android:style/TextAppearance.Large">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">4</item>
-        <item name="android:background">#fff</item>
+        <item name="android:background">@drawable/backwithborder</item>
         <item name="android:layout_marginStart">@dimen/leftMarginQuestionnaire</item>
         <item name="android:layout_marginLeft">@dimen/leftMarginQuestionnaire</item>
         <item name="android:layout_marginEnd">@dimen/leftMarginQuestionnaire</item>
@@ -92,7 +92,7 @@
         <item name="android:checked">false</item>
         <item name="android:layout_marginStart">@dimen/leftMarginQuestionnaire</item>
         <item name="android:layout_marginLeft">@dimen/leftMarginQuestionnaire</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">#000</item>
     </style>
 
 </resources>

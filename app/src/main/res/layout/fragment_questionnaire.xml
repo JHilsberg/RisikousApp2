@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <ScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/questionnaireContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/questionnaireContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<!--Meldekreis***********************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Meldekreis***********************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -39,9 +35,8 @@
 
             </LinearLayout>
 
-<!--Ereignisbeschreibung*************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Ereignisbeschreibung*************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -52,28 +47,25 @@
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/incidentDescriptionEdit"
-                    android:inputType="textMultiLine"
-                    android:background="#ffffffff" />
+                    android:inputType="textMultiLine" />
 
             </LinearLayout>
 
-<!--Risikobewertung******************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Risikobewertung******************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
                     android:id="@+id/riskEstimation"
-                    android:text="@string/riskEstimation"/>
+                    android:text="@string/riskEstimation" />
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
                     android:text="@string/occurrenceRating"
                     android:id="@+id/occurenceRating" />
 
-                <RadioGroup
-                    xmlns:android="http://schemas.android.com/apk/res/android"
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -127,7 +119,7 @@
                     android:text="@string/significance"
                     android:id="@+id/significance" />
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -147,13 +139,12 @@
                         android:text="@string/ratingLow"
                         android:id="@+id/significanceLow" />
 
-              </RadioGroup>
+                </RadioGroup>
 
             </LinearLayout>
 
-<!--Zeitpunkt************************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Zeitpunkt************************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -167,23 +158,22 @@
                     android:text="@string/button_dateChoose"
                     android:layout_margin="15dp"
                     android:id="@+id/dateChoose"
-                    android:textColor="#fff"
-                    android:onClick="showDatePickerDialog"/>
+                    android:textColor="#000"
+                    android:onClick="showDatePickerDialog" />
 
                 <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/button_timeChoose"
-                android:layout_margin="15dp"
-                android:id="@+id/timeChoose"
-                android:textColor="#fff"
-                android:onClick="showTimePickerDialog"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/button_timeChoose"
+                    android:layout_margin="15dp"
+                    android:id="@+id/timeChoose"
+                    android:textColor="#000"
+                    android:onClick="showTimePickerDialog" />
 
             </LinearLayout>
 
-<!--Ort******************************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Ort******************************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -198,9 +188,8 @@
 
             </LinearLayout>
 
-<!--Sofortmaßnahme*******************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Sofortmaßnahme*******************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -211,13 +200,12 @@
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/immediateMeasureEdit"
-                    android:inputType="textMultiLine"  />
+                    android:inputType="textMultiLine" />
 
             </LinearLayout>
 
-<!--Folgen***************************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Folgen***************************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -228,13 +216,12 @@
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/consequencesEdit"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine" />
 
             </LinearLayout>
 
-<!--Meinung**************************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Meinung**************************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -246,10 +233,11 @@
                     style="@style/QuestionnaireCaptionsLevel2"
                     android:text="@string/personalFactors"
                     android:id="@+id/personalFactors" />
+
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/personalFactorsEdit"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine" />
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
@@ -259,7 +247,7 @@
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/organisationalFactorsEdit"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine" />
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
@@ -269,33 +257,32 @@
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/additionalNotesEdit"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine" />
 
             </LinearLayout>
 
-<!--Datei-Upload*********************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Datei-Upload*********************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
                     android:text="@string/files"
                     android:id="@+id/filesCaption" />
+
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/button_addFile"
                     android:layout_margin="15dp"
                     android:id="@+id/fileupload"
-                    android:textColor="#ADD8E6"
-                    android:onClick="showFileChooser"/>
+                    android:textColor="#000"
+                    android:onClick="showFileChooser" />
 
             </LinearLayout>
 
-<!--Kontaktdaten*********************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Kontaktdaten*********************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -306,11 +293,11 @@
                 <EditText
                     style="@style/QuestionnaireEdits"
                     android:id="@+id/contactInformationEdit"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine" />
 
             </LinearLayout>
 
-<!--Abschicken***********************************************************************************-->
+            <!--Abschicken***********************************************************************************-->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -319,13 +306,14 @@
                 android:textColorHighlight="#000000"
                 android:background="#FFFF00"
                 android:id="@+id/send"
-                android:textColor="#000000"/>
+                android:textColor="#000000" />
 
         </LinearLayout>
 
     </ScrollView>
 
-    <ProgressBar android:id="@+id/loading_spinner"
+    <ProgressBar
+        android:id="@+id/loading_spinner"
         style="?android:progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
