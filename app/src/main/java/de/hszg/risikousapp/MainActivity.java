@@ -149,8 +149,8 @@ public class MainActivity extends FragmentActivity {
             	getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame,
-						QuestionnaireFragment.newInstance(),
-						QuestionnaireFragment.TAG).commit();
+						PublicationDetailsFragment.newInstance(),
+						PublicationDetailsFragment.TAG).commit();
             break;
 		}
 	}

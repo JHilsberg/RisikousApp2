@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/detailView">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/QuestionnaireLayout">
+
+            <TextView
+                style="@style/QuestionnaireCaptions"
+                android:text="Veröffentlichung"
+                android:id="@+id/publication" />
+
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/title"
+                android:id="@+id/title" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/description"
+                android:id="@+id/description" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/priorityDeclarant"
+                android:id="@+id/priorityDeclarant" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/priorityQMB"
+                android:id="@+id/priorityQMB" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/reasonDifference"
+                android:id="@+id/reasonDifference" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/category"
+                android:id="@+id/category" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/measure"
+                android:id="@+id/measure" />
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:text="@string/assignedMessage"
+                android:id="@+id/assignedMessage" />
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/commentView">
+
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+            <!--android:fillViewport="true" !-->
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/QuestionnaireLayout">
+
+                <TextView
+                    style="@style/QuestionnaireCaptions"
+                    android:text="@string/comments"
+                    android:id="@+id/comments" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/QuestionnaireLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                style="@style/QuestionnaireCaptions"
+                android:text="@string/addCommment"
+                android:id="@+id/addComment" />
+
+            <EditText
+                style="@style/QuestionnaireEdits"
+                android:id="@+id/newComment"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button_sendComment"
+                android:layout_margin="15dp"
+                android:id="@+id/sendComment"
+                android:textColor="#000"/>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

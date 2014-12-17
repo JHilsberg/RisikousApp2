@@ -76,4 +76,19 @@
     <string name="internal_storage">Internal storage</string>
     <string name="chooser_title">Dateiauswahl</string>
 
+<!-- For Details/Comment Screen !-->
+    <string name="button_sendComment">Kommentar abgeben</string>
+    <string name="addCommment">Kommentar hinzufügen</string>
+    <string name="comments">Kommentare</string>
+    <string name="assignedMessage">Zugeordnete Meldung</string>
+    <string name="measure" >Maßnahme</string>
+    <string name="category">Kategorie</string>
+    <string name="reasonDifference">Begründung für Differenz</string>
+    <string name="priorityQMB">Risikoprioritätszahl (QMB)</string>
+    <string name="priorityDeclarant">Risikoprioritätszahl (Meldender)</string>
+    <string name="description">Ereignisbeschreibung</string>
+    <string name="title">Titel</string>
+    <string name="title_section5">Veröffentlichung</string>
+    <string name="title_section6">Kommentare</string>
+
 </resources>
