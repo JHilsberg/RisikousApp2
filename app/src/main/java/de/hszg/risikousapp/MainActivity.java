@@ -130,8 +130,8 @@ public class MainActivity extends FragmentActivity {
 			getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-                        TabbedActivity.newInstance(),
-                        TabbedActivity.TAG).commit();
+                        WelcomeFragment.newInstance(),
+                        WelcomeFragment.TAG).commit();
 			break;
 		case 1:
 			getSupportFragmentManager()
@@ -144,8 +144,8 @@ public class MainActivity extends FragmentActivity {
             	getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame,
-						ItemOne.newInstance(),
-						ItemOne.TAG).commit();
+						QuestionnaireFragment.newInstance(),
+						QuestionnaireFragment.TAG).commit();
             break;
 		}
 	}

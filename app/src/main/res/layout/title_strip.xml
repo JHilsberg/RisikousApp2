@@ -16,7 +16,7 @@
         android:layout_gravity="top"
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
-        android:textColor="#000"
+        android:textColor="#ff3c1a87"
         android:textSize="17dp"
-        android:background="#60edf3f8" />
+        android:background="##edf3f8" />
 </android.support.v4.view.ViewPager>

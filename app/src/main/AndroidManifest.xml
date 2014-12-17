@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.hszg.risikousapp.TabbedActivity"
+            android:name=".WelcomeFragment"
             android:label="@string/title_activity_tabbed" >
         </activity>
     </application>

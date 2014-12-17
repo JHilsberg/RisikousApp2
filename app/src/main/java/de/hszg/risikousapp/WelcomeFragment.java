@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class TabbedActivity extends Fragment {
+public class WelcomeFragment extends Fragment {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -23,7 +23,7 @@ public class TabbedActivity extends Fragment {
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
-	public static final String TAG = TabbedActivity.class.getSimpleName();
+	public static final String TAG = WelcomeFragment.class.getSimpleName();
 	
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -31,8 +31,8 @@ public class TabbedActivity extends Fragment {
 	ViewPager mViewPager;
 
 	
-	public static TabbedActivity newInstance() {
-		return new TabbedActivity();
+	public static WelcomeFragment newInstance() {
+		return new WelcomeFragment();
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class TabbedActivity extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.activity_item_one, container, false);
+		View v = inflater.inflate(R.layout.title_strip, container, false);
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
 				getChildFragmentManager());
 		
@@ -84,13 +84,13 @@ public class TabbedActivity extends Fragment {
 		public CharSequence getPageTitle(int position) {
 			switch (position) {
 			case 0:
-				return getString(R.string.title_section1);
+				return getString(R.string.title_section1).toUpperCase();
 			case 1:
-				return getString(R.string.title_section2);
+				return getString(R.string.title_section2).toUpperCase();
 			case 2:
-				return getString(R.string.title_section3);
+				return getString(R.string.title_section3).toUpperCase();
             case 3:
-                return getString(R.string.title_section4);
+                return getString(R.string.title_section4).toUpperCase();
 			}
 			return null;
 		}
@@ -106,7 +106,6 @@ public class TabbedActivity extends Fragment {
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
-        //int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
 		public DummySectionFragment() {
 		}
@@ -115,13 +114,15 @@ public class TabbedActivity extends Fragment {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
-			View rootView = inflater.inflate(R.layout.fragment_tabbed,
+			View rootView = inflater.inflate(R.layout.fragment_welcome,
 					container, false);
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             TextView textView = (TextView) rootView.findViewById(R.id.textView);
             ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+
             // TODO ...hässlich gelöst, mit den sichbarkeiten von image- und textview, oder?!
+
             imageView.setVisibility(View.INVISIBLE);
             switch(sectionNumber) {
                 case 1:
