@@ -31,7 +31,7 @@ public class FileDialog
 {
     private int fileOpen = 0;
     private int fileSave = 1;
-    private int FolderChoose = 2;
+    private int folderChoose = 2;
     private int selectType = fileSave;
     private String mSdcardDirectory = "";
     private Context m_context;
@@ -58,8 +58,8 @@ public class FileDialog
     {
         if (file_select_type.equals("fileOpen"))          selectType = fileOpen;
         else if (file_select_type.equals("fileSave"))     selectType = fileSave;
-        else if (file_select_type.equals("FolderChoose")) selectType = FolderChoose;
-        else selectType = fileOpen;
+        else if (file_select_type.equals("folderChoose")) selectType = folderChoose;
+        else selectType = folderChoose;
 
         m_context = context;
         mSdcardDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -109,7 +109,7 @@ public class FileDialog
         mDir = dir;
         mSubDirs = getDirectories(dir);
 
-        class SimpleFileDialogOnClickListener implements DialogInterface.OnClickListener
+        class FileDialogOnClickListener implements DialogInterface.OnClickListener
         {
             public void onClick(DialogInterface dialog, int item)
             {
@@ -139,7 +139,7 @@ public class FileDialog
         }
 
         AlertDialog.Builder dialogBuilder = createDirectoryChooserDialog(dir, mSubDirs,
-                new SimpleFileDialogOnClickListener());
+                new FileDialogOnClickListener());
 
         dialogBuilder.setPositiveButton("OK", new OnClickListener()
         {
@@ -234,7 +234,7 @@ public class FileDialog
 
         if (selectType == fileOpen) mTitleView1.setText("Open:");
         if (selectType == fileSave) mTitleView1.setText("Save As:");
-        if (selectType == FolderChoose) mTitleView1.setText("Folder Select:");
+        if (selectType == folderChoose) mTitleView1.setText("Folder Select:");
 
         //need to make this a variable Save as, Open, Select Directory
         mTitleView1.setGravity(Gravity.CENTER_VERTICAL);
@@ -247,7 +247,7 @@ public class FileDialog
         titleLayout1.addView(mTitleView1);
 
 
-        if (selectType == FolderChoose || selectType == fileSave)
+        if (selectType == folderChoose || selectType == fileSave)
         {
             ///////////////////////////////
             // Create New Folder Button  //

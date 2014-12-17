@@ -15,7 +15,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
 import de.hszg.risikousapp.dialogHelper.FileDialog;
 import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
