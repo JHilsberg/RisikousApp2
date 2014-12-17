@@ -1,6 +1,9 @@
 package de.hszg.risikousapp;
 
+import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 import android.content.res.Configuration;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,14 +17,17 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.ipaulpro.afilechooser.FileChooserActivity;
+import com.ipaulpro.afilechooser.utils.FileUtils;
+
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
-import de.hszg.risikousapp.dialogHelper.FileDialog;
 import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
 
 public class MainActivity extends FragmentActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int REQUEST_CODE = 6384;
 	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -162,21 +168,22 @@ public class MainActivity extends FragmentActivity {
 
     public void showTimePickerDialog(View v){
         DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
+        newFragment.show(getFragmentManager(), "timePicker");
     }
-    String mChosen;
-    public void showFileDialog(View v){
 
-        FileDialog FolderChooseDialog = new FileDialog(this, "Ordnerauswahl",
-                new FileDialog.FileDialogListener() {
-                    @Override
-                    public void onChosenDir(String chosenDir) {
-                       mChosen = chosenDir;
-                        Toast.makeText(MainActivity.this, "Ausgewählte Datei: " +
-                        mChosen, Toast.LENGTH_LONG).show();
-                    }
-                });
-        FolderChooseDialog.chooseFile_or_Dir();
+    public void showFileChooser(View v) {
+        // Use the GET_CONTENT intent from the utility class
+        Intent target = FileUtils.createGetContentIntent();
+        // Create the chooser Intent
+        Intent intent = Intent.createChooser(
+                target, getString(R.string.chooser_title));
+        try {
+            startActivityForResult(intent, REQUEST_CODE);
+        } catch (ActivityNotFoundException e) {
+            // The reason for the existence of aFileChooser
+        }
+
     }
+
 	
 }

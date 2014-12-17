@@ -289,7 +289,7 @@
                     android:layout_margin="15dp"
                     android:id="@+id/fileupload"
                     android:textColor="#ADD8E6"
-                    android:onClick="showFileDialog"/>
+                    android:onClick="showFileChooser"/>
 
             </LinearLayout>
 
