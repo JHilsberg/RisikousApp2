@@ -21,6 +21,9 @@
         <item name="android:background">#edf3f8</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid</item>
+        <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
+        <item name="displayOptions">showHome|homeAsUp|showTitle</item>
+        <item name="android:icon">@android:color/transparent</item>
     </style>
 
     <style name="QuestionnaireLayout">
