@@ -27,7 +27,7 @@
         <item name="android:icon">@android:color/transparent</item>
     </style>
 
-    <style name="QuestionnaireLayout">
+    <style name="QuestionnaireLayout" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:background">@drawable/rounded_corners</item>

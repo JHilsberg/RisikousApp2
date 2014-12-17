@@ -20,21 +20,21 @@
     <string name="title_section4">Veröffentlichung</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="connection_error">Verbindung zum Internet fehlgeschlagen!</string>
-    <string name="section1_text">Sie befinden sich auf einer öffentlichen und frei zugänglichen Version der CIRS-Software Risikous.
+    <string name="section1_text">Sie befinden sich auf einer öffentlichen und frei zugänglichen Version der CIRS-Software Risikous.\n\n
         Risikous dient als Critical Incident Reporting System (CIRS) zur Erfassung, Verwaltung und Auswertung von kritischen Ereignissen
         und Beinahefehlern. Mit diesem System ermöglichen Sie dem (medizinischen) Personal, anonym und freiwillig über relevante Zwischenfälle
         im Arbeitsumfeld zu berichten. Durch seine einfache und flexible Handhabung kann Risikous einen wichtigen Beitrag zur Erkennung von
         Schwachstellen leisten. Damit hilft dieses Reporting System, eine interne Fehlerkultur zu etablieren und trägt so zur Verbesserung der
         (Patienten-) Sicherheit bei.</string>
     <string name="section2_text"></string>
-    <string name="section3_text">Unter dem Menüpunkt \'Meldung\' haben Sie die Möglichkeit, den Meldebogen für einen Beinahefehler auszufüllen.
+    <string name="section3_text">Unter dem Menüpunkt \'Meldung\' haben Sie die Möglichkeit, den Meldebogen für einen Beinahefehler auszufüllen.\n\n
         Die ersten drei Fragen sind Pflichtfragen, müssen also ausgefüllt werden. Alle weiteren Angaben sind freiwillig und dienen lediglich
-        der detaillierten Beschreibung des Ereignisses. Das Hinzufügen von Dateianhängen wie Bildern oder Dokumenten ist ebenfalls möglich.
+        der detaillierten Beschreibung des Ereignisses.\n\n Das Hinzufügen von Dateianhängen wie Bildern oder Dokumenten ist ebenfalls möglich.\n\n
         Nach dem Absenden des Meldebogens erhalten Sie eine Meldungsnummer, über die Sie den weiteren Prozess anonym verfolgen können.</string>
     <string name="section4_text">Der Veröffentlichungsbereich gibt Ihnen eine Übersicht aller veröffentlichten oder aktuell in Bearbeitung
-        befindlichen Meldungen. In der Übersichtsliste der Veröffentlichungen können Sie durch einen Klick auf einen Eintrag die zugehörigen
-        Detailinformationen einsehen. Wurde die Bearbeitung der Meldung bereits abgeschlossen, ist zudem die festgelegte Maßnahme sichtbar.
-        Sie erhalten somit ein direktes Feedback sowie Informationen über den aktuellen Status ihrer Meldungen. Außerdem ist es möglich,
+        befindlichen Meldungen.\n\n In der Übersichtsliste der Veröffentlichungen können Sie durch einen Klick auf einen Eintrag die zugehörigen
+        Detailinformationen einsehen. Wurde die Bearbeitung der Meldung bereits abgeschlossen, ist zudem die festgelegte Maßnahme sichtbar.\n\n
+        Sie erhalten somit ein direktes Feedback sowie Informationen über den aktuellen Status ihrer Meldungen.\n\n Außerdem ist es möglich,
         die Veröffentlichung zu kommentieren. Somit können Sie weiter konstruktiv auf den Prozess einwirken.</string>
 
     <!--For Questionnaire Skeleton -->
