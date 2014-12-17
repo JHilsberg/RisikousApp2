@@ -14,8 +14,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
+import de.hszg.risikousapp.dialogHelper.FileDialog;
 import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
 
 public class MainActivity extends FragmentActivity {
@@ -162,6 +164,20 @@ public class MainActivity extends FragmentActivity {
     public void showTimePickerDialog(View v){
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
+    }
+    String mChosen;
+    public void showFileDialog(View v){
+
+        FileDialog FolderChooseDialog = new FileDialog(this, "Ordnerauswahl",
+                new FileDialog.FileDialogListener() {
+                    @Override
+                    public void onChosenDir(String chosenDir) {
+                       mChosen = chosenDir;
+                        Toast.makeText(MainActivity.this, "Ausgewählte Datei: " +
+                        mChosen, Toast.LENGTH_LONG).show();
+                    }
+                });
+        FolderChooseDialog.chooseFile_or_Dir();
     }
 	
 }

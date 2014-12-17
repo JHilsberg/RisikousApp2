@@ -288,7 +288,8 @@
                     android:text="@string/button_addFile"
                     android:layout_margin="15dp"
                     android:id="@+id/fileupload"
-                    android:textColor="#ADD8E6"/>
+                    android:textColor="#ADD8E6"
+                    android:onClick="showFileDialog"/>
 
             </LinearLayout>
 
