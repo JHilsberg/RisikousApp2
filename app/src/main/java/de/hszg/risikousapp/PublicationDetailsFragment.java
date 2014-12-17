@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -51,9 +50,6 @@ public class PublicationDetailsFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a DummySectionFragment (defined as a static inner class
-            // below) with the page number as its lone argument.
             Fragment fragment = new TabbedView();
             Bundle args = new Bundle();
             args.putInt(TabbedView.ARG_SECTION_NUMBER, position + 1);
@@ -63,7 +59,6 @@ public class PublicationDetailsFragment extends Fragment {
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
             return 2;
         }
 
@@ -80,31 +75,20 @@ public class PublicationDetailsFragment extends Fragment {
     }
 
     public static class TabbedView extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
         public static final String ARG_SECTION_NUMBER = "section_number";
-
-        public TabbedView() {
-        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             View rootView = inflater.inflate(R.layout.fragment_details,
                     container, false);
-            ScrollView detailView = (ScrollView) rootView.findViewById(R.id.detailView);
-            RelativeLayout commentView = (RelativeLayout) rootView.findViewById(R.id.commentView);
-            //detailView.setVisibility(View.INVISIBLE);
-            commentView.setVisibility(View.INVISIBLE);
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            ScrollView detailView = (ScrollView) rootView.findViewById(R.id.detailView);
+            RelativeLayout commentView = (RelativeLayout) rootView.findViewById(R.id.commentView);
+            commentView.setVisibility(View.INVISIBLE);
+
             switch(sectionNumber) {
-                /*case 1:
-                    commentView.setVisibility(View.GONE);
-                    detailView.setVisibility(View.VISIBLE);*/
                 case 2:
                     detailView.setVisibility(View.GONE);
                     commentView.setVisibility(View.VISIBLE);

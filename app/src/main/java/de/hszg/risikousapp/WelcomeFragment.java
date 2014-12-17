@@ -65,11 +65,11 @@ public class WelcomeFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a DummySectionFragment (defined as a static inner class
+            // Return a TabbedView (defined as a static inner class
             // below) with the page number as its lone argument.
-            Fragment fragment = new DummySectionFragment();
+            Fragment fragment = new TabbedView();
             Bundle args = new Bundle();
-            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+            args.putInt(TabbedView.ARG_SECTION_NUMBER, position + 1);
             fragment.setArguments(args);
             return fragment;
         }
@@ -100,20 +100,16 @@ public class WelcomeFragment extends Fragment {
      * A dummy fragment representing a section of the app, but that simply
      * displays dummy text.
      */
-    public static class DummySectionFragment extends Fragment {
+    public static class TabbedView extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         public static final String ARG_SECTION_NUMBER = "section_number";
 
-        public DummySectionFragment() {
-        }
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             View rootView = inflater.inflate(R.layout.fragment_welcome,
                     container, false);
 
@@ -121,17 +117,17 @@ public class WelcomeFragment extends Fragment {
             TextView textView = (TextView) rootView.findViewById(R.id.textView);
             TextView tv_welcome = (TextView) rootView.findViewById(R.id.tv_welcome);
             ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+            imageView.setVisibility(View.INVISIBLE);
 
             // TODO ...hässlich gelöst, mit den sichbarkeiten von image- und textview, oder?!
 
-            imageView.setVisibility(View.INVISIBLE);
             switch (sectionNumber) {
                 case 1:
                     tv_welcome.setText(R.string.title_section1);
                     textView.setText(R.string.section1_text);
                     break;
                 case 2:
-                    textView.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.GONE);
                     imageView.setVisibility(View.VISIBLE);
                     tv_welcome.setText(R.string.title_section2);
                     imageView.setImageResource(R.drawable.cirs);
