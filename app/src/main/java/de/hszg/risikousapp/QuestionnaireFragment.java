@@ -1,6 +1,9 @@
 package de.hszg.risikousapp;
 
 import android.app.DialogFragment;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,11 +14,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.ipaulpro.afilechooser.FileChooserActivity;
+import com.ipaulpro.afilechooser.utils.FileUtils;
 
 import java.util.ArrayList;
 
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
-import de.hszg.risikousapp.dialogHelper.FileChooserActivity;
+import de.hszg.risikousapp.dialogHelper.FileDecoder;
 import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.models.ReportingArea;
@@ -28,7 +35,9 @@ import de.hszg.risikousapp.xmlParser.ReportingAreas;
 public class QuestionnaireFragment extends Fragment implements View.OnClickListener {
 
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
-
+    public final static int REQUEST_CODE = 6384;
+    private static final String TAG_FC = "FileChooserActivity";
+    public String base64File= "";
     private View questionnaireContentView;
     private View loadingView;
 
@@ -128,9 +137,53 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             DialogFragment newFragment = new TimePickerFragment();
             newFragment.show(getActivity().getFragmentManager(), "timePicker");
         } else if (v.getId() == R.id.fileUpload) {
-            FileChooserActivity newActivity = new FileChooserActivity();
-            newActivity.showChooser();
+            startFileChooser();
         }
-
     }
+
+    private void startFileChooser() {
+        FileChooserActivity fileChooserActivity;
+        Intent target = FileUtils.createGetContentIntent();
+        // Create the chooser Intent
+        Intent intent = Intent.createChooser(
+                target, getString(R.string.chooser_title));
+        try {
+            startActivityForResult(intent, REQUEST_CODE);
+        } catch (ActivityNotFoundException e) {
+            Log.e("Chooser", "FileChooser activity not found");
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE:
+                // If the file selection was successful
+                if (resultCode == getActivity().RESULT_OK) {
+                    if (data != null) {
+                        // Get the URI of the selected file
+                        final Uri uri = data.getData();
+                        Log.i(TAG, "Uri = " + uri.toString());
+                        try {
+                            // Get the file path from the URI
+                            final String path = FileUtils.getPath(getActivity().getApplicationContext(), uri);
+                            final String fileName = path.substring(path.lastIndexOf("/") + 1);
+
+                            Button file = (Button) getActivity().findViewById(R.id.fileUpload);
+                            file.setText(path);
+                            Toast.makeText(getActivity().getApplicationContext(), "Ausgewählte Datei: " + fileName, Toast.LENGTH_LONG).show();
+                            FileDecoder fileDecoder = new FileDecoder(fileName);
+                            base64File = fileDecoder.getFile();
+                        } catch (Exception e) {
+                            Log.e("FileChooser", "File select error", e);
+                        }
+                    }
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 }
+
+
