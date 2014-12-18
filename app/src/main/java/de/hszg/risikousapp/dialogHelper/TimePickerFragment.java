@@ -8,7 +8,6 @@ import android.text.format.DateFormat;
 import android.widget.Button;
 import android.widget.TimePicker;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import de.hszg.risikousapp.R;
@@ -27,12 +26,22 @@ public class TimePickerFragment extends DialogFragment
         int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar,this, hour, minute,
+        return new TimePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, this, hour, minute,
                 DateFormat.is24HourFormat(getActivity()));
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         Button time = (Button) getActivity().findViewById(R.id.timeChoose);
-        time.setText(hourOfDay + ":" + minute);
+
+        time.setText(new StringBuilder().append(timeString(hourOfDay)).append(":").append(timeString(minute)));
     }
+
+    private static String timeString(int timeValue) {
+        if (timeValue >= 10) {
+            return String.valueOf(timeValue);
+        }else {
+            return "0" + String.valueOf(timeValue);
+        }
+    }
+
 }
