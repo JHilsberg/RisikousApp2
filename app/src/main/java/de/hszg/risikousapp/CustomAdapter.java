@@ -9,19 +9,19 @@ package de.hszg.risikousapp;
 
         import java.util.ArrayList;
 
-        import de.hszg.risikousapp.models.SearchingResults;
+        import de.hszg.risikousapp.models.PublicationForList;
 
         import static de.hszg.risikousapp.R.layout.list_testing;
 
 public  class CustomAdapter extends BaseAdapter {
-    private static ArrayList<SearchingResults> searchArrayList;
+    private static ArrayList<PublicationForList> searchArrayList;
     private static ArrayList<String> erstellungsdatumm;
     private static ArrayList<String> meldungenn;
     private static ArrayList<String> statuss;
     private static ArrayList<String> kommentarenn;
     private LayoutInflater mInflater;
 
-    public CustomAdapter(Context context, ArrayList<SearchingResults> results) {
+    public CustomAdapter(Context context, ArrayList<PublicationForList> results) {
         searchArrayList = results;
         // erstellungsdatumm = erstellungsdatum;
         // meldungenn = meldungen;

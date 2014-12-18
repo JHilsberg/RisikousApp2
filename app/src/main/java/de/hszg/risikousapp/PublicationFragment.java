@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.models.PublicationForDetails;
-import de.hszg.risikousapp.models.SearchingResults;
-import de.hszg.risikousapp.xmlParser.PublicationParser;
+import de.hszg.risikousapp.models.PublicationForList;
+import de.hszg.risikousapp.xmlParser.PublicationList;
 
 /**
  * Created by besitzer on 17.12.14.
@@ -49,7 +49,7 @@ public class PublicationFragment extends Fragment {
         new GetXmlFromRisikous(getActivity()) {
             @Override
             public void onPostExecute(String result) {
-                PublicationParser parser = new PublicationParser(result);
+                PublicationList parser = new PublicationList(result);
                 setdatatolist(parser);
 
             }
@@ -71,19 +71,19 @@ public class PublicationFragment extends Fragment {
     }
 
 
-    public void setdatatolist(PublicationParser publications){
+    public void setdatatolist(PublicationList publications){
 
         setdata(publications);
 
     }
 
 
-    public void setdata(PublicationParser publications){
+    public void setdata(PublicationList publications){
         final ListView listView;
 
 
 
-        final ArrayList<SearchingResults> searchResults = publications.getData();
+        final ArrayList<PublicationForList> searchResults = publications.getData();
 
 
         //searchResults = publications.get();
@@ -98,7 +98,7 @@ public class PublicationFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                SearchingResults selectedPublication = (SearchingResults) listView.getItemAtPosition(position);
+                PublicationForList selectedPublication = (PublicationForList) listView.getItemAtPosition(position);
 
               //showdetails(position);
                 getActivity().getSupportFragmentManager()

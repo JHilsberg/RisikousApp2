@@ -8,14 +8,18 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
+import de.hszg.risikousapp.models.Comment;
 import de.hszg.risikousapp.models.PublicationForDetails;
-import de.hszg.risikousapp.xmlParser.PublicationDetails;
-import de.hszg.risikousapp.xmlParser.ReportingAreas;
+import de.hszg.risikousapp.xmlParser.Comments;
+import de.hszg.risikousapp.xmlParser.Publicationdetails;
 
 /**
  * Created by Hannes on 17.12.2014.
@@ -96,7 +100,8 @@ public class PublicationDetailsFragment extends Fragment {
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
             ScrollView detailView = (ScrollView) rootView.findViewById(R.id.detailView);
-            RelativeLayout commentView = (RelativeLayout) rootView.findViewById(R.id.commentView);
+            final RelativeLayout commentView = (RelativeLayout) rootView.findViewById(R.id.commentView);
+            final LinearLayout commentsLayout = (LinearLayout) rootView.findViewById(R.id.commentsLayout);
 
             detailView.setVisibility(View.INVISIBLE);
             commentView.setVisibility(View.INVISIBLE);
@@ -110,6 +115,19 @@ public class PublicationDetailsFragment extends Fragment {
                 case 2:
                     detailView.setVisibility(View.GONE);
                     commentView.setVisibility(View.VISIBLE);
+
+                    new GetXmlFromRisikous(getActivity()) {
+                        @Override
+                        public void onPostExecute(String result) {
+                            Comments parser = new Comments(result);
+                            ArrayList<Comment> commentList = parser.getData();
+                            for (int i = 0; i < commentList.size(); i++) {
+                                TextView tv = new TextView(getActivity());
+                                tv.setText(commentList.get(i).getAuthor() + " schrieb am " + commentList.get(i).getTimeStamp());
+                                commentsLayout.addView(tv);
+                            }
+                        }
+                    }.execute("/comments/id/" + id);
                 break;
             }
             return rootView;
@@ -133,7 +151,7 @@ public class PublicationDetailsFragment extends Fragment {
 
                 @Override
                 public void onPostExecute(String result) {
-                    PublicationDetails parser = new PublicationDetails(result);
+                    Publicationdetails parser = new Publicationdetails(result);
                     PublicationForDetails publication = parser.getPublication();
 
                     title.setText(publication.getTitle());
