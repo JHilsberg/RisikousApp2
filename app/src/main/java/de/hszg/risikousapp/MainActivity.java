@@ -36,8 +36,8 @@ public class MainActivity extends FragmentActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mDrawerItmes;
-	
-	@Override
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -128,7 +128,6 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	private void navigateTo(int position) {
-		Log.i(TAG, "List View Item: " + position);
 		
 		switch(position) {
 		case 0:
@@ -160,6 +159,8 @@ public class MainActivity extends FragmentActivity {
 		mTitle = title;
 		getActionBar().setTitle(mTitle);
 	}
+
+
     public void showDatePickerDialog(View v) {
 
         DialogFragment newFragment = new DatePickerFragment();

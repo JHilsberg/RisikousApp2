@@ -90,5 +90,8 @@
     <string name="title">Titel</string>
     <string name="title_section5">Veröffentlichung</string>
     <string name="title_section6">Kommentare</string>
+    <string name="required">* Pflichtfelder</string>
+
+    <string name="fillRequiredFields">Bitte füllen Sie alle Pflichtfelder aus.</string>
 
 </resources>

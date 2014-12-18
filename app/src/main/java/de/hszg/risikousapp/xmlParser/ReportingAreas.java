@@ -12,6 +12,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import de.hszg.risikousapp.models.ReportingArea;
+
 /**
  * Created by Julian on 11.12.2014.
  */
@@ -40,25 +42,17 @@ public class ReportingAreas {
         return null;
     }
 
-    public ArrayList<String> getReportingAreasNames(){
-        NodeList areasNodeList = getReportingAreasNodeList("name");
+    public ArrayList<ReportingArea> getReportingAreas(){
+        NodeList areasNodeListNames = getReportingAreasNodeList("name");
+        NodeList areasNodeListShortcuts = getReportingAreasNodeList("shortcut");
 
-        ArrayList<String> areasNames = new ArrayList<String>();
-        for (int i = 0; i < areasNodeList.getLength(); i++) {
-            areasNames.add(i, areasNodeList.item(i).getLastChild().getNodeValue());
+        ArrayList<ReportingArea> reportingAreas = new ArrayList<ReportingArea>();
+
+        for (int i = 0; i < areasNodeListNames.getLength(); i++) {
+            reportingAreas.add(new ReportingArea(areasNodeListNames.item(i).getLastChild().getNodeValue(),
+                    areasNodeListShortcuts.item(i).getLastChild().getNodeValue()));
         }
 
-        return areasNames;
-    }
-
-    public ArrayList<String> getReportingAreasShortcuts(){
-        NodeList areasNodeList = getReportingAreasNodeList("shortcut");
-
-        ArrayList<String> areasNames = new ArrayList<String>();
-        for (int i = 0; i < areasNodeList.getLength(); i++) {
-            areasNames.add(i, areasNodeList.item(i).getFirstChild().getNodeValue());
-        }
-
-        return areasNames;
+        return reportingAreas;
     }
 }

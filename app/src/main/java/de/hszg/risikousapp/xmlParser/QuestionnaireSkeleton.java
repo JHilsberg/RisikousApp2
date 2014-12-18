@@ -42,13 +42,25 @@ public class QuestionnaireSkeleton {
         return "";
     }
 
-    public String getAnswerMaxChars(String questionnaireElement) {
+    public int getAnswerMaxChars(String questionnaireElement) {
         try {
-            return (String) xpath.evaluate("string(//"+ questionnaireElement +"/@maximumOfCharacters)", questionnaireDoc,
-                    XPathConstants.STRING);
+            return Integer.parseInt( (String) xpath.evaluate("string(//"+ questionnaireElement +"/@maximumOfCharacters)", questionnaireDoc,
+                    XPathConstants.STRING));
         } catch (XPathExpressionException e) {
             Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser, max Chars");
+        } catch (ClassCastException e){
+            Log.e("Cast Error", "Fehler bei Ausführung des Casts in Integer");
         }
-        return "";
+        return 0;
+    }
+
+    public Boolean getRequiredStatus(String questionnaireElement) {
+        try {
+            return (Boolean) xpath.evaluate("string(//"+ questionnaireElement +"/@required)", questionnaireDoc,
+                    XPathConstants.BOOLEAN);
+        } catch (XPathExpressionException e) {
+            Log.e("XPath Error", "Fehler bei Ausführung des XPath Ausdrucks - Skeleton Parser, required status");
+        }
+        return false;
     }
 }

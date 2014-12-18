@@ -15,8 +15,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--Meldekreis***********************************************************************************-->
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <TextView
+                style="@style/QuestionnaireCaptionsLevel2"
+                android:id="@+id/requiredText"
+                android:text="@string/required" />
+
+<!--Meldekreis***********************************************************************************-->
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -63,27 +69,28 @@
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
                     android:text="@string/occurrenceRating"
-                    android:id="@+id/occurenceRating" />
+                    android:id="@+id/occurrenceRating" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/occurrenceRatingGroup">
 
                     <RadioButton
                         style="@style/QuestionnaireRadioButtons"
                         android:text="@string/ratingHigh"
-                        android:id="@+id/occurenceRatingHigh" />
+                        android:id="@+id/occurrenceRatingHigh" />
 
                     <RadioButton
                         style="@style/QuestionnaireRadioButtons"
                         android:text="@string/ratingMid"
-                        android:id="@+id/occurenceRatingMid" />
+                        android:id="@+id/occurrenceRatingMid" />
 
                     <RadioButton
                         style="@style/QuestionnaireRadioButtons"
                         android:text="@string/ratingLow"
-                        android:id="@+id/occurenceRatingLow" />
+                        android:id="@+id/occurrenceRatingLow" />
 
                 </RadioGroup>
 
@@ -95,7 +102,8 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/detectionRatingGroup">
 
                     <RadioButton
                         style="@style/QuestionnaireRadioButtons"
@@ -122,7 +130,8 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/significanceGroup">
 
                     <RadioButton
                         style="@style/QuestionnaireRadioButtons"
@@ -304,9 +313,10 @@
                 android:layout_margin="30dp"
                 android:text="@string/button_send"
                 android:textColorHighlight="#000000"
-                android:background="#FFFF00"
-                android:id="@+id/send"
-                android:textColor="#000000" />
+                android:background="@android:color/holo_orange_dark"
+                android:id="@+id/sendQuestionnaire"
+                android:textColor="#000000"
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
 
