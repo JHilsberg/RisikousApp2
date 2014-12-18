@@ -7,6 +7,7 @@ import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
         String url = PROTOCOL + "://" + HOST + PATH;
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url + URLEncoder.encode(action, "UTF-8"));
+        HttpPost request = new HttpPost(url + URLEncoder.encode(action, "UTF-8"));
         request.addHeader("Accept", "application/xml");
         HttpResponse response = client.execute(request);
         Log.i("Response Status-Code", "Status-Code: " + response.getStatusLine().getStatusCode());

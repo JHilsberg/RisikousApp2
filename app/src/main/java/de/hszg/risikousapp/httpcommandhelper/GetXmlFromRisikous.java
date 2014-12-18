@@ -45,11 +45,11 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         String url = PROTOCOL + "://" + HOST + PATH;
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url + URLEncoder.encode(action, "utf-8"));
+        HttpGet request = new HttpGet(url + action);
         request.addHeader("Accept", "application/xml");
         HttpResponse response = client.execute(request);
         Log.i("Response Status-Code", "Status-Code: " + response.getStatusLine().getStatusCode());
-
+        Log.i("Response Status", "Status" + response.getStatusLine().getReasonPhrase());
         return response;
     }
 

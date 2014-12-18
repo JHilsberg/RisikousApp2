@@ -12,7 +12,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
+import de.hszg.risikousapp.models.PublicationForDetails;
 import de.hszg.risikousapp.models.SearchingResults;
+import de.hszg.risikousapp.xmlParser.PublicationDetails;
 import de.hszg.risikousapp.xmlParser.PublicationParser;
 
 /**
@@ -97,14 +99,14 @@ public class PublicationFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Object o = listView.getItemAtPosition(position);
+                SearchingResults selectedPublication = (SearchingResults) listView.getItemAtPosition(position);
 
               //showdetails(position);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame,
-                                PublicationDetailFragment.newInstance(),
-                                PublicationDetailFragment.TAG).commit();
+                                PublicationDetailsFragment.newInstance(selectedPublication.getId()),
+                                PublicationDetailsFragment.TAG).commit();
 
 
             }

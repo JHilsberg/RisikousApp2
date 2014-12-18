@@ -84,8 +84,7 @@
     <string name="measure" >Maßnahme</string>
     <string name="category">Kategorie</string>
     <string name="reasonDifference">Begründung für Differenz</string>
-    <string name="priorityQMB">Risikoprioritätszahl (QMB)</string>
-    <string name="priorityDeclarant">Risikoprioritätszahl (Meldender)</string>
+    <string name="priorities">Risikoprioritätszahlen</string>
     <string name="description">Ereignisbeschreibung</string>
     <string name="title">Titel</string>
     <string name="title_section5">Veröffentlichung</string>

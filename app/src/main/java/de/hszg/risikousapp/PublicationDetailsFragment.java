@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
+
+import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
+import de.hszg.risikousapp.models.PublicationForDetails;
+import de.hszg.risikousapp.xmlParser.PublicationDetails;
+import de.hszg.risikousapp.xmlParser.ReportingAreas;
 
 /**
  * Created by Hannes on 17.12.2014.
@@ -20,8 +26,10 @@ public class PublicationDetailsFragment extends Fragment {
     SectionsPagerAdapter mSectionsPagerAdapter;
     public static final String TAG = PublicationDetailsFragment.class.getSimpleName();
     ViewPager mViewPager;
+    private static String id;
 
-    public static PublicationDetailsFragment newInstance() {
+    public static PublicationDetailsFragment newInstance(String id) {
+        PublicationDetailsFragment.id = id;
         return new PublicationDetailsFragment();
     }
 
@@ -77,6 +85,8 @@ public class PublicationDetailsFragment extends Fragment {
     public static class TabbedView extends Fragment {
         public static final String ARG_SECTION_NUMBER = "section_number";
 
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -84,17 +94,62 @@ public class PublicationDetailsFragment extends Fragment {
                     container, false);
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+
             ScrollView detailView = (ScrollView) rootView.findViewById(R.id.detailView);
             RelativeLayout commentView = (RelativeLayout) rootView.findViewById(R.id.commentView);
+
+            detailView.setVisibility(View.INVISIBLE);
             commentView.setVisibility(View.INVISIBLE);
 
             switch(sectionNumber) {
+                case 1:
+                    commentView.setVisibility(View.GONE);
+                    detailView.setVisibility(View.VISIBLE);
+                    setText(rootView);
+                break;
                 case 2:
                     detailView.setVisibility(View.GONE);
                     commentView.setVisibility(View.VISIBLE);
+                break;
             }
             return rootView;
+        }
 
+        private void setText(final View rootView) {
+            new GetXmlFromRisikous(getActivity()) {
+
+                TextView title = (TextView) rootView.findViewById(R.id.titleR);
+                TextView action = (TextView) rootView.findViewById(R.id.measureR);
+                TextView assignedReports = (TextView) rootView.findViewById(R.id.assignedMessageR);
+                TextView minRPZofReporter = (TextView) rootView.findViewById(R.id.minPriorityReporter);
+                TextView avgRPZofReporter = (TextView) rootView.findViewById(R.id.avgPriorityReporter);
+                TextView maxRPZofReporter = (TextView) rootView.findViewById(R.id.maxPriorityReporter);
+                TextView minRPZofQBM = (TextView) rootView.findViewById(R.id.minPriorityQMB);
+                TextView avgRPZofQBM = (TextView) rootView.findViewById(R.id.avgPriorityQMB);
+                TextView maxRPZofQBM = (TextView) rootView.findViewById(R.id.maxPriorityQMB);
+                TextView category = (TextView) rootView.findViewById(R.id.categoryR);
+                TextView incidentReport = (TextView) rootView.findViewById(R.id.descriptionR);
+                TextView reasonDifference = (TextView) rootView.findViewById(R.id.reasonDifferenceR);
+
+                @Override
+                public void onPostExecute(String result) {
+                    PublicationDetails parser = new PublicationDetails(result);
+                    PublicationForDetails publication = parser.getPublication();
+
+                    title.setText(publication.getTitle());
+                    action.setText(publication.getAction());
+                    assignedReports.setText(publication.getAssignedReports());
+                    minRPZofReporter.setText(publication.getMinRPZofReporter());
+                    avgRPZofReporter.setText(publication.getAvgRPZofReporter());
+                    maxRPZofReporter.setText(publication.getMaxRPZofReporter());
+                    minRPZofQBM.setText(publication.getMinRPZofQBM());
+                    avgRPZofQBM.setText(publication.getAvgRPZofQBM());
+                    maxRPZofQBM.setText(publication.getMaxRPZofQBM());
+                    category.setText(publication.getCategory());
+                    incidentReport.setText(publication.getIncidentReport());
+                    reasonDifference.setText(publication.getDifferenceStatement());
+                }
+            }.execute("publication/id/" +id);
         }
     }
 }
