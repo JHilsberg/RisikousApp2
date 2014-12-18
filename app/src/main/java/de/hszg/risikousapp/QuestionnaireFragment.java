@@ -1,7 +1,8 @@
 package de.hszg.risikousapp;
 
-import android.support.v4.app.Fragment;
+import android.app.DialogFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
+import de.hszg.risikousapp.dialogHelper.FileChooserActivity;
+import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.models.ReportingArea;
 import de.hszg.risikousapp.xmlParser.QuestionnaireSkeleton;
@@ -59,6 +63,12 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
 
         Button sendQuestionnaire = (Button) getView().findViewById(R.id.sendQuestionnaire);
         sendQuestionnaire.setOnClickListener(this);
+        Button dateChoose = (Button) getView().findViewById(R.id.dateChoose);
+        dateChoose.setOnClickListener(this);
+        Button timeChoose = (Button) getView().findViewById(R.id.timeChoose);
+        timeChoose.setOnClickListener(this);
+        Button fileUpload = (Button) getView().findViewById(R.id.fileUpload);
+        fileUpload.setOnClickListener(this);
 
         new GetXmlFromRisikous(getActivity()) {
             @Override
@@ -111,6 +121,16 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         if (v.getId() == R.id.sendQuestionnaire) {
             Log.i("listener", "button listener activated");
             new QuestionnaireValidator(getActivity());
+        } else if (v.getId() == R.id.dateChoose) {
+            DialogFragment newFragment = new DatePickerFragment();
+            newFragment.show(getActivity().getFragmentManager(), "datePicker");
+        } else if (v.getId() == R.id.timeChoose) {
+            DialogFragment newFragment = new TimePickerFragment();
+            newFragment.show(getActivity().getFragmentManager(), "timePicker");
+        } else if (v.getId() == R.id.fileUpload) {
+            FileChooserActivity newActivity = new FileChooserActivity();
+            newActivity.showChooser();
         }
+
     }
 }

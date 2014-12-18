@@ -20,9 +20,8 @@
                 android:id="@+id/requiredText"
                 android:text="@string/required" />
 
-<!--Meldekreis***********************************************************************************-->
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <!--Meldekreis***********************************************************************************-->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout">
 
                 <TextView
@@ -167,8 +166,7 @@
                     android:text="@string/button_dateChoose"
                     android:layout_margin="15dp"
                     android:id="@+id/dateChoose"
-                    android:textColor="#000"
-                    android:onClick="showDatePickerDialog" />
+                    android:textColor="#000" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -176,8 +174,7 @@
                     android:text="@string/button_timeChoose"
                     android:layout_margin="15dp"
                     android:id="@+id/timeChoose"
-                    android:textColor="#000"
-                    android:onClick="showTimePickerDialog" />
+                    android:textColor="#000" />
 
             </LinearLayout>
 
@@ -284,9 +281,8 @@
                     android:layout_height="match_parent"
                     android:text="@string/button_addFile"
                     android:layout_margin="15dp"
-                    android:id="@+id/fileupload"
-                    android:textColor="#000"
-                    android:onClick="showFileChooser" />
+                    android:id="@+id/fileUpload"
+                    android:textColor="#000" />
 
             </LinearLayout>
 

@@ -27,8 +27,7 @@ import de.hszg.risikousapp.dialogHelper.TimePickerFragment;
 public class MainActivity extends FragmentActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int REQUEST_CODE = 6384;
-	
+
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -160,31 +159,4 @@ public class MainActivity extends FragmentActivity {
 		getActionBar().setTitle(mTitle);
 	}
 
-
-    public void showDatePickerDialog(View v) {
-
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
-    }
-
-    public void showTimePickerDialog(View v){
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getFragmentManager(), "timePicker");
-    }
-
-    public void showFileChooser(View v) {
-        // Use the GET_CONTENT intent from the utility class
-        Intent target = FileUtils.createGetContentIntent();
-        // Create the chooser Intent
-        Intent intent = Intent.createChooser(
-                target, getString(R.string.chooser_title));
-        try {
-            startActivityForResult(intent, REQUEST_CODE);
-        } catch (ActivityNotFoundException e) {
-            // The reason for the existence of aFileChooser
-        }
-
-    }
-
-	
 }

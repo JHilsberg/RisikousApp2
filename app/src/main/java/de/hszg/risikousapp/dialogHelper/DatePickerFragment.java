@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,7 +14,7 @@ import java.util.Calendar;
 import de.hszg.risikousapp.R;
 
 /**
- * Created by Jenzzz on 15.12.2014.
+ * Created by Jens on 15.12.2014.
  */
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
@@ -28,14 +30,17 @@ public class DatePickerFragment extends DialogFragment
         // Create a new instance of DatePickerDialog and return it
         return new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, this, year, month, day);
     }
+
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         Calendar c = Calendar.getInstance();
         c.set(year, month, day);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String formattedDate = sdf.format(c.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
+        Button date = (Button) getActivity().findViewById(R.id.dateChoose);
+
+        date.setText(sdf.format(c.getTime()));
     }
 
 }
