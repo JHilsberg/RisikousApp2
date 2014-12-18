@@ -1,6 +1,5 @@
 package de.hszg.risikousapp;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -10,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +16,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.ipaulpro.afilechooser.FileChooserActivity;
 import com.ipaulpro.afilechooser.utils.FileUtils;
 
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
@@ -147,8 +144,8 @@ public class MainActivity extends FragmentActivity {
             	getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame,
-						PublicationDetailsFragment.newInstance(),
-						PublicationDetailsFragment.TAG).commit();
+						PublicationFragment.newInstance(),
+						PublicationFragment.TAG).commit();
             break;
 		}
 	}
