@@ -42,7 +42,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:typeface">sans</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-        <item name="android:background">@drawable/rounded_corners_textview</item>
+        <item name="android:background">@drawable/rounded_corners_tv</item>
         <item name="android:textColor">#fff</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
@@ -54,7 +54,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:typeface">sans</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-        <item name="android:background">@drawable/rounded_corners_textview</item>
+        <item name="android:background">@drawable/rounded_corners_tv</item>
         <item name="android:textColor">#fff</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
