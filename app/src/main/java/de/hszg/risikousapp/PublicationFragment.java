@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.models.PublicationForDetails;
 import de.hszg.risikousapp.models.SearchingResults;
-import de.hszg.risikousapp.xmlParser.PublicationDetails;
 import de.hszg.risikousapp.xmlParser.PublicationParser;
 
 /**

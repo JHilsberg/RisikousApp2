@@ -92,5 +92,7 @@
     <string name="required">* Pflichtfelder</string>
 
     <string name="fillRequiredFields">Bitte füllen Sie alle Pflichtfelder aus.</string>
+    <string name="postSuccess">Die Meldung wurde erfolgreich gesendet.</string>
+    <string name="newQuestionnaire">Neue Meldung</string>
 
 </resources>

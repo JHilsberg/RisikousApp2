@@ -311,8 +311,7 @@
                 android:textColorHighlight="#000000"
                 android:background="@android:color/holo_orange_dark"
                 android:id="@+id/sendQuestionnaire"
-                android:textColor="#000000"
-                android:nestedScrollingEnabled="false" />
+                android:textColor="#000000" />
 
         </LinearLayout>
 
@@ -324,5 +323,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/QuestionnaireLayout"
+        android:id="@+id/sentView">
+
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/sendSuccessMessage"
+            android:text="@string/postSuccess" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:id="@+id/newQuestionnaire"
+            android:text="@string/newQuestionnaire"
+            android:background="@android:color/holo_orange_dark"/>
+
+    </LinearLayout>
 
 </FrameLayout>

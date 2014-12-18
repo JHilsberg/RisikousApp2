@@ -1,6 +1,6 @@
 package de.hszg.risikousapp;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -9,9 +9,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.awt.font.TextAttribute;
 import java.io.IOException;
 
+import de.hszg.risikousapp.httpcommandhelper.PostXmlToRisikousServer;
 import de.hszg.risikousapp.xmlSerializer.QuestionnaireXmlSerializer;
 
 /**
@@ -19,10 +19,10 @@ import de.hszg.risikousapp.xmlSerializer.QuestionnaireXmlSerializer;
  */
 public class QuestionnaireValidator {
 
-    private Activity appContext;
+    private FragmentActivity appContext;
     private QuestionnaireXmlSerializer serializer;
 
-    public QuestionnaireValidator(Activity appContext) {
+    public QuestionnaireValidator(FragmentActivity appContext) {
         this.appContext = appContext;
         checkRequiredFields();
     }
@@ -37,18 +37,26 @@ public class QuestionnaireValidator {
 
         if(check1 && check2 && check3){
             String questionnaireXml = "";
-            Log.i("validate", "validation successfull data ready to send");
+            Log.i("validate", "validation success - data ready to send");
+
             try {
                 serializer = new QuestionnaireXmlSerializer(appContext);
                 questionnaireXml = serializer.getXmlAsString();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Log.i("XML-Doc", questionnaireXml);
+
+            new PostXmlToRisikousServer(appContext){
+                @Override
+                public void onPostExecute(String result) {
+                    Log.i("status", "" + result);
+                    setSendView(result);
+                }
+            }.execute("questionnaire/addQuestionnaire", questionnaireXml);
         }else {
             validationError.show();
             questionnaireScroll.fullScroll(ScrollView.FOCUS_UP);
-            Log.i("Validation failed", ""+ check1 + check2 + check3);
+            Log.e("Validation failed", ""+ check1 + check2 + check3);
         }
     }
 
@@ -94,6 +102,13 @@ public class QuestionnaireValidator {
         }else{
             riskEstimation.setTextColor(appContext.getResources().getColor(android.R.color.holo_red_dark));
             return false;
+        }
+    }
+
+    private void setSendView(String statusCode){
+        if (statusCode.equals("200")){
+            QuestionnaireFragment questionnaireFragment = (QuestionnaireFragment) appContext.getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            questionnaireFragment.setSendView();
         }
     }
 

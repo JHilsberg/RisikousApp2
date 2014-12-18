@@ -40,6 +40,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     public String base64File= "";
     private View questionnaireContentView;
     private View loadingView;
+    private View sentView;
 
     public QuestionnaireFragment() {
     }
@@ -67,8 +68,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
 
         questionnaireContentView = getView().findViewById(R.id.questionnaireContent);
         loadingView = getView().findViewById(R.id.loading_spinner);
+        sentView = getView().findViewById(R.id.sentView);
 
         questionnaireContentView.setVisibility(View.GONE);
+        sentView.setVisibility(View.GONE);
 
         Button sendQuestionnaire = (Button) getView().findViewById(R.id.sendQuestionnaire);
         sendQuestionnaire.setOnClickListener(this);
@@ -99,6 +102,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         }.execute("reportingareas");
     }
 
+    public void setSendView() {
+        questionnaireContentView.setVisibility(View.GONE);
+        sentView.setVisibility(View.VISIBLE);
+    }
 
     private void setReportingAreaSpinner(ReportingAreas areas) {
         Spinner reportingAreaSpinner = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);

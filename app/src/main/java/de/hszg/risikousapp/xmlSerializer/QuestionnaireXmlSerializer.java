@@ -2,6 +2,7 @@ package de.hszg.risikousapp.xmlSerializer;
 
 import android.app.Activity;
 import android.util.Xml;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -40,6 +41,13 @@ public class QuestionnaireXmlSerializer {
         addReportingArea();
         addIncidentDescription();
         addRiskEstimation();
+        addPointOfTime();
+        addLocation();
+        addImmediateMeasure();
+        addConsequences();
+        addOpinionOfReporter();
+        //addFile();
+        addContactInfo();
 
         finishDocument();
     }
@@ -53,12 +61,12 @@ public class QuestionnaireXmlSerializer {
         Spinner reportingAreasSelection = (Spinner) appContext.findViewById(R.id.reportingAreaSelection);
         ReportingArea reportingArea= (ReportingArea) reportingAreasSelection.getAdapter().getItem(reportingAreasSelection.getSelectedItemPosition());
 
-        makeTag(appContext.getString(R.string.reportingArea), reportingArea.getShortcut());
+        makeNode(appContext.getString(R.string.reportingArea), reportingArea.getShortcut());
     }
 
     private void addIncidentDescription() throws IOException{
         EditText incidentDescriptionEdit = (EditText) appContext.findViewById(R.id.incidentDescriptionEdit);
-        makeTag(appContext.getString(R.string.incidentDescription), incidentDescriptionEdit.getText().toString());
+        makeNode(appContext.getString(R.string.incidentDescription), incidentDescriptionEdit.getText().toString());
     }
 
     private void addRiskEstimation() throws IOException{
@@ -74,13 +82,13 @@ public class QuestionnaireXmlSerializer {
 
         switch(occurrenceRatingGroup.getCheckedRadioButtonId()){
             case R.id.occurrenceRatingLow:
-                makeTag(appContext.getString(R.string.occurrenceRating), "1");
+                makeNode(appContext.getString(R.string.occurrenceRating), "1");
                 break;
             case R.id.occurrenceRatingMid:
-                makeTag(appContext.getString(R.string.occurrenceRating), "2");
+                makeNode(appContext.getString(R.string.occurrenceRating), "2");
                 break;
             case R.id.occurrenceRatingHigh:
-                makeTag(appContext.getString(R.string.occurrenceRating), "3");
+                makeNode(appContext.getString(R.string.occurrenceRating), "3");
                 break;
         }
     }
@@ -90,13 +98,13 @@ public class QuestionnaireXmlSerializer {
 
         switch(detectionRatingGroup.getCheckedRadioButtonId()){
             case R.id.detectionRatingLow:
-                makeTag(appContext.getString(R.string.detectionRating), "1");
+                makeNode(appContext.getString(R.string.detectionRating), "1");
                 break;
             case R.id.detectionRatingMid:
-                makeTag(appContext.getString(R.string.detectionRating), "2");
+                makeNode(appContext.getString(R.string.detectionRating), "2");
                 break;
             case R.id.detectionRatingHigh:
-                makeTag(appContext.getString(R.string.detectionRating), "3");
+                makeNode(appContext.getString(R.string.detectionRating), "3");
                 break;
         }
     }
@@ -106,18 +114,117 @@ public class QuestionnaireXmlSerializer {
 
         switch(significanceGroup.getCheckedRadioButtonId()){
             case R.id.significanceLow:
-                makeTag(appContext.getString(R.string.significance), "1");
+                makeNode(appContext.getString(R.string.significance), "1");
                 break;
             case R.id.significanceMid:
-                makeTag(appContext.getString(R.string.significance), "2");
+                makeNode(appContext.getString(R.string.significance), "2");
                 break;
             case R.id.significanceHigh:
-                makeTag(appContext.getString(R.string.significance), "3");
+                makeNode(appContext.getString(R.string.significance), "3");
                 break;
         }
     }
 
-    private void makeTag(String tagName, String text) throws IOException{
+    private void addPointOfTime() throws IOException{
+        String pointOfTime = appContext.getString(R.string.pointOfTime);
+
+        Button date = (Button) appContext.findViewById(R.id.dateChoose);
+        Button time = (Button) appContext.findViewById(R.id.timeChoose);
+
+        if(checkIfDateIsSet(date) && checkIfTimeIsSet(time)) {
+            serializer.startTag(null, pointOfTime);
+            makeNode(appContext.getString(R.string.date), date.getText().toString());
+            makeNode(appContext.getString(R.string.time), time.getText().toString());
+            serializer.endTag(null, pointOfTime);
+        }else if(checkIfDateIsSet(date) && !checkIfTimeIsSet(time)){
+            serializer.startTag(null, pointOfTime);
+            makeNode(appContext.getString(R.string.date), date.getText().toString());
+            serializer.endTag(null, pointOfTime);
+        }else if(!checkIfDateIsSet(date) && checkIfTimeIsSet(time)){
+            serializer.startTag(null, pointOfTime);
+            makeNode(appContext.getString(R.string.time), time.getText().toString());
+            serializer.endTag(null, pointOfTime);
+        }
+
+    }
+
+    private void addLocation() throws IOException{
+        EditText location = (EditText) appContext.findViewById(R.id.locationEdit);
+
+        if (checkIfFieldEdited(location)){
+            makeNode(appContext.getString(R.string.location), location.getText().toString());
+        }
+    }
+
+    private void addImmediateMeasure() throws IOException{
+        EditText immediateMeasure = (EditText) appContext.findViewById(R.id.immediateMeasureEdit);
+
+        if(checkIfFieldEdited(immediateMeasure)) {
+            makeNode(appContext.getString(R.string.immediateMeasure), immediateMeasure.getText().toString());
+        }
+    }
+
+    private void addConsequences() throws IOException{
+        EditText consequences = (EditText) appContext.findViewById(R.id.consequencesEdit);
+
+        if(checkIfFieldEdited(consequences)){
+            makeNode(appContext.getString(R.string.consequences), consequences.getText().toString());
+        }
+    }
+
+    private void addOpinionOfReporter() throws IOException{
+        String opinion = appContext.getString(R.string.opinionOfReporter);
+
+        EditText personalFactors = (EditText) appContext.findViewById(R.id.personalFactorsEdit);
+        EditText organisationalFactors = (EditText) appContext.findViewById(R.id.organisationalFactorsEdit);
+        EditText additionalNotes = (EditText) appContext.findViewById(R.id.additionalNotesEdit);
+
+        serializer.startTag(null, opinion);
+        makeNode(appContext.getString(R.string.personalFactors), personalFactors.getText().toString());
+        makeNode(appContext.getString(R.string.organisationalFactors), organisationalFactors.getText().toString());
+        makeNode(appContext.getString(R.string.additionalNotes), additionalNotes.getText().toString());
+        serializer.endTag(null, opinion);
+    }
+
+    private void addFile() throws IOException{
+        serializer.startTag(null, appContext.getString(R.string.files));
+        makeNode("file", "File in Base 64");
+        serializer.endTag(null, appContext.getString(R.string.files));
+    }
+
+    private void addContactInfo() throws IOException{
+        EditText contactInfo = (EditText) appContext.findViewById(R.id.contactInformationEdit);
+
+        if (checkIfFieldEdited(contactInfo)){
+            makeNode(appContext.getString(R.string.contactInformation), contactInfo.getText().toString());
+        }
+    }
+
+    private boolean checkIfFieldEdited(EditText edit){
+        if (edit.getText().toString().trim().length() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private boolean checkIfDateIsSet(Button date){
+        if (date.getText() != appContext.getString(R.string.button_dateChoose)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private boolean checkIfTimeIsSet(Button time){
+        if (time.getText() != appContext.getString(R.string.button_timeChoose)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void makeNode(String tagName, String text) throws IOException{
         serializer.startTag(null, tagName);
         serializer.text(text);
         serializer.endTag(null, tagName);

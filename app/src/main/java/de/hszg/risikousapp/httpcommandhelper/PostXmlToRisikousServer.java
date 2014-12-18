@@ -6,8 +6,8 @@ import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
@@ -29,36 +29,36 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... actions) {
         try {
-            return sendPost(actions[0]);
+            return sendPost(actions[0], actions[1]);
         } catch (IOException e) {
-            return appContext.getResources().getString(R.string.connection_error);
+            Log.e("Post-Error", "Fehler beimn senden der Daten");
         }
+        return "";
     }
 
-    private HttpResponse postXmlToRisikous(String action) throws IOException {
+    private HttpResponse postXmlToRisikous(String action, String payload) throws IOException {
         String PROTOCOL = "http";
         String HOST = "94.101.38.155";
         String PATH = "/RisikousRESTful/rest/";
         String url = PROTOCOL + "://" + HOST + PATH;
 
+        StringEntity stringEntity = new StringEntity(payload);
+        stringEntity.setContentEncoding("UTF-8");
+        stringEntity.setContentType("application/xml");
+
         HttpClient client = new DefaultHttpClient();
-        HttpPost request = new HttpPost(url + URLEncoder.encode(action, "UTF-8"));
-        request.addHeader("Accept", "application/xml");
+        HttpPost request = new HttpPost(url + action);
+        request.setEntity(stringEntity);
         HttpResponse response = client.execute(request);
-        Log.i("Response Status-Code", "Status-Code: " + response.getStatusLine().getStatusCode());
 
         return response;
     }
 
-    private String sendPost(String action) throws IOException {
-        HttpResponse response = postXmlToRisikous(action);
-        String statusCode = "" + response.getStatusLine().getStatusCode();
+    private String sendPost(String action, String payload) throws IOException {
+        HttpResponse response = postXmlToRisikous(action, payload);
+        String statusCode = String.valueOf(response.getStatusLine().getStatusCode());
 
         return statusCode;
-    }
-
-    private void test(){
-
     }
 }
 
