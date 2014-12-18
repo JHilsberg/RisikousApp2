@@ -1,5 +1,6 @@
 package de.hszg.risikousapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,6 +32,7 @@ public class PublicationDetailsFragment extends Fragment {
     public static final String TAG = PublicationDetailsFragment.class.getSimpleName();
     ViewPager mViewPager;
     private static String id;
+    private static Context c;
 
     public static PublicationDetailsFragment newInstance(String id) {
         PublicationDetailsFragment.id = id;
@@ -94,7 +96,7 @@ public class PublicationDetailsFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_details,
+            final View rootView = inflater.inflate(R.layout.fragment_details,
                     container, false);
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
@@ -115,22 +117,31 @@ public class PublicationDetailsFragment extends Fragment {
                 case 2:
                     detailView.setVisibility(View.GONE);
                     commentView.setVisibility(View.VISIBLE);
-
-                    new GetXmlFromRisikous(getActivity()) {
-                        @Override
-                        public void onPostExecute(String result) {
-                            Comments parser = new Comments(result);
-                            ArrayList<Comment> commentList = parser.getData();
-                            for (int i = 0; i < commentList.size(); i++) {
-                                TextView tv = new TextView(getActivity());
-                                tv.setText(commentList.get(i).getAuthor() + " schrieb am " + commentList.get(i).getTimeStamp());
-                                commentsLayout.addView(tv);
-                            }
-                        }
-                    }.execute("/comments/id/" + id);
-                break;
+                    loadComments(commentsLayout, rootView);
+                    break;
             }
             return rootView;
+        }
+
+        private void loadComments(final LinearLayout commentsLayout, final View rootView) {
+            new GetXmlFromRisikous(getActivity()) {
+                @Override
+                public void onPostExecute(String result) {
+                    Comments parser = new Comments(result);
+                    ArrayList<Comment> commentList = parser.getData();
+                    for (int i = 0; i < commentList.size(); i++) {
+
+                        TextView comment = new TextView(getActivity());
+                        TextView commentHeader = new TextView(getActivity());
+
+                        commentHeader.setText(commentList.get(i).getAuthor() + " schrieb am " + commentList.get(i).getTimeStamp());
+                        comment.setText(commentList.get(i).getText());
+
+                        commentsLayout.addView(commentHeader);
+                        commentsLayout.addView(comment);
+                    }
+                }
+            }.execute("/comments/id/" + id);
         }
 
         private void setText(final View rootView) {

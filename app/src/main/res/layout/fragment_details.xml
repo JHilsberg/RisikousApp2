@@ -160,12 +160,14 @@
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/commentLayout">
 
-
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout"
                 android:id="@+id/commentsLayout">
 
+                <TextView
+                style="@style/QuestionnaireCaptions"
+                android:text="Kommentare" />
             </LinearLayout>
         </ScrollView>
 

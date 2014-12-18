@@ -1,6 +1,7 @@
 package de.hszg.risikousapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,8 +24,7 @@ public class PublicationFragment extends Fragment {
 
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
 
-    public PublicationFragment() {
-    }
+    public PublicationFragment() {}
 
     public static PublicationFragment newInstance() {
         return new PublicationFragment();
@@ -34,7 +34,6 @@ public class PublicationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
     }
 
 
