@@ -4,7 +4,7 @@ package de.hszg.risikousapp.models;
 /**
  * Created by besitzer on 18.12.14.
  */
-public class SearchingResults {
+public class PublicationForList {
 
 
     private String id;
@@ -12,7 +12,7 @@ public class SearchingResults {
     private String status;
     private String comments;
     private String entrydate;
-    public SearchingResults(String ids, String reports,String status ,String commments,String entrydate) {
+    public PublicationForList(String ids, String reports, String status, String commments, String entrydate) {
         this.id = ids;
         this.reports = reports;
         this.status = status;
