@@ -46,6 +46,7 @@ public class PublicationList {
 
     public ArrayList<PublicationForList> getData() {
         NodeList areasNodeListid = getPublicationNodeList("id");
+        NodeList areasNodeListTitle = getPublicationNodeList("title");
         NodeList areasNodeListReports = getPublicationNodeList("numberOfReports");
         NodeList areasNodeListStatus = getPublicationNodeList("status");
         NodeList areasNodeListComments = getPublicationNodeList("numberOfComments");
@@ -58,6 +59,7 @@ public class PublicationList {
             PublicationForList.add(
                     new PublicationForList(
                             areasNodeListid.item(i).getLastChild().getNodeValue(),
+                            areasNodeListTitle.item(i).getLastChild().getNodeValue(),
                             areasNodeListReports.item(i).getLastChild().getNodeValue(),
                             areasNodeListStatus.item(i).getLastChild().getNodeValue(),
                             areasNodeListComments.item(i).getLastChild().getNodeValue(),

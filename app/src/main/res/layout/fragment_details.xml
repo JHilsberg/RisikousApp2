@@ -158,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_above="@+id/linearLayout">
+                android:layout_above="@+id/commentslayout">
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
@@ -176,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:id="@+id/linearLayout">
+            android:id="@+id/commentslayout">
 
             <TextView
                 style="@style/QuestionnaireCaptions"
