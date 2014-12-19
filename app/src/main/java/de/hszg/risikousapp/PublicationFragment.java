@@ -92,7 +92,7 @@ public class PublicationFragment extends Fragment {
         listView  = (ListView) getActivity().findViewById(R.id.addinglist);
 
 
-        listView.setAdapter(new CustomAdapter(this.getActivity(),searchResults));
+        listView.setAdapter(new CustomAdapter(getActivity(), R.layout.list_testing,searchResults));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

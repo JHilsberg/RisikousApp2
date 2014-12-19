@@ -150,26 +150,25 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/commentView">
-
-        <ScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/commentLayout">
+        android:id="@+id/commentLayout">
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout"
-                android:id="@+id/commentsLayout">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/linearLayout">
 
                 <TextView
-                style="@style/QuestionnaireCaptions"
-                android:text="Kommentare" />
+                    style="@style/QuestionnaireCaptions"
+                    android:text="Kommentare"/>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/commmentView" />
             </LinearLayout>
-        </ScrollView>
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -177,8 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/commentLayout">
+            android:id="@+id/linearLayout">
 
             <TextView
                 style="@style/QuestionnaireCaptions"
@@ -199,5 +197,6 @@
                 android:id="@+id/sendComment"
                 android:textColor="#000"/>
         </LinearLayout>
+
     </RelativeLayout>
 </FrameLayout>

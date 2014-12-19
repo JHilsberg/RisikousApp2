@@ -1,11 +1,11 @@
 package de.hszg.risikousapp;
 
-        import android.content.Context;
+import android.content.Context;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
-        import android.widget.BaseAdapter;
-        import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
         import java.util.ArrayList;
 
@@ -13,72 +13,54 @@ package de.hszg.risikousapp;
 
         import static de.hszg.risikousapp.R.layout.list_testing;
 
-public  class CustomAdapter extends BaseAdapter {
-    private static ArrayList<PublicationForList> searchArrayList;
-    private static ArrayList<String> erstellungsdatumm;
-    private static ArrayList<String> meldungenn;
-    private static ArrayList<String> statuss;
-    private static ArrayList<String> kommentarenn;
+public  class CustomAdapter extends ArrayAdapter<PublicationForList> {
+    private ArrayList<PublicationForList> publicationList;
     private LayoutInflater mInflater;
 
-    public CustomAdapter(Context context, ArrayList<PublicationForList> results) {
-        searchArrayList = results;
-        // erstellungsdatumm = erstellungsdatum;
-        // meldungenn = meldungen;
-        // statuss=status;
-        // kommentarenn=kommmentare;
+    public CustomAdapter(Context context, int textViewResourceId, ArrayList<PublicationForList> results) {
+        super(context, textViewResourceId, results);
+        publicationList = results;
         mInflater = LayoutInflater.from(context);
     }
 
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = mInflater.inflate(list_testing, null);
+            viewHolder = new ViewHolder();
 
-    @Override
-    public int getCount() {
-        return searchArrayList.size();
+            viewHolder.txtid = (TextView) convertView.findViewById(R.id.titel);
+            viewHolder.txtentrydate = (TextView) convertView.findViewById(R.id.erstellungsdatumfield);
+            viewHolder.txtmeldungen = (TextView) convertView.findViewById(R.id.textView9);
+            viewHolder.txtstatus = (TextView) convertView.findViewById(R.id.textView7);
+            viewHolder.txtkommentaren = (TextView) convertView.findViewById(R.id.textView11);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        viewHolder.txtid.setText(publicationList.get(position).getId());
+        viewHolder.txtentrydate.setText(publicationList.get(position).getEntrydate());
+        viewHolder.txtmeldungen.setText(publicationList.get(position).getReports());
+        viewHolder.txtstatus.setText(publicationList.get(position).getStatus());
+        viewHolder.txtkommentaren.setText(publicationList.get(position).getComments());
+
+        return convertView;
     }
 
     @Override
-    public Object getItem(int position) {
-        return searchArrayList.get(position);
+    public int getCount() {
+        return publicationList.size();
+    }
+
+    @Override
+    public PublicationForList getItem(int position) {
+        return publicationList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         return position;
-    }
-
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = mInflater.inflate(list_testing, null);
-            holder = new ViewHolder();
-            holder.txtid = (TextView) convertView.findViewById(R.id.titel);
-            holder.txtentrydate = (TextView) convertView
-                    .findViewById(R.id.erstellungsdatumfield);
-            holder.txtmeldungen = (TextView) convertView.findViewById(R.id.textView9);
-
-            holder.txtstatus = (TextView) convertView.findViewById(R.id.textView7);
-
-            holder.txtkommentaren = (TextView) convertView.findViewById(R.id.textView11);
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        holder.txtid.setText((CharSequence) searchArrayList.get(position).getId());
-
-
-        holder.txtentrydate.setText((CharSequence)searchArrayList.get(position).getEntrydate());
-
-
-        holder.txtmeldungen.setText((CharSequence) searchArrayList.get(position).getReports());
-
-        holder.txtstatus.setText((CharSequence) searchArrayList.get(position).getStatus());
-
-        holder.txtkommentaren.setText((CharSequence) searchArrayList.get(position).getComments());
-
-
-        return convertView;
     }
 
     static class ViewHolder {

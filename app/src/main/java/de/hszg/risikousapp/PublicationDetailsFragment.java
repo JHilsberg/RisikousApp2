@@ -9,13 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.models.Comment;
 import de.hszg.risikousapp.models.PublicationForDetails;
@@ -102,44 +100,34 @@ public class PublicationDetailsFragment extends Fragment {
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
             ScrollView detailView = (ScrollView) rootView.findViewById(R.id.detailView);
-            final RelativeLayout commentView = (RelativeLayout) rootView.findViewById(R.id.commentView);
-            final LinearLayout commentsLayout = (LinearLayout) rootView.findViewById(R.id.commentsLayout);
+            final RelativeLayout commentLayout = (RelativeLayout) rootView.findViewById(R.id.commentLayout);
+            final ListView commentView = (ListView) rootView.findViewById(R.id.commmentView);
 
             detailView.setVisibility(View.INVISIBLE);
-            commentView.setVisibility(View.INVISIBLE);
+            commentLayout.setVisibility(View.INVISIBLE);
 
             switch(sectionNumber) {
                 case 1:
-                    commentView.setVisibility(View.GONE);
+                    commentLayout.setVisibility(View.GONE);
                     detailView.setVisibility(View.VISIBLE);
                     setText(rootView);
                 break;
                 case 2:
                     detailView.setVisibility(View.GONE);
-                    commentView.setVisibility(View.VISIBLE);
-                    loadComments(commentsLayout, rootView);
+                    commentLayout.setVisibility(View.VISIBLE);
+                    loadComments(commentView);
                     break;
             }
             return rootView;
         }
 
-        private void loadComments(final LinearLayout commentsLayout, final View rootView) {
+        private void loadComments(final ListView commentView) {
             new GetXmlFromRisikous(getActivity()) {
                 @Override
                 public void onPostExecute(String result) {
                     Comments parser = new Comments(result);
                     ArrayList<Comment> commentList = parser.getData();
-                    for (int i = 0; i < commentList.size(); i++) {
-
-                        TextView comment = new TextView(getActivity());
-                        TextView commentHeader = new TextView(getActivity());
-
-                        commentHeader.setText(commentList.get(i).getAuthor() + " schrieb am " + commentList.get(i).getTimeStamp());
-                        comment.setText(commentList.get(i).getText());
-
-                        commentsLayout.addView(commentHeader);
-                        commentsLayout.addView(comment);
-                    }
+                    commentView.setAdapter(new CommentAdapter(getActivity(), R.layout.comment_item, commentList));
                 }
             }.execute("/comments/id/" + id);
         }

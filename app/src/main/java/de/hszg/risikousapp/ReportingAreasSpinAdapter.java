@@ -20,7 +20,7 @@ public class ReportingAreasSpinAdapter extends ArrayAdapter<ReportingArea> {
     private ArrayList<ReportingArea> reportingAreas;
 
     public ReportingAreasSpinAdapter(Context context, int textViewResourceId,
-                                     ArrayList reportingAreas) {
+                                     ArrayList<ReportingArea> reportingAreas) {
         super(context, textViewResourceId, reportingAreas);
         this.context = context;
         this.reportingAreas = reportingAreas;
