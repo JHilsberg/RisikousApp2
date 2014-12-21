@@ -5,155 +5,12 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/detailView">
-
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            style="@style/QuestionnaireLayout">
-
-            <TextView
-                style="@style/QuestionnaireCaptions"
-                android:text="Veröffentlichung"
-                android:id="@+id/publication" />
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/title"
-                android:id="@+id/title" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/titleR"
-                android:padding="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/description"
-                android:id="@+id/description" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/descriptionR"
-                android:padding="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/priorities"
-                android:id="@+id/priorities" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:stretchColumns="0,5">
-
-                <TableRow
-                    android:layout_gravity="center_horizontal">
-                    <TextView
-                        android:padding="3dp" />
-                    <TextView
-                        android:text="Minimum"
-                        android:padding="3dp" />
-                    <TextView
-                        android:text="Durchschnitt"
-                        android:padding="3dp" />
-                    <TextView
-                        android:text="Maximum"
-                        android:padding="3dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_gravity="center_horizontal">
-                    <TextView
-                        android:text="Meldender"
-                        android:padding="3dp" />
-                    <TextView
-                        android:padding="3dp"
-                        android:id="@+id/minPriorityReporter" />
-                    <TextView
-                        android:padding="3dp"
-                        android:id="@+id/avgPriorityReporter" />
-                    <TextView
-                        android:padding="3dp"
-                        android:id="@+id/maxPriorityReporter" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_gravity="center_horizontal">
-                    <TextView
-                        android:text="QMB"
-                        android:padding="3dp" />
-                    <TextView
-                        android:padding="3dp"
-                        android:id="@+id/minPriorityQMB" />
-                    <TextView
-                        android:padding="3dp"
-                        android:id="@+id/avgPriorityQMB" />
-                    <TextView
-                        android:padding="3dp"
-                        android:id="@+id/maxPriorityQMB" />
-                </TableRow>
-                </TableLayout>
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/reasonDifference"
-                android:id="@+id/reasonDifference" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/reasonDifferenceR"
-                android:padding="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/category"
-                android:id="@+id/category" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/categoryR"
-                android:padding="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/measure"
-                android:id="@+id/measure" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/measureR"
-                android:padding="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/QuestionnaireCaptionsLevel2"
-                android:text="@string/assignedMessage"
-                android:id="@+id/assignedMessage" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/assignedMessageR"
-                android:padding="10dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </ScrollView>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commentLayout">
 
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/QuestionnaireLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -171,7 +28,6 @@
             </LinearLayout>
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             style="@style/QuestionnaireLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -199,4 +55,152 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        style="@style/QuestionnaireLayout"
+        android:id="@+id/detailView">
+
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:text="Veröffentlichung"
+            android:id="@+id/publication" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/title"
+                    android:id="@+id/title" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/titleR"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/description"
+                    android:id="@+id/description" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/descriptionR"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/priorities"
+                    android:id="@+id/priorities" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:stretchColumns="0,5"
+                    android:layout_margin="10dp">
+
+                    <TableRow
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:padding="3dp" />
+                        <TextView
+                            android:text="Minimum"
+                            android:padding="3dp" />
+                        <TextView
+                            android:text="Durchschnitt"
+                            android:padding="3dp" />
+                        <TextView
+                            android:text="Maximum"
+                            android:padding="3dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:text="Meldender"
+                            android:padding="3dp" />
+                        <TextView
+                            android:padding="3dp"
+                            android:id="@+id/minPriorityReporter" />
+                        <TextView
+                            android:padding="3dp"
+                            android:id="@+id/avgPriorityReporter" />
+                        <TextView
+                            android:padding="3dp"
+                            android:id="@+id/maxPriorityReporter" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:text="QMB"
+                            android:padding="3dp" />
+                        <TextView
+                            android:padding="3dp"
+                            android:id="@+id/minPriorityQMB" />
+                        <TextView
+                            android:padding="3dp"
+                            android:id="@+id/avgPriorityQMB" />
+                        <TextView
+                            android:padding="3dp"
+                            android:id="@+id/maxPriorityQMB" />
+                    </TableRow>
+                    </TableLayout>
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/reasonDifference"
+                    android:id="@+id/reasonDifference" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reasonDifferenceR"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/category"
+                    android:id="@+id/category" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/categoryR"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/measure"
+                    android:id="@+id/measure" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/measureR"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/QuestionnaireCaptionsLevel2"
+                    android:text="@string/assignedMessage"
+                    android:id="@+id/assignedMessage" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/assignedMessageR"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
 </FrameLayout>

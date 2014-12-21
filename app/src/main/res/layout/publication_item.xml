@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/QuestionnaireLayout">
-    <TableRow
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:padding="10dp">
+
+         <TextView
+            style="@style/QuestionnaireCaptionsLevel2"
+            android:id="@+id/publication_title"
+            android:text="Titel"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+             android:layout_marginBottom="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/publication_title" />
+            android:id="@+id/publication_status"
+            android:text="Status"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:gravity="right"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/date_creation" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/publication_status" />
-    </TableRow>
+            android:id="@+id/date_creation"
+            android:text="Datum"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:textStyle="bold" />
+    </GridLayout>
 </LinearLayout>

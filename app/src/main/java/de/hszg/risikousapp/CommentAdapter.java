@@ -6,7 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import de.hszg.risikousapp.models.Comment;
 
 /**
@@ -25,10 +30,18 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     public View getView(int position, View convertView, ViewGroup parent){
         convertView = mInflater.inflate(R.layout.comment_item, null);
         ViewHolder viewHolder = new ViewHolder();
-
+        // Datum umformatieren
+        String outputDate = "";
+        String inputDate = commentList.get(position).getTimeStamp();
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(inputDate);
+            outputDate = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         viewHolder.commentHeader = (TextView) convertView.findViewById(R.id.commentHeader);
         viewHolder.comment = (TextView) convertView.findViewById(R.id.comment);
-        viewHolder.commentHeader.setText(commentList.get(position).getAuthor() + " schrieb am " + commentList.get(position).getTimeStamp() + ":");
+        viewHolder.commentHeader.setText(commentList.get(position).getAuthor() + " schrieb am " + outputDate);
         viewHolder.comment.setText(commentList.get(position).getText());
 
         return convertView;

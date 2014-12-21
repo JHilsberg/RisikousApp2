@@ -1,6 +1,5 @@
 package de.hszg.risikousapp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,11 +8,18 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import de.hszg.risikousapp.httpcommandhelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.models.Comment;
 import de.hszg.risikousapp.models.PublicationForDetails;
@@ -30,7 +36,6 @@ public class PublicationDetailsFragment extends Fragment {
     public static final String TAG = PublicationDetailsFragment.class.getSimpleName();
     ViewPager mViewPager;
     private static String id;
-    private static Context c;
 
     public static PublicationDetailsFragment newInstance(String id) {
         PublicationDetailsFragment.id = id;
@@ -89,8 +94,6 @@ public class PublicationDetailsFragment extends Fragment {
     public static class TabbedView extends Fragment {
         public static final String ARG_SECTION_NUMBER = "section_number";
 
-
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -99,7 +102,7 @@ public class PublicationDetailsFragment extends Fragment {
 
             int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
 
-            ScrollView detailView = (ScrollView) rootView.findViewById(R.id.detailView);
+            LinearLayout detailView = (LinearLayout) rootView.findViewById(R.id.detailView);
             final RelativeLayout commentLayout = (RelativeLayout) rootView.findViewById(R.id.commentLayout);
             final ListView commentView = (ListView) rootView.findViewById(R.id.commmentView);
 
@@ -111,11 +114,13 @@ public class PublicationDetailsFragment extends Fragment {
                     commentLayout.setVisibility(View.GONE);
                     detailView.setVisibility(View.VISIBLE);
                     setText(rootView);
+
                 break;
                 case 2:
                     detailView.setVisibility(View.GONE);
                     commentLayout.setVisibility(View.VISIBLE);
                     loadComments(commentView);
+
                     break;
             }
             return rootView;
@@ -126,8 +131,17 @@ public class PublicationDetailsFragment extends Fragment {
                 @Override
                 public void onPostExecute(String result) {
                     Comments parser = new Comments(result);
+
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    Date date = new Date();
+
                     ArrayList<Comment> commentList = parser.getData();
-                    commentView.setAdapter(new CommentAdapter(getActivity(), R.layout.comment_item, commentList));
+                    CommentAdapter commentAdapter = new CommentAdapter(getActivity(), R.layout.comment_item, commentList);
+                    commentView.setAdapter(commentAdapter);
+                    if (commentList.isEmpty()) {
+                        commentAdapter.add(new Comment("Administrator",(dateFormat.format(date)),"Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben."));
+
+                    }
                 }
             }.execute("/comments/id/" + id);
         }

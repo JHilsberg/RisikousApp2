@@ -7,9 +7,12 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-        import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
-        import de.hszg.risikousapp.models.PublicationForList;
+import de.hszg.risikousapp.models.PublicationForList;
 
         import static de.hszg.risikousapp.R.layout.publication_item;
 
@@ -31,20 +34,24 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
 
             viewHolder.title = (TextView) convertView.findViewById(R.id.publication_title);
             viewHolder.date = (TextView) convertView.findViewById(R.id.date_creation);
-            //viewHolder.report = (TextView) convertView.findViewById(R.id.textView9);
             viewHolder.status = (TextView) convertView.findViewById(R.id.publication_status);
-            //viewHolder.comments = (TextView) convertView.findViewById(R.id.textView11);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        // Datum umformatieren
+        String outputDate = "";
+        String inputDate = publicationList.get(position).getEntryDate();
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(inputDate);
+            outputDate = new SimpleDateFormat("dd.MM.yyyy").format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         viewHolder.title.setText(publicationList.get(position).getTitle());
-        //viewHolder.id.setText(publicationList.get(position).getId());
-        viewHolder.date.setText(publicationList.get(position).getEntrydate());
-        //viewHolder.report.setText(publicationList.get(position).getReports());
         viewHolder.status.setText(publicationList.get(position).getStatus());
-        //viewHolder.comments.setText(publicationList.get(position).getComments());
+        viewHolder.date.setText(outputDate);
 
         return convertView;
     }
@@ -66,10 +73,7 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
 
     static class ViewHolder {
         TextView title;
-        //TextView id;
         TextView date;
-        //TextView report;
         TextView status;
-        //TextView comments;
     }
 }
