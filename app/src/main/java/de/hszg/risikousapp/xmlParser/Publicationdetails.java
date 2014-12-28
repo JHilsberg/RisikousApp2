@@ -21,12 +21,12 @@ public class Publicationdetails {
     private PublicationForDetails publication;
 
     public Publicationdetails(String publicationXml){
-            XmlDocumentParser parser = new XmlDocumentParser(publicationXml);
-            publicationDoc = parser.getXmlDoc();
+        XmlDocumentParser parser = new XmlDocumentParser(publicationXml);
+        publicationDoc = parser.getXmlDoc();
 
-            xpath = XPathFactory.newInstance().newXPath();
+        xpath = XPathFactory.newInstance().newXPath();
 
-            setDetails();
+        setDetails();
     }
 
     private void setDetails() {
@@ -60,3 +60,4 @@ public class Publicationdetails {
         return publication;
     }
 }
+

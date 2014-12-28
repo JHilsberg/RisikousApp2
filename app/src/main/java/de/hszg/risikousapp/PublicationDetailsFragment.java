@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 
@@ -127,7 +126,7 @@ public class PublicationDetailsFragment extends Fragment {
         }
 
         private void loadComments(final ListView commentView) {
-            new GetXmlFromRisikous(getActivity()) {
+            new GetXmlFromRisikous() {
                 @Override
                 public void onPostExecute(String result) {
                     Comments parser = new Comments(result);
@@ -147,7 +146,7 @@ public class PublicationDetailsFragment extends Fragment {
         }
 
         private void setText(final View rootView) {
-            new GetXmlFromRisikous(getActivity()) {
+            new GetXmlFromRisikous() {
 
                 TextView title = (TextView) rootView.findViewById(R.id.titleR);
                 TextView action = (TextView) rootView.findViewById(R.id.measureR);

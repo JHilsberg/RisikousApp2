@@ -209,18 +209,18 @@ public class QuestionnaireXmlSerializer {
     }
 
     private boolean checkIfDateIsSet(Button date){
-        if (date.getText() != appContext.getString(R.string.button_dateChoose)){
-            return true;
-        }else{
+        if (date.getText().equals(appContext.getString(R.string.button_dateChoose))) {
             return false;
+        }else{
+            return true;
         }
     }
 
     private boolean checkIfTimeIsSet(Button time){
-        if (time.getText() != appContext.getString(R.string.button_timeChoose)){
-            return true;
-        }else{
+        if (!time.getText().equals(appContext.getString(R.string.button_timeChoose))){
             return false;
+        }else{
+            return true;
         }
     }
 

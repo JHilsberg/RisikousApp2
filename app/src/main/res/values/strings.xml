@@ -20,21 +20,20 @@
     <string name="title_section4">Veröffentlichung</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="connection_error">Verbindung zum Internet fehlgeschlagen!</string>
-    <string name="section1_text">Sie befinden sich auf einer öffentlichen und frei zugänglichen Version der CIRS-Software Risikous.\n\n
-        Risikous dient als Critical Incident Reporting System (CIRS) zur Erfassung, Verwaltung und Auswertung von kritischen Ereignissen
+    <string name="section1_text">Risikous dient als Critical Incident Reporting System (CIRS) zur Erfassung, Verwaltung und Auswertung von kritischen Ereignissen
         und Beinahefehlern. Mit diesem System ermöglichen Sie dem (medizinischen) Personal, anonym und freiwillig über relevante Zwischenfälle
-        im Arbeitsumfeld zu berichten. Durch seine einfache und flexible Handhabung kann Risikous einen wichtigen Beitrag zur Erkennung von
+        im Arbeitsumfeld zu berichten. \n\nDurch seine einfache und flexible Handhabung kann Risikous einen wichtigen Beitrag zur Erkennung von
         Schwachstellen leisten. Damit hilft dieses Reporting System, eine interne Fehlerkultur zu etablieren und trägt so zur Verbesserung der
         (Patienten-) Sicherheit bei.</string>
     <string name="section2_text"></string>
-    <string name="section3_text">Unter dem Menüpunkt \'Meldung\' haben Sie die Möglichkeit, den Meldebogen für einen Beinahefehler auszufüllen.\n\n
-        Die ersten drei Fragen sind Pflichtfragen, müssen also ausgefüllt werden. Alle weiteren Angaben sind freiwillig und dienen lediglich
-        der detaillierten Beschreibung des Ereignisses.\n\n Das Hinzufügen von Dateianhängen wie Bildern oder Dokumenten ist ebenfalls möglich.\n\n
-        Nach dem Absenden des Meldebogens erhalten Sie eine Meldungsnummer, über die Sie den weiteren Prozess anonym verfolgen können.</string>
+    <string name="section3_text">Unter dem Menüpunkt \'Meldung\' haben Sie die Möglichkeit, den Meldebogen für einen Beinahefehler auszufüllen.\n
+        \nDie ersten drei Fragen sind Pflichtfragen, müssen also ausgefüllt werden. Alle weiteren Angaben sind freiwillig und dienen lediglich
+        der detaillierten Beschreibung des Ereignisses.\n\nDas Hinzufügen von Dateianhängen wie Bildern oder Dokumenten ist ebenfalls möglich.\n
+        \nNach dem Absenden des Meldebogens erhalten Sie eine Meldungsnummer, über die Sie den weiteren Prozess anonym verfolgen können.</string>
     <string name="section4_text">Der Veröffentlichungsbereich gibt Ihnen eine Übersicht aller veröffentlichten oder aktuell in Bearbeitung
-        befindlichen Meldungen.\n\n In der Übersichtsliste der Veröffentlichungen können Sie durch einen Klick auf einen Eintrag die zugehörigen
-        Detailinformationen einsehen. Wurde die Bearbeitung der Meldung bereits abgeschlossen, ist zudem die festgelegte Maßnahme sichtbar.\n\n
-        Sie erhalten somit ein direktes Feedback sowie Informationen über den aktuellen Status ihrer Meldungen.\n\n Außerdem ist es möglich,
+        befindlichen Meldungen.\n\nIn der Übersichtsliste der Veröffentlichungen können Sie durch einen Klick auf einen Eintrag die zugehörigen
+        Detailinformationen einsehen. Wurde die Bearbeitung der Meldung bereits abgeschlossen, ist zudem die festgelegte Maßnahme sichtbar.\n
+        \nSie erhalten somit ein direktes Feedback sowie Informationen über den aktuellen Status ihrer Meldungen.\n\nAußerdem ist es möglich,
         die Veröffentlichung zu kommentieren. Somit können Sie weiter konstruktiv auf den Prozess einwirken.</string>
 
     <!--For Questionnaire Skeleton -->
@@ -68,7 +67,14 @@
     <string name="ratingLow">Gering</string>
     <string name="button_addFile">Datei(en)auswählen</string>
     <string name="button_send">Abschicken</string>
-<!--FileChooser**********************************************************************************-->
+
+    <string name="required">* Pflichtfelder</string>
+
+    <string name="fillRequiredFields">Bitte füllen Sie alle Pflichtfelder aus.</string>
+    <string name="postSuccess">Die Meldung wurde erfolgreich gesendet.</string>
+    <string name="newQuestionnaire">Neue Meldung</string>
+
+    <!--FileChooser**********************************************************************************-->
     <string name="empty_directory">Empty Directory</string>
     <string name="storage_removed">Storage was removed or unmounted.</string>
     <string name="choose_file">Select a file</string>
@@ -89,10 +95,6 @@
     <string name="title">Titel</string>
     <string name="title_section5">Veröffentlichung</string>
     <string name="title_section6">Kommentare</string>
-    <string name="required">* Pflichtfelder</string>
-
-    <string name="fillRequiredFields">Bitte füllen Sie alle Pflichtfelder aus.</string>
-    <string name="postSuccess">Die Meldung wurde erfolgreich gesendet.</string>
-    <string name="newQuestionnaire">Neue Meldung</string>
+    <string name="publication">Veröffentlichung</string>
 
 </resources>

@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.ipaulpro.afilechooser.FileChooserActivity;
 import com.ipaulpro.afilechooser.utils.FileUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
 import de.hszg.risikousapp.dialogHelper.FileDecoder;
@@ -36,14 +38,15 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
 
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
     public final static int REQUEST_CODE = 6384;
-    private static final String TAG_FC = "FileChooserActivity";
     public String base64File= "";
-    private View questionnaireContentView;
-    private View loadingView;
-    private View sentView;
 
-    public QuestionnaireFragment() {
-    }
+    private static final String TAG_FC = "FileChooserActivity";
+
+    private String questionnaireSkeleton = "";
+    private String reportingAreas = "";
+
+    private boolean fragmentStartedAlready = false;
+
 
     public static QuestionnaireFragment newInstance() {
         return new QuestionnaireFragment();
@@ -52,13 +55,51 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startAsyncTasks();
         setRetainInstance(true);
+    }
+
+    private void startAsyncTasks() {
+        new GetXmlFromRisikous(){
+            @Override
+            protected void onPreExecute(){
+                getActivity().setProgressBarIndeterminateVisibility(true);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                questionnaireSkeleton = result;
+                QuestionnaireSkeleton questionnaireParser = new QuestionnaireSkeleton(questionnaireSkeleton);
+                new QuestionnaireElementsTextSetter(questionnaireParser, getActivity());
+            }
+        }.execute("questionnaire");
+
+        new GetXmlFromRisikous(){
+            @Override
+            protected void onPostExecute(String result) {
+                reportingAreas = result;
+                ReportingAreas reportingAreasParser = new ReportingAreas(reportingAreas);
+                setReportingAreaSpinner(reportingAreasParser);
+                getActivity().setProgressBarIndeterminateVisibility(false);
+            }
+        }.execute("reportingareas");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_questionnaire, container, false);
+
+        if(savedInstanceState != null) {
+            Button dateButton = (Button) rootView.findViewById(R.id.dateChoose);
+            Button timeButton = (Button) rootView.findViewById(R.id.timeChoose);
+            Spinner reportingAreas = (Spinner) rootView.findViewById(R.id.reportingAreaSelection);
+
+            dateButton.setText(savedInstanceState.getCharSequence("date"));
+            timeButton.setText(savedInstanceState.getCharSequence("time"));
+            reportingAreas.setSelection(savedInstanceState.getInt("selectedArea"));
+        }
+
         return rootView;
     }
 
@@ -66,45 +107,32 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
 
-        questionnaireContentView = getView().findViewById(R.id.questionnaireContent);
-        loadingView = getView().findViewById(R.id.loading_spinner);
-        sentView = getView().findViewById(R.id.sentView);
-
-        questionnaireContentView.setVisibility(View.GONE);
-        sentView.setVisibility(View.GONE);
-
-        Button sendQuestionnaire = (Button) getView().findViewById(R.id.sendQuestionnaire);
-        sendQuestionnaire.setOnClickListener(this);
-        Button dateChoose = (Button) getView().findViewById(R.id.dateChoose);
-        dateChoose.setOnClickListener(this);
-        Button timeChoose = (Button) getView().findViewById(R.id.timeChoose);
-        timeChoose.setOnClickListener(this);
-        Button fileUpload = (Button) getView().findViewById(R.id.fileUpload);
-        fileUpload.setOnClickListener(this);
-
-        new GetXmlFromRisikous(getActivity()) {
-            @Override
-            public void onPostExecute(String result) {
-                QuestionnaireSkeleton parser = new QuestionnaireSkeleton(result);
-                new QuestionnaireElementsTextSetter(parser, getActivity());
-
-                loadingView.setVisibility(View.GONE);
-                questionnaireContentView.setVisibility(View.VISIBLE);
-            }
-        }.execute("questionnaire");
-
-        new GetXmlFromRisikous(getActivity()) {
-            @Override
-            public void onPostExecute(String result) {
-                ReportingAreas parser = new ReportingAreas(result);
-                setReportingAreaSpinner(parser);
-            }
-        }.execute("reportingareas");
+        if(fragmentStartedAlready){
+            setAllTextAndReportingAreas();
+        }
+        fragmentStartedAlready = true;
+        setListeners(getView());
     }
 
-    public void setSendView() {
-        questionnaireContentView.setVisibility(View.GONE);
-        sentView.setVisibility(View.VISIBLE);
+    private void setAllTextAndReportingAreas() {
+        QuestionnaireSkeleton questionnaireParser = new QuestionnaireSkeleton(questionnaireSkeleton);
+        ReportingAreas reportingAreasParser = new ReportingAreas(reportingAreas);
+
+        new QuestionnaireElementsTextSetter(questionnaireParser, getActivity());
+        setReportingAreaSpinner(reportingAreasParser);
+    }
+
+    private void setListeners(View view) {
+        Button sendQuestionnaire = (Button) view.findViewById(R.id.sendQuestionnaire);
+        sendQuestionnaire.setOnClickListener(this);
+        Button dateChoose = (Button) view.findViewById(R.id.dateChoose);
+        dateChoose.setOnClickListener(this);
+        Button timeChoose = (Button) view.findViewById(R.id.timeChoose);
+        timeChoose.setOnClickListener(this);
+        Button fileUpload = (Button) view.findViewById(R.id.fileUpload);
+        fileUpload.setOnClickListener(this);
+        Button newQuestionnaire = (Button) view.findViewById(R.id.newQuestionnaire);
+        newQuestionnaire.setOnClickListener(this);
     }
 
     private void setReportingAreaSpinner(ReportingAreas areas) {
@@ -116,7 +144,6 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         reportingAreaSpinner.setAdapter(spinnerArrayAdapter);
 
         reportingAreaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
@@ -133,9 +160,8 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+        public void onClick(View v) {
         if (v.getId() == R.id.sendQuestionnaire) {
-            Log.i("listener", "button listener activated");
             new QuestionnaireValidator(getActivity());
         } else if (v.getId() == R.id.dateChoose) {
             DialogFragment newFragment = new DatePickerFragment();
@@ -145,13 +171,30 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             newFragment.show(getActivity().getFragmentManager(), "timePicker");
         } else if (v.getId() == R.id.fileUpload) {
             startFileChooser();
+        } else if(v.getId() == R.id.newQuestionnaire){
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction().replace(R.id.content_frame,
+                    QuestionnaireFragment.newInstance(),
+                    QuestionnaireFragment.TAG).commit();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Button dateButton = (Button) getActivity().findViewById(R.id.dateChoose);
+        Button timeButton = (Button) getActivity().findViewById(R.id.timeChoose);
+        Spinner reportingAreas = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
+
+        outState.putCharSequence("date", dateButton.getText());
+        outState.putCharSequence("time", timeButton.getText());
+        outState.putInt("selectedArea", reportingAreas.getSelectedItemPosition());
     }
 
     private void startFileChooser() {
         FileChooserActivity fileChooserActivity;
         Intent target = FileUtils.createGetContentIntent();
-        // Create the chooser Intent
+
         Intent intent = Intent.createChooser(
                 target, getString(R.string.chooser_title));
         try {
@@ -191,6 +234,13 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void setSendView() {
+        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
+        questionnaireContentView.setVisibility(View.GONE);
+
+        View sentView = getActivity().findViewById(R.id.sentView);
+        sentView.setVisibility(View.VISIBLE);
+    }
 }
 
 

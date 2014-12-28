@@ -317,19 +317,13 @@
 
     </ScrollView>
 
-    <ProgressBar
-        android:id="@+id/loading_spinner"
-        style="?android:progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/QuestionnaireLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sentView">
+        android:id="@+id/sentView"
+        android:visibility="gone">
 
         <TextView
             style="@style/QuestionnaireCaptions"

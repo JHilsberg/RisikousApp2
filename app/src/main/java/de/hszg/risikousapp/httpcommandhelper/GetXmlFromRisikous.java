@@ -1,10 +1,11 @@
 package de.hszg.risikousapp.httpcommandhelper;
 
+
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 
 import de.hszg.risikousapp.R;
 
@@ -23,18 +23,12 @@ import de.hszg.risikousapp.R;
  */
 public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
 
-    private Context appContext;
-
-    public GetXmlFromRisikous(Context context){
-        this.appContext = context;
-    }
-
     @Override
     protected String doInBackground(String... actions) {
         try {
             return getXmlAsString(actions[0]);
         } catch (IOException e) {
-            return appContext.getResources().getString(R.string.connection_error);
+            return "Fehler beim Daten Download";
         }
     }
 

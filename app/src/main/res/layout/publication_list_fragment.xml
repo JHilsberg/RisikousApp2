@@ -10,7 +10,7 @@
 
         <TextView
             style="@style/QuestionnaireCaptions"
-            android:text="Veröffentlichung"/>
+            android:text="@string/publication"/>
 
         <ListView
             android:layout_width="match_parent"
