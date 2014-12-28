@@ -48,8 +48,14 @@ public class QuestionnaireValidator {
 
             new PostXmlToRisikousServer(appContext){
                 @Override
-                public void onPostExecute(String result) {
+                protected void onPreExecute(){
+                    appContext.setProgressBarIndeterminateVisibility(true);
+                }
+
+                @Override
+                protected void onPostExecute(String result) {
                     Log.i("status", "" + result);
+                    appContext.setProgressBarIndeterminateVisibility(false);
                     setSendView(result);
                 }
             }.execute("questionnaire/addQuestionnaire", questionnaireXml);

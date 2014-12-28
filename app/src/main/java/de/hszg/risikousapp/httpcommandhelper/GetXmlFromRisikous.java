@@ -51,7 +51,8 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         HttpResponse response = getXmlFromRisikous(action);
         HttpEntity entity = response.getEntity();
 
-        String xmlData = EntityUtils.toString(entity, "UTF-8");
+        String xmlData = "";
+        xmlData = EntityUtils.toString(entity, "UTF-8");
 
         return xmlData;
     }
