@@ -190,6 +190,7 @@ public class QuestionnaireXmlSerializer {
         serializer.startTag(null, appContext.getString(R.string.files));
         makeNode("file", "File in Base 64");
         serializer.endTag(null, appContext.getString(R.string.files));
+        //TODO addFiles
     }
 
     private void addContactInfo() throws IOException{
@@ -217,7 +218,7 @@ public class QuestionnaireXmlSerializer {
     }
 
     private boolean checkIfTimeIsSet(Button time){
-        if (!time.getText().equals(appContext.getString(R.string.button_timeChoose))){
+        if (time.getText().equals(appContext.getString(R.string.button_timeChoose))){
             return false;
         }else{
             return true;

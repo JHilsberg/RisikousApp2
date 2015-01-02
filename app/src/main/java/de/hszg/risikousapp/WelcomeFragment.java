@@ -119,8 +119,6 @@ public class WelcomeFragment extends Fragment {
             ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
             imageView.setVisibility(View.INVISIBLE);
 
-            // TODO ...hässlich gelöst, mit den sichbarkeiten von image- und textview, oder?!
-
             switch (sectionNumber) {
                 case 1:
                     tv_welcome.setText(R.string.title_section1);
