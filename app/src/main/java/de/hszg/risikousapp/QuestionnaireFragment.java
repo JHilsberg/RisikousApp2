@@ -19,9 +19,7 @@ import android.widget.Toast;
 import com.ipaulpro.afilechooser.FileChooserActivity;
 import com.ipaulpro.afilechooser.utils.FileUtils;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import de.hszg.risikousapp.dialogHelper.DatePickerFragment;
 import de.hszg.risikousapp.dialogHelper.FileDecoder;
@@ -45,7 +43,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     private String questionnaireSkeleton = "";
     private String reportingAreas = "";
 
-    private boolean fragmentStartedAlready = false;
+    private boolean fragmentStartedMoreThanOneTime = false;
 
 
     public static QuestionnaireFragment newInstance() {
@@ -57,6 +55,105 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         super.onCreate(savedInstanceState);
         startAsyncTasks();
         setRetainInstance(true);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_questionnaire, container, false);
+
+        if(savedInstanceState != null) {
+            Button dateButton = (Button) rootView.findViewById(R.id.dateChoose);
+            Button timeButton = (Button) rootView.findViewById(R.id.timeChoose);
+            Spinner reportingAreas = (Spinner) rootView.findViewById(R.id.reportingAreaSelection);
+
+            dateButton.setText(savedInstanceState.getCharSequence("date"));
+            timeButton.setText(savedInstanceState.getCharSequence("time"));
+            reportingAreas.setSelection(savedInstanceState.getInt("selectedArea"));
+        }
+
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle onSavedInstance) {
+        super.onActivityCreated(onSavedInstance);
+
+        if(fragmentStartedMoreThanOneTime){
+            setAllTextAndReportingAreas();
+        }
+        fragmentStartedMoreThanOneTime = true;
+        setListeners(getView());
+    }
+
+    @Override
+        public void onClick(View v) {
+        if (v.getId() == R.id.sendQuestionnaire) {
+            new QuestionnaireValidator(getActivity());
+        } else if (v.getId() == R.id.dateChoose) {
+            DialogFragment newFragment = new DatePickerFragment();
+            newFragment.show(getActivity().getFragmentManager(), "datePicker");
+        } else if (v.getId() == R.id.timeChoose) {
+            DialogFragment newFragment = new TimePickerFragment();
+            newFragment.show(getActivity().getFragmentManager(), "timePicker");
+        } else if (v.getId() == R.id.fileUpload) {
+            startFileChooser();
+        } else if(v.getId() == R.id.newQuestionnaire){
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction().replace(R.id.content_frame,
+                    QuestionnaireFragment.newInstance(),
+                    QuestionnaireFragment.TAG).commit();
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Button dateButton = (Button) getActivity().findViewById(R.id.dateChoose);
+        Button timeButton = (Button) getActivity().findViewById(R.id.timeChoose);
+        Spinner reportingAreas = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
+
+        outState.putCharSequence("date", dateButton.getText());
+        outState.putCharSequence("time", timeButton.getText());
+        outState.putInt("selectedArea", reportingAreas.getSelectedItemPosition());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE:
+                // If the file selection was successful
+                if (resultCode == getActivity().RESULT_OK) {
+                    if (data != null) {
+                        // Get the URI of the selected file
+                        final Uri uri = data.getData();
+                        Log.i(TAG, "Uri = " + uri.toString());
+                        try {
+                            // Get the file path from the URI
+                            final String path = FileUtils.getPath(getActivity().getApplicationContext(), uri);
+                            final String fileName = path.substring(path.lastIndexOf("/") + 1);
+
+                            Button file = (Button) getActivity().findViewById(R.id.fileUpload);
+                            file.setText(path);
+                            Toast.makeText(getActivity().getApplicationContext(), "Ausgewählte Datei: " + fileName, Toast.LENGTH_LONG).show();
+                            FileDecoder fileDecoder = new FileDecoder(fileName);
+                            base64File = fileDecoder.getFile();
+                        } catch (Exception e) {
+                            Log.e("FileChooser", "File select error", e);
+                        }
+                    }
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void setSendView() {
+        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
+        questionnaireContentView.setVisibility(View.GONE);
+
+        View sentView = getActivity().findViewById(R.id.sentView);
+        sentView.setVisibility(View.VISIBLE);
     }
 
     private void startAsyncTasks() {
@@ -83,35 +180,6 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
                 getActivity().setProgressBarIndeterminateVisibility(false);
             }
         }.execute("reportingareas");
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_questionnaire, container, false);
-
-        if(savedInstanceState != null) {
-            Button dateButton = (Button) rootView.findViewById(R.id.dateChoose);
-            Button timeButton = (Button) rootView.findViewById(R.id.timeChoose);
-            Spinner reportingAreas = (Spinner) rootView.findViewById(R.id.reportingAreaSelection);
-
-            dateButton.setText(savedInstanceState.getCharSequence("date"));
-            timeButton.setText(savedInstanceState.getCharSequence("time"));
-            reportingAreas.setSelection(savedInstanceState.getInt("selectedArea"));
-        }
-
-        return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle onSavedInstance) {
-        super.onActivityCreated(onSavedInstance);
-
-        if(fragmentStartedAlready){
-            setAllTextAndReportingAreas();
-        }
-        fragmentStartedAlready = true;
-        setListeners(getView());
     }
 
     private void setAllTextAndReportingAreas() {
@@ -159,38 +227,6 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         });
     }
 
-    @Override
-        public void onClick(View v) {
-        if (v.getId() == R.id.sendQuestionnaire) {
-            new QuestionnaireValidator(getActivity());
-        } else if (v.getId() == R.id.dateChoose) {
-            DialogFragment newFragment = new DatePickerFragment();
-            newFragment.show(getActivity().getFragmentManager(), "datePicker");
-        } else if (v.getId() == R.id.timeChoose) {
-            DialogFragment newFragment = new TimePickerFragment();
-            newFragment.show(getActivity().getFragmentManager(), "timePicker");
-        } else if (v.getId() == R.id.fileUpload) {
-            startFileChooser();
-        } else if(v.getId() == R.id.newQuestionnaire){
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction().replace(R.id.content_frame,
-                    QuestionnaireFragment.newInstance(),
-                    QuestionnaireFragment.TAG).commit();
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Button dateButton = (Button) getActivity().findViewById(R.id.dateChoose);
-        Button timeButton = (Button) getActivity().findViewById(R.id.timeChoose);
-        Spinner reportingAreas = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
-
-        outState.putCharSequence("date", dateButton.getText());
-        outState.putCharSequence("time", timeButton.getText());
-        outState.putInt("selectedArea", reportingAreas.getSelectedItemPosition());
-    }
-
     private void startFileChooser() {
         FileChooserActivity fileChooserActivity;
         Intent target = FileUtils.createGetContentIntent();
@@ -202,44 +238,6 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         } catch (ActivityNotFoundException e) {
             Log.e("Chooser", "FileChooser activity not found");
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case REQUEST_CODE:
-                // If the file selection was successful
-                if (resultCode == getActivity().RESULT_OK) {
-                    if (data != null) {
-                        // Get the URI of the selected file
-                        final Uri uri = data.getData();
-                        Log.i(TAG, "Uri = " + uri.toString());
-                        try {
-                            // Get the file path from the URI
-                            final String path = FileUtils.getPath(getActivity().getApplicationContext(), uri);
-                            final String fileName = path.substring(path.lastIndexOf("/") + 1);
-
-                            Button file = (Button) getActivity().findViewById(R.id.fileUpload);
-                            file.setText(path);
-                            Toast.makeText(getActivity().getApplicationContext(), "Ausgewählte Datei: " + fileName, Toast.LENGTH_LONG).show();
-                            FileDecoder fileDecoder = new FileDecoder(fileName);
-                            base64File = fileDecoder.getFile();
-                        } catch (Exception e) {
-                            Log.e("FileChooser", "File select error", e);
-                        }
-                    }
-                }
-                break;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    public void setSendView() {
-        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
-        questionnaireContentView.setVisibility(View.GONE);
-
-        View sentView = getActivity().findViewById(R.id.sentView);
-        sentView.setVisibility(View.VISIBLE);
     }
 }
 

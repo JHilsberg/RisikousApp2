@@ -96,5 +96,8 @@
     <string name="title_section5">Veröffentlichung</string>
     <string name="title_section6">Kommentare</string>
     <string name="publication">Veröffentlichung</string>
+    <string name="connectionErrorText">Aktuell besteht keine Internetverbindung. Bitte überprüfen Sie die Netzwerkeinstellungen.</string>
+    <string name="back">Zurück</string>
+    <string name="openSettings">Einstellungen öffnen</string>
 
 </resources>

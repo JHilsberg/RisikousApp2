@@ -16,17 +16,25 @@ import de.hszg.risikousapp.xmlSerializer.QuestionnaireXmlSerializer;
 
 /**
  * Created by Julian on 17.12.2014.
+ * Class to validate the required fields in the questionnaire.
  */
 public class QuestionnaireValidator {
 
     private FragmentActivity appContext;
     private QuestionnaireXmlSerializer serializer;
 
+    /**
+     * @param appContext
+     */
     public QuestionnaireValidator(FragmentActivity appContext) {
         this.appContext = appContext;
         checkRequiredFields();
     }
 
+    /**
+     * Checks if all required fields have some input
+     * In success case method starts XML-serializer and send report to server.
+     */
     private void checkRequiredFields(){
         ScrollView questionnaireScroll = (ScrollView) appContext.findViewById(R.id.questionnaireContent);
         Toast validationError = Toast.makeText(appContext, appContext.getString(R.string.fillRequiredFields), Toast.LENGTH_LONG);
@@ -60,6 +68,10 @@ public class QuestionnaireValidator {
         }
     }
 
+    /**
+     * Method check if a reporting area is selected.
+     * @return true if a area is selected, else false
+     */
     private boolean checkReportingAreaSelection() {
         TextView reportingArea = (TextView) appContext.findViewById(R.id.reportingArea);
         Spinner reportingAreaSelection = (Spinner) appContext.findViewById(R.id.reportingAreaSelection);
@@ -73,6 +85,10 @@ public class QuestionnaireValidator {
         }
     }
 
+    /**
+     * Method check if a incident description is given by the user.
+     * @return true if a description is given by the user, else false
+     */
     private boolean checkIncidentDescription(){
         TextView incidentDescription = (TextView) appContext.findViewById(R.id.incidentDescription);
         EditText incidentDescriptionEdit = (EditText) appContext.findViewById(R.id.incidentDescriptionEdit);
@@ -86,6 +102,10 @@ public class QuestionnaireValidator {
         }
     }
 
+    /**
+     * Method check if all required risk estimation selections are selected by the user.
+     * @return true if a selection in each selection-group is given by the user, else false
+     */
     private boolean checkRiskEstimation(){
         TextView riskEstimation = (TextView) appContext.findViewById(R.id.riskEstimation);
         RadioGroup occurrenceRatingGroup = (RadioGroup) appContext.findViewById(R.id.occurrenceRatingGroup);
@@ -105,6 +125,10 @@ public class QuestionnaireValidator {
         }
     }
 
+    /**
+     * Change the questionnaire view to a send confirmation view.
+     * @param statusCode
+     */
     private void setSendView(String statusCode){
         if (statusCode.equals("200")){
             QuestionnaireFragment questionnaireFragment = (QuestionnaireFragment) appContext.getSupportFragmentManager().findFragmentById(R.id.content_frame);

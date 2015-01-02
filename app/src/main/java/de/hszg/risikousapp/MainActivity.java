@@ -1,7 +1,10 @@
 package de.hszg.risikousapp;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.content.res.Configuration;
+import android.os.Handler;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -77,12 +81,12 @@ public class MainActivity extends FragmentActivity {
 		}
 	
 	}
-	
-	/*
-	 * If you do not have any menus, you still need this function
-	 * in order to open or close the NavigationDrawer when the user 
-	 * clicking the ActionBar app icon.
-	 */
+
+    /**
+     * Function to open or close the NavigationDrawer when the user clicking the ActionBar app icon.
+     * @param item
+     * @return
+     */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(mDrawerToggle.onOptionsItemSelected(item)) {
@@ -108,6 +112,12 @@ public class MainActivity extends FragmentActivity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getActionBar().setTitle(mTitle);
+    }
 	
 	private class DrawerItemClickListener implements OnItemClickListener {
 		@Override
@@ -116,38 +126,60 @@ public class MainActivity extends FragmentActivity {
             mDrawerLayout.closeDrawers();
 		}
 	}
-	
-	private void navigateTo(int position) {
-		
-		switch(position) {
-		case 0:
-			getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.content_frame,
-                        WelcomeFragment.newInstance(),
-                        WelcomeFragment.TAG).commit();
-			break;
-		case 1:
-			getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.content_frame,
-						QuestionnaireFragment.newInstance(),
-						QuestionnaireFragment.TAG).commit();
-			break;
-        case 2:
-            	getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.content_frame,
-						PublicationListFragment.newInstance(),
-						PublicationListFragment.TAG).commit();
-            break;
-		}
-	}
-	
-	@Override
-	public void setTitle(CharSequence title) {
-		mTitle = title;
-		getActionBar().setTitle(mTitle);
-	}
+
+    private void navigateTo(int position) {
+
+        switch(position) {
+            case 0:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame,
+                                WelcomeFragment.newInstance(),
+                                WelcomeFragment.TAG).commit();
+                break;
+            case 1:
+                if (isOnline()){
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame,
+                                    QuestionnaireFragment.newInstance(),
+                                    QuestionnaireFragment.TAG).commit();
+                }else{
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame,
+                                    ConnectionErrorFragment.newInstance(),
+                                    ConnectionErrorFragment.TAG).commit();
+                }
+                break;
+            case 2:
+                if(isOnline()){
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame,
+                                    PublicationListFragment.newInstance(),
+                                    PublicationListFragment.TAG).commit();
+                    break;
+                }else{
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame,
+                                    ConnectionErrorFragment.newInstance(),
+                                    ConnectionErrorFragment.TAG).commit();
+                }
+
+        }
+    }
+
+    /**
+     * Check if system has an WLAN or broadband connection.
+     * @return true if device is connected to a network
+     */
+    private boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnected();
+    }
 
 }

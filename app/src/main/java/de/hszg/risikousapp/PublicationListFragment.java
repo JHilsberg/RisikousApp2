@@ -73,7 +73,7 @@ public class PublicationListFragment extends Fragment {
                         .beginTransaction()
                         .replace(R.id.content_frame,
                                 PublicationDetailsFragment.newInstance(selectedPublication.getId()),
-                                PublicationDetailsFragment.TAG).commit();
+                                PublicationDetailsFragment.TAG).addToBackStack("publications").commit();
             }
         });
 
