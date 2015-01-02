@@ -16,16 +16,15 @@ import java.net.URLEncoder;
 import de.hszg.risikousapp.R;
 
 /**
- * Created by Julian on 11.12.2014.
+ * Class to post xml data to the risikous server.
  */
 public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
 
-    private Context appContext;
-
-    public PostXmlToRisikousServer(Context context){
-        appContext = context;
-    }
-
+    /**
+     * Start http post as an async task.
+     * @param actions
+     * @return status code
+     */
     @Override
     protected String doInBackground(String... actions) {
         try {
@@ -36,6 +35,27 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
         return "";
     }
 
+    /**
+     * Start the http post and get the status code.
+     * @param action
+     * @param payload
+     * @return status code
+     * @throws IOException
+     */
+    private String sendPost(String action, String payload) throws IOException {
+        HttpResponse response = postXmlToRisikous(action, payload);
+        String statusCode = String.valueOf(response.getStatusLine().getStatusCode());
+
+        return statusCode;
+    }
+
+    /**
+     * Make an http post command.
+     * @param action selects which restful service is executed
+     * @param payload the data send to the server
+     * @return http response
+     * @throws IOException
+     */
     private HttpResponse postXmlToRisikous(String action, String payload) throws IOException {
         String PROTOCOL = "http";
         String HOST = "94.101.38.155";
@@ -52,13 +72,6 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
         HttpResponse response = client.execute(request);
 
         return response;
-    }
-
-    private String sendPost(String action, String payload) throws IOException {
-        HttpResponse response = postXmlToRisikous(action, payload);
-        String statusCode = String.valueOf(response.getStatusLine().getStatusCode());
-
-        return statusCode;
     }
 }
 

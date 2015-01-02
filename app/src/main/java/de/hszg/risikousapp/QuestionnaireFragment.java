@@ -30,6 +30,7 @@ import de.hszg.risikousapp.xmlParser.QuestionnaireSkeleton;
 import de.hszg.risikousapp.xmlParser.ReportingAreas;
 
 /**
+ * Fragment that shows the questionnaire.
  * Created by Julian on 08.12.2014.
  */
 public class QuestionnaireFragment extends Fragment implements View.OnClickListener {
@@ -50,6 +51,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         return new QuestionnaireFragment();
     }
 
+    /**
+     * starts the async tasks
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +62,13 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         setRetainInstance(true);
     }
 
+    /**
+     * Set the root view and restores elements.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return root view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +87,11 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         return rootView;
     }
 
+    /**
+     * Sets the captions of all questionnaire elements, when view is restored.
+     * For example after changing the orientation.
+     * @param onSavedInstance
+     */
     @Override
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
@@ -86,6 +103,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         setListeners(getView());
     }
 
+    /**
+     * Identify and execute an action, if a button is clicked.
+     * @param v
+     */
     @Override
         public void onClick(View v) {
         if (v.getId() == R.id.sendQuestionnaire) {
@@ -106,6 +127,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         }
     }
 
+    /**
+     * Save the selected date, time and reporting area, when destroy view to restore the selections.
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -118,6 +143,12 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         outState.putInt("selectedArea", reportingAreas.getSelectedItemPosition());
     }
 
+    /**
+     * Get the selected file from the file chooser activity.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -148,14 +179,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void setSendView() {
-        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
-        questionnaireContentView.setVisibility(View.GONE);
-
-        View sentView = getActivity().findViewById(R.id.sentView);
-        sentView.setVisibility(View.VISIBLE);
-    }
-
+    /**
+     * Start the async tasks to get the captions and reporting area list from the server.
+     * Shows progress spinner while downloading. Set text to all elements after successful download.
+     */
     private void startAsyncTasks() {
         new GetXmlFromRisikous(){
             @Override
@@ -182,6 +209,9 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         }.execute("reportingareas");
     }
 
+    /**
+     * Sets the captions of the questionnaire and add the reporting area list to the spinner.
+     */
     private void setAllTextAndReportingAreas() {
         QuestionnaireSkeleton questionnaireParser = new QuestionnaireSkeleton(questionnaireSkeleton);
         ReportingAreas reportingAreasParser = new ReportingAreas(reportingAreas);
@@ -190,6 +220,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         setReportingAreaSpinner(reportingAreasParser);
     }
 
+    /**
+     * Sets onclick listeners to all buttons.
+     * @param view
+     */
     private void setListeners(View view) {
         Button sendQuestionnaire = (Button) view.findViewById(R.id.sendQuestionnaire);
         sendQuestionnaire.setOnClickListener(this);
@@ -203,6 +237,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         newQuestionnaire.setOnClickListener(this);
     }
 
+    /**
+     * Add the reporting area list to the spinner, set onItemListener.
+     * @param areas parser for reporting  areas XML
+     */
     private void setReportingAreaSpinner(ReportingAreas areas) {
         Spinner reportingAreaSpinner = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
         final ArrayList<ReportingArea> reportingAreas = areas.getReportingAreas();
@@ -216,8 +254,6 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
                 ReportingArea reportingArea = (ReportingArea) spinnerArrayAdapter.getItem(position);
-                Log.i("Reporting Area", "Ausgewählter Meldekreis: " + reportingArea.getName() +
-                        " Shortcut: " + reportingArea.getShortcut());
             }
 
             @Override
@@ -227,6 +263,9 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         });
     }
 
+    /**
+     * Starts the file chooser activity.
+     */
     private void startFileChooser() {
         FileChooserActivity fileChooserActivity;
         Intent target = FileUtils.createGetContentIntent();
@@ -238,6 +277,18 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         } catch (ActivityNotFoundException e) {
             Log.e("Chooser", "FileChooser activity not found");
         }
+    }
+
+    /**
+     * Change view to a confirmation page.
+     */
+
+    public void setSendView() {
+        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
+        questionnaireContentView.setVisibility(View.GONE);
+
+        View sentView = getActivity().findViewById(R.id.sentView);
+        sentView.setVisibility(View.VISIBLE);
     }
 }
 

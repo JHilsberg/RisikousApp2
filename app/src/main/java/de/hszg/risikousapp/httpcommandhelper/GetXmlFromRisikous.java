@@ -19,10 +19,15 @@ import java.io.IOException;
 import de.hszg.risikousapp.R;
 
 /**
- * Created by Julian on 03.12.2014.
+ * Class to get the xml data from the risikous server.
  */
 public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
 
+    /**
+     * Start http get as async task.
+     * @param actions
+     * @return xml response from server as String
+     */
     @Override
     protected String doInBackground(String... actions) {
         try {
@@ -32,6 +37,28 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         }
     }
 
+    /**
+     * Starts the get method and convert response entity into a String.
+     * @param action
+     * @return response entity
+     * @throws IOException
+     */
+    private String getXmlAsString(String action) throws IOException {
+        HttpResponse response = getXmlFromRisikous(action);
+        HttpEntity entity = response.getEntity();
+
+        String xmlData = "";
+        xmlData = EntityUtils.toString(entity, "UTF-8");
+
+        return xmlData;
+    }
+
+    /**
+     * Get http response from risikous server.
+     * @param action selects which restful service is executed
+     * @return complete http response
+     * @throws IOException
+     */
     private HttpResponse getXmlFromRisikous(String action) throws IOException {
         String PROTOCOL = "http";
         String HOST = "94.101.38.155";
@@ -46,15 +73,4 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         Log.i("Response Status", "Status" + response.getStatusLine().getReasonPhrase());
         return response;
     }
-
-    private String getXmlAsString(String action) throws IOException {
-        HttpResponse response = getXmlFromRisikous(action);
-        HttpEntity entity = response.getEntity();
-
-        String xmlData = "";
-        xmlData = EntityUtils.toString(entity, "UTF-8");
-
-        return xmlData;
-    }
-
 }
