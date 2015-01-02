@@ -6,16 +6,21 @@ package de.hszg.risikousapp.models;
  */
 public class PublicationForList {
 
+
     private String id;
     private String title;
+    private String reports;
     private String status;
-    private String entryDate;
+    private String comments;
+    private String entrydate;
 
-    public PublicationForList(String id, String title, String status, String entryDate) {
+    public PublicationForList(String id, String title, String reports, String status, String commments, String entrydate) {
         this.id = id;
         this.title = title;
+        this.reports = reports;
         this.status = status;
-        this.entryDate = entryDate;
+        this.comments = commments;
+        this.entrydate = entrydate;
     }
 
     public String getId() {
@@ -26,11 +31,19 @@ public class PublicationForList {
         return title;
     }
 
+    public String getReports() {
+        return reports;
+    }
+
     public String getStatus() {
         return status;
     }
 
-    public String getEntryDate() {
-        return entryDate;
+    public String getComments() {
+        return comments ;
+    }
+
+    public String getEntrydate() {
+        return entrydate;
     }
 }

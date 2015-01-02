@@ -1,9 +1,10 @@
 package de.hszg.risikousapp;
 
 import android.content.Context;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -40,18 +41,31 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        String status = publicationList.get(position).getStatus();
+
         // Datum umformatieren
         String outputDate = "";
-        String inputDate = publicationList.get(position).getEntryDate();
+        String inputDate = publicationList.get(position).getEntrydate();
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(inputDate);
             outputDate = new SimpleDateFormat("dd.MM.yyyy").format(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        if (status.equals("abgeschlossen")) {
+            viewHolder.status.setTextColor(Color.GREEN);
+        } else
+        if (status.equals("ungültig")) {
+            viewHolder.status.setTextColor(Color.RED);
+        } else {
+            viewHolder.status.setTextColor(Color.BLACK);
+        }
+
         viewHolder.title.setText(publicationList.get(position).getTitle());
-        viewHolder.status.setText(publicationList.get(position).getStatus());
         viewHolder.date.setText(outputDate);
+        viewHolder.status.setText(status);
 
         return convertView;
     }

@@ -30,15 +30,17 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     public View getView(int position, View convertView, ViewGroup parent){
         convertView = mInflater.inflate(R.layout.comment_item, null);
         ViewHolder viewHolder = new ViewHolder();
+
         // Datum umformatieren
         String outputDate = "";
         String inputDate = commentList.get(position).getTimeStamp();
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(inputDate);
-            outputDate = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(date);
+            outputDate = new SimpleDateFormat("dd.MM.yyyy, HH:mm").format(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         viewHolder.commentHeader = (TextView) convertView.findViewById(R.id.commentHeader);
         viewHolder.comment = (TextView) convertView.findViewById(R.id.comment);
         viewHolder.commentHeader.setText(commentList.get(position).getAuthor() + " schrieb am " + outputDate);

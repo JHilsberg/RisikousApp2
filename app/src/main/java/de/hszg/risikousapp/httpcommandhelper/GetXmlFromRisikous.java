@@ -3,6 +3,7 @@ package de.hszg.risikousapp.httpcommandhelper;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -22,6 +23,9 @@ import de.hszg.risikousapp.R;
  * Created by Julian on 03.12.2014.
  */
 public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
+
+    public GetXmlFromRisikous() {
+    }
 
     @Override
     protected String doInBackground(String... actions) {

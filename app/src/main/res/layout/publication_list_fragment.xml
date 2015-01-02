@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        style="@style/QuestionnaireLayout"
-        android:id="@+id/publicationListLayout">
+        android:id="@+id/publicationListLayout"
+        style="@style/QuestionnaireLayout">
 
         <TextView
             style="@style/QuestionnaireCaptions"

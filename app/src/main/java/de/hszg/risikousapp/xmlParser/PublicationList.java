@@ -45,21 +45,25 @@ public class PublicationList {
     }
 
     public ArrayList<PublicationForList> getData() {
-        NodeList publicationNodeListId = getPublicationNodeList("id");
-        NodeList publicationNodeListTitle = getPublicationNodeList("title");
-        NodeList publicationNodeListStatus = getPublicationNodeList("status");
-        NodeList publicationNodeListEntryDate = getPublicationNodeList("entryDate");
+        NodeList areasNodeListid = getPublicationNodeList("id");
+        NodeList areasNodeListTitle = getPublicationNodeList("title");
+        NodeList areasNodeListReports = getPublicationNodeList("numberOfReports");
+        NodeList areasNodeListStatus = getPublicationNodeList("status");
+        NodeList areasNodeListComments = getPublicationNodeList("numberOfComments");
+        NodeList areasNodeListentryDate = getPublicationNodeList("entryDate");
 
         ArrayList<PublicationForList> PublicationForList = new ArrayList<PublicationForList>();
 
-        for (int i = 0; i < publicationNodeListId.getLength(); i++) {
+        for (int i = 0; i < areasNodeListid.getLength(); i++) {
 
             PublicationForList.add(
                     new PublicationForList(
-                            publicationNodeListId.item(i).getLastChild().getNodeValue(),
-                            publicationNodeListTitle.item(i).getLastChild().getNodeValue(),
-                            publicationNodeListStatus.item(i).getLastChild().getNodeValue(),
-                            publicationNodeListEntryDate.item(i).getLastChild().getNodeValue()
+                            areasNodeListid.item(i).getLastChild().getNodeValue(),
+                            areasNodeListTitle.item(i).getLastChild().getNodeValue(),
+                            areasNodeListReports.item(i).getLastChild().getNodeValue(),
+                            areasNodeListStatus.item(i).getLastChild().getNodeValue(),
+                            areasNodeListComments.item(i).getLastChild().getNodeValue(),
+                            areasNodeListentryDate.item(i).getLastChild().getNodeValue()
                     )
             );
         }
