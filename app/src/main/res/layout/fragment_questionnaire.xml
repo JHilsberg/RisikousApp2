@@ -26,8 +26,7 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:id="@+id/reportingArea"
-                    android:text="@string/reportingArea" />
+                    android:id="@+id/reportingArea" />
 
                 <Spinner
                     android:id="@+id/reportingAreaSelection"
@@ -46,8 +45,7 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:id="@+id/incidentDescription"
-                    android:text="@string/incidentDescription" />
+                    android:id="@+id/incidentDescription" />
 
                 <EditText
                     style="@style/QuestionnaireEdits"
@@ -62,12 +60,10 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:id="@+id/riskEstimation"
-                    android:text="@string/riskEstimation" />
+                    android:id="@+id/riskEstimation"/>
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
-                    android:text="@string/occurrenceRating"
                     android:id="@+id/occurrenceRating" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -95,7 +91,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
-                    android:text="@string/detectionRating"
                     android:id="@+id/detectionRating" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -123,7 +118,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
-                    android:text="@string/significance"
                     android:id="@+id/significance" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -157,7 +151,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="@string/pointOfTime"
                     android:id="@+id/pointOfTime" />
 
                 <Button
@@ -184,7 +177,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="@string/location"
                     android:id="@+id/location" />
 
                 <EditText
@@ -200,7 +192,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="@string/immediateMeasure"
                     android:id="@+id/immediateMeasure" />
 
                 <EditText
@@ -216,7 +207,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="@string/consequences"
                     android:id="@+id/consequences" />
 
                 <EditText
@@ -232,12 +222,10 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="@string/opinionOfReporter"
                     android:id="@+id/opinionOfReporter" />
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
-                    android:text="@string/personalFactors"
                     android:id="@+id/personalFactors" />
 
                 <EditText
@@ -247,7 +235,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
-                    android:text="@string/organisationalFactors"
                     android:id="@+id/organisationalFactors" />
 
                 <EditText
@@ -257,7 +244,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptionsLevel2"
-                    android:text="@string/additionalNotes"
                     android:id="@+id/additionalNotes" />
 
                 <EditText
@@ -273,7 +259,6 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="@string/files"
                     android:id="@+id/filesCaption" />
 
                 <Button
@@ -292,8 +277,7 @@
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:id="@+id/contactInformation"
-                    android:text="@string/contactInformation" />
+                    android:id="@+id/contactInformation" />
 
                 <EditText
                     style="@style/QuestionnaireEdits"
@@ -336,6 +320,29 @@
             android:layout_margin="30dp"
             android:id="@+id/newQuestionnaire"
             android:text="@string/newQuestionnaire"
+            android:background="@android:color/holo_orange_dark"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/QuestionnaireLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/connectionErrorView"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/errorMessage"
+            android:text="@string/errorWhileConnecting" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:id="@+id/returnToQuestionnaire"
+            android:text="@string/tryAgain"
             android:background="@android:color/holo_orange_dark"/>
 
     </LinearLayout>

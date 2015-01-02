@@ -1,11 +1,9 @@
 package de.hszg.risikousapp.httpcommandhelper;
 
 
-import android.app.Activity;
+
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,7 +31,8 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         try {
             return getXmlAsString(actions[0]);
         } catch (IOException e) {
-            return "Fehler beim Daten Download";
+            Log.e("http-error", "error while downloading", e);
+            return "error";
         }
     }
 

@@ -31,8 +31,8 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
             return sendPost(actions[0], actions[1]);
         } catch (IOException e) {
             Log.e("Post-Error", "Fehler beimn senden der Daten");
+            return "error";
         }
-        return "";
     }
 
     /**
