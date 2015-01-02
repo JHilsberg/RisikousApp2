@@ -15,7 +15,6 @@ import de.hszg.risikousapp.httpcommandhelper.PostXmlToRisikousServer;
 import de.hszg.risikousapp.xmlSerializer.QuestionnaireXmlSerializer;
 
 /**
- * Created by Julian on 17.12.2014.
  * Class to validate the required fields in the questionnaire.
  */
 public class QuestionnaireValidator {
@@ -54,7 +53,7 @@ public class QuestionnaireValidator {
                 e.printStackTrace();
             }
 
-            new PostXmlToRisikousServer(appContext){
+            new PostXmlToRisikousServer(){
                 @Override
                 protected void onPreExecute(){
                     appContext.setProgressBarIndeterminateVisibility(true);
