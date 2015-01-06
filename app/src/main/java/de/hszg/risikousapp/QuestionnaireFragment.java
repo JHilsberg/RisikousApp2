@@ -100,6 +100,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             setAllTextAndReportingAreas();
         }
         fragmentStartedMoreThanOneTime = true;
+
         setListeners(getView());
     }
 
@@ -321,11 +322,9 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         startAsyncTasks();
 
         View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
-        questionnaireContentView.setVisibility(View.GONE);
+        questionnaireContentView.setVisibility(View.VISIBLE);
 
         View errorView = getActivity().findViewById(R.id.connectionErrorView);
-        errorView.setVisibility(View.VISIBLE);
+        errorView.setVisibility(View.GONE);
     }
 }
-
-

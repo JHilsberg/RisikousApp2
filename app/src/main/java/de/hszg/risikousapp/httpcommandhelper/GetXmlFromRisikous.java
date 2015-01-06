@@ -10,11 +10,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-
-import de.hszg.risikousapp.R;
 
 /**
  * Class to get the xml data from the risikous server.
@@ -63,8 +64,11 @@ public class GetXmlFromRisikous extends AsyncTask<String, Void, String> {
         String HOST = "94.101.38.155";
         String PATH = "/RisikousRESTful/rest/";
         String url = PROTOCOL + "://" + HOST + PATH;
+        HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
 
-        HttpClient client = new DefaultHttpClient();
+
+        HttpClient client = new DefaultHttpClient(httpParams);
         HttpGet request = new HttpGet(url + action);
         request.addHeader("Accept", "application/xml");
         HttpResponse response = client.execute(request);
