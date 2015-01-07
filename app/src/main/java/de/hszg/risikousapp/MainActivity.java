@@ -76,9 +76,7 @@ public class MainActivity extends FragmentActivity {
 		};
 		
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		
-		// Set the default content area to item 0
-		// when the app opens for the first time
+
 		if(savedInstanceState == null) {
 			navigateTo(0);
 		}
@@ -115,6 +113,10 @@ public class MainActivity extends FragmentActivity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
+    /**
+     * Sets app title in actionbar.
+     * @param title
+     */
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
@@ -129,10 +131,15 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
+    /**
+     * Navigate to the selected fragment when menu item is clicked.
+     * @param position
+     */
     private void navigateTo(int position) {
 
         switch(position) {
             case 0:
+                getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame,
@@ -140,6 +147,7 @@ public class MainActivity extends FragmentActivity {
                                 WelcomeFragment.TAG).commit();
                 break;
             case 1:
+                getSupportFragmentManager().popBackStack();
                 if (isOnline()){
                     getSupportFragmentManager()
                             .beginTransaction()
@@ -155,6 +163,7 @@ public class MainActivity extends FragmentActivity {
                 }
                 break;
             case 2:
+                getSupportFragmentManager().popBackStack();
                 if(isOnline()){
                     getSupportFragmentManager()
                             .beginTransaction()

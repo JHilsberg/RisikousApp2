@@ -32,7 +32,6 @@ import de.hszg.risikousapp.questionnaire.reportingArea.ReportingAreasSpinAdapter
 
 /**
  * Fragment that shows the questionnaire.
- * Created by Julian on 08.12.2014.
  */
 public class QuestionnaireFragment extends Fragment implements View.OnClickListener {
 
@@ -45,21 +44,24 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     private String questionnaireSkeleton = "";
     private String reportingAreas = "";
 
-    private boolean fragmentStartedMoreThanOneTime = false;
+    private boolean viewWasAlreadyCreated = false;
 
-
+    /**
+     * Returns a new Instance of a Questionnaire Fragment.
+     * @return QuestionnaireFragment
+     */
     public static QuestionnaireFragment newInstance() {
         return new QuestionnaireFragment();
     }
 
     /**
-     * starts the async tasks
+     * Starts the async tasks, download questionnaire skeleton, load Text in View the first Time the Fragment is started.
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startAsyncTasks();
+        downloadQuestionnaireSkeletonAndReportingAreas();
         setRetainInstance(true);
     }
 
@@ -97,10 +99,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
 
-        if(fragmentStartedMoreThanOneTime){
+        if(viewWasAlreadyCreated){
             setAllTextAndReportingAreas();
         }
-        fragmentStartedMoreThanOneTime = true;
+        viewWasAlreadyCreated = true;
 
         setListeners(getView());
     }
@@ -187,7 +189,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
      * Start the async tasks to get the captions and reporting area list from the server.
      * Shows progress spinner while downloading. Set text to all elements after successful download.
      */
-    private void startAsyncTasks() {
+    private void downloadQuestionnaireSkeletonAndReportingAreas() {
         new GetXmlFromRisikous(){
             @Override
             protected void onPreExecute(){
@@ -196,10 +198,10 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
 
             @Override
             protected void onPostExecute(String result) {
-                questionnaireSkeleton = result;
                 if (result.equals("error")){
                     showErrorMessage();
                 }else{
+                    questionnaireSkeleton = result;
                     QuestionnaireSkeletonParser questionnaireParser = new QuestionnaireSkeletonParser(questionnaireSkeleton);
                     new QuestionnaireElementsTextSetter(questionnaireParser, getActivity());
                 }
@@ -210,14 +212,14 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         new GetXmlFromRisikous(){
             @Override
             protected void onPostExecute(String result) {
-                reportingAreas = result;
                 if (result.equals("error")){
                     showErrorMessage();
                 }else {
+                    reportingAreas = result;
                     ReportingAreasParser reportingAreasParserParser = new ReportingAreasParser(reportingAreas);
                     setReportingAreaSpinner(reportingAreasParserParser);
-                    getActivity().setProgressBarIndeterminateVisibility(false);
                 }
+                getActivity().setProgressBarIndeterminateVisibility(false);
             }
         }.execute("reportingareas");
     }
@@ -320,7 +322,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
      * Reload the questionnaire, if there ws a connection error.
      */
     public void goBackToQuestionnaire(){
-        startAsyncTasks();
+        downloadQuestionnaireSkeletonAndReportingAreas();
 
         View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
         questionnaireContentView.setVisibility(View.VISIBLE);

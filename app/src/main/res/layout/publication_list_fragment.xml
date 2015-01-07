@@ -21,4 +21,27 @@
             android:id="@+id/publicationList" />
 
     </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/QuestionnaireLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/connectionErrorView"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/QuestionnaireCaptions"
+            android:id="@+id/errorMessage"
+            android:text="@string/errorWhileConnecting" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:id="@+id/returnToPublicationList"
+            android:text="@string/tryAgain"
+            android:background="@android:color/holo_orange_dark"/>
+
+    </LinearLayout>
 </FrameLayout>

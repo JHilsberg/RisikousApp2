@@ -1,6 +1,5 @@
 package de.hszg.risikousapp.publicationDetails;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,16 +25,15 @@ import de.hszg.risikousapp.publicationDetails.comments.Comment;
 import de.hszg.risikousapp.publicationDetails.comments.CommentsParser;
 
 /**
- * Created by Hannes on 17.12.2014.
+ * Fragment that shows the details and comments of a publication.
  */
-
 public class PublicationDetailsFragment extends Fragment {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     public static final String TAG = PublicationDetailsFragment.class.getSimpleName();
     ViewPager mViewPager;
+
     private static String id;
-    private static Context c;
 
     public static PublicationDetailsFragment newInstance(String id) {
         PublicationDetailsFragment.id = id;
@@ -131,7 +129,7 @@ public class PublicationDetailsFragment extends Fragment {
                 @Override
                 public void onPostExecute(String result) {
                     CommentsParser parser = new CommentsParser(result);
-                    ArrayList<Comment> commentList = parser.getData();
+                    ArrayList<Comment> commentList = parser.getCommentList();
                     CommentAdapter commentAdapter = new CommentAdapter(getActivity(), R.layout.comment_item, commentList);
 
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

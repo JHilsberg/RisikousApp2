@@ -13,12 +13,15 @@ import de.hszg.risikousapp.welcome.WelcomeFragment;
 
 /**
  * Fragment that is shown, if device has no network connection.
- * Created by Julian on 02.01.2015.
  */
 public class ConnectionErrorFragment extends Fragment implements View.OnClickListener{
 
     public final static String TAG = ConnectionErrorFragment.class.getSimpleName();
 
+    /**
+     * Returns new Instance of the fragment.
+     * @return
+     */
     public static ConnectionErrorFragment newInstance() {
         return new ConnectionErrorFragment();
     }
@@ -28,6 +31,13 @@ public class ConnectionErrorFragment extends Fragment implements View.OnClickLis
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Returns the root view and set button listeners.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +50,10 @@ public class ConnectionErrorFragment extends Fragment implements View.OnClickLis
         return rootView;
     }
 
+    /**
+     * App returns to welcome fragment, if button is clicked.
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.buttonBackToWelcome){

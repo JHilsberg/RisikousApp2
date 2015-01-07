@@ -15,7 +15,7 @@ import java.util.Date;
 import de.hszg.risikousapp.R;
 
 /**
- * Created by Hannes on 19.12.2014.
+ * Adapter class for comment list.
  */
 public class CommentAdapter extends ArrayAdapter<Comment> {
     private ArrayList<Comment> commentList;
@@ -27,13 +27,20 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         mInflater = LayoutInflater.from(context);
     }
 
+    /**
+     * Sets the view elements and format date.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return list view with all comments of the selected publication
+     */
     public View getView(int position, View convertView, ViewGroup parent){
         convertView = mInflater.inflate(R.layout.comment_item, null);
         ViewHolder viewHolder = new ViewHolder();
 
-        // Datum umformatieren
         String outputDate = "";
         String inputDate = commentList.get(position).getTimeStamp();
+
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(inputDate);
             outputDate = new SimpleDateFormat("dd.MM.yyyy, HH:mm").format(date);
@@ -49,18 +56,32 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         return convertView;
     }
 
+    /**
+     * @return comment list size
+     */
     public int getCount(){
         return commentList.size();
     }
 
+    /**
+     * @param position
+     * @return comment on specific position
+     */
     public Comment getItem(int position){
         return commentList.get(position);
     }
 
+    /**
+     * @param position
+     * @return id of comment on specific position
+     */
     public long getItemId(int position){
         return position;
     }
 
+    /**
+     * Inner ViewHolder class for list elements.
+     */
     static class ViewHolder {
         TextView commentHeader;
         TextView comment;

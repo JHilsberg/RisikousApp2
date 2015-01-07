@@ -9,11 +9,10 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import de.hszg.risikousapp.publicationDetails.PublicationForDetails;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Created by Hannes on 18.12.2014.
+ * Xml Parser to get the publication details.
  */
 public class PublicationDetailsParser {
     private Document publicationDoc;
@@ -27,10 +26,13 @@ public class PublicationDetailsParser {
 
         xpath = XPathFactory.newInstance().newXPath();
 
-        setDetails();
+        getAllPublicationElements();
     }
 
-    private void setDetails() {
+    /**
+     * Gets all elements for publication object from xml and set them to local the variable.
+     */
+    private void getAllPublicationElements() {
         publication = new PublicationForDetails();
 
         publication.setTitle(getNodetext("title"));
@@ -47,6 +49,11 @@ public class PublicationDetailsParser {
         publication.setAssignedReports(getNodetext("assignedReports"));
     }
 
+    /**
+     * Returns the node text of the specified tag.
+     * @param tagName name of the tag where you want the text
+     * @return text of given node name
+     */
     private String getNodetext(String tagName){
         try {
             return (String) xpath.evaluate("/publication/" + tagName + "/text()", publicationDoc,
@@ -57,6 +64,9 @@ public class PublicationDetailsParser {
         return "";
     }
 
+    /**
+     * @return publication object for detail view
+     */
     public PublicationForDetails getPublication() {
         return publication;
     }

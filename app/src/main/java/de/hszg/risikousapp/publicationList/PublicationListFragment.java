@@ -15,26 +15,70 @@ import de.hszg.risikousapp.R;
 import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.questionnaire.QuestionnaireFragment;
 
+/**
+ * Fragment that shows a list of all available publications.
+ */
 public class PublicationListFragment extends Fragment {
+
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
 
-    public PublicationListFragment() {}
+    private boolean viewWasAlreadyCreated = false;
+    private String publicationList = "";
 
+    /**
+     * Returns a new Instance of a PublicationList fragment.
+     * @return PublicationListFragment
+     */
     public static PublicationListFragment newInstance() {
         return new PublicationListFragment();
     }
 
+    /**
+     * Starts the download of the publication list. Set view elements, when view is created the first time.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        getPublications();
     }
 
+    /**
+     * Sets the root view of the fragment.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.publication_list_fragment, container, false);
+        return rootView;
+    }
+
+    /**
+     * Sets the captions of all questionnaire elements, when view is restored.
+     * For example after changing the orientation.
+     * @param onSavedInstance
+     */
     @Override
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
 
+        if(viewWasAlreadyCreated){
+            generatePublicationList(publicationList);
+        }
 
+        viewWasAlreadyCreated = true;
+    }
+
+    /**
+     * Download available Publications from Risikous server. Set the view elements if view is created first time.
+     */
+    private void getPublications() {
         new GetXmlFromRisikous() {
             @Override
             protected void onPreExecute(){
@@ -43,23 +87,28 @@ public class PublicationListFragment extends Fragment {
 
             @Override
             public void onPostExecute(String result) {
-                PublicationListParser parser = new PublicationListParser(result);
-                setPublications(parser);
+                if (result.equals("error")){
+                    showErrorMessage();
+                }else{
+                    publicationList = result;
+                    generatePublicationList(result);
+                }
                 getActivity().setProgressBarIndeterminateVisibility(false);
             }
         }.execute("publications");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.publication_list_fragment, container, false);
-        return rootView;
-    }
+    /**
+     * Generate publications as list view, set on itemClick to select a publication.
+     * @param publications downloaded publication xml
+     */
+    public void generatePublicationList(String publications){
 
-    public void setPublications(PublicationListParser publications){
         final ListView listView;
-        final ArrayList<PublicationForList> searchResults = publications.getData();
+        PublicationListParser publicationListParser = new PublicationListParser(publications);
+        final ArrayList<PublicationForList> searchResults = publicationListParser.getData();
+
+
         listView  = (ListView) getActivity().findViewById(R.id.publicationList);
         listView.setAdapter(new PublicationListAdapter(getActivity(), R.layout.publication_item,searchResults));
 
@@ -75,5 +124,16 @@ public class PublicationListFragment extends Fragment {
             }
         });
 
+    }
+
+    /**
+     * Shows a connection error message if download of publications fails.
+     */
+    public void showErrorMessage(){
+        View publicationListContentView = getActivity().findViewById(R.id.publicationListLayout);
+        publicationListContentView.setVisibility(View.GONE);
+
+        View errorView = getActivity().findViewById(R.id.connectionErrorView);
+        errorView.setVisibility(View.VISIBLE);
     }
 }

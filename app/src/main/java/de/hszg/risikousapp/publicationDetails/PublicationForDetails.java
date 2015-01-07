@@ -3,9 +3,8 @@ package de.hszg.risikousapp.publicationDetails;
 import java.util.ArrayList;
 
 /**
- * Created by Hannes on 18.12.2014.
+ * Model of a publication for the detail view.
  */
-
 public class PublicationForDetails {
     private String title;
     private String incidentReport;

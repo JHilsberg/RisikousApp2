@@ -56,7 +56,7 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
         }
 
         if (status.equals("abgeschlossen")) {
-            viewHolder.status.setTextColor(Color.GREEN);
+            viewHolder.status.setTextColor(Color.parseColor("#33C204"));
         } else
         if (status.equals("ungültig")) {
             viewHolder.status.setTextColor(Color.RED);

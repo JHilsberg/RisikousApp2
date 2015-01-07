@@ -16,7 +16,7 @@ import de.hszg.risikousapp.publicationDetails.comments.Comment;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Created by Hannes on 18.12.2014.
+ * Parsing xml file from server to get all comments for a specific publication.
  */
 public class CommentsParser {
     private Document commentDoc;
@@ -29,6 +29,11 @@ public class CommentsParser {
         xpath = XPathFactory.newInstance().newXPath();
     }
 
+    /**
+     * Executes xpath expression to get the specified element as a xml node list.
+     * @param element xml element name
+     * @return node list
+     */
     private NodeList getCommentNodeList(String element) {
         String expression = "/comments/comment/" + element;
 
@@ -41,12 +46,16 @@ public class CommentsParser {
         return null;
     }
 
-    public ArrayList<Comment> getData() {
+    /**
+     * Returns a list with all comments of a publication.
+     * @return arrayList with comment objects
+     */
+    public ArrayList<Comment> getCommentList() {
         NodeList commentNodeListAuthor = getCommentNodeList("author");
         NodeList commentNodeListText = getCommentNodeList("text");
         NodeList commentNodeListTimeStamp = getCommentNodeList("timeStamp");
 
-        ArrayList<Comment> commentList = new ArrayList<Comment>();
+        ArrayList<Comment> commentList = new ArrayList<>();
 
         for (int i = 0; i < commentNodeListText.getLength(); i++) {
             commentList.add(

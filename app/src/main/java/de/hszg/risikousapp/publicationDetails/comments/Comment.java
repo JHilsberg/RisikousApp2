@@ -1,7 +1,7 @@
 package de.hszg.risikousapp.publicationDetails.comments;
 
 /**
- * Created by Hannes on 18.12.2014.
+ * Simple model class for a comment.
  */
 public class Comment {
     private String author;
@@ -14,14 +14,23 @@ public class Comment {
         this.text = text;
     }
 
+    /**
+     * @return time stamp
+     */
     public String getTimeStamp() {
         return timeStamp;
     }
 
+    /**
+     * @return author of the comment
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * @return comment text
+     */
     public String getText() {
         return text;
     }
