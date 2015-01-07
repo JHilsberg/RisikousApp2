@@ -1,37 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         style="@style/QuestionnaireLayout">
 
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:id="@+id/tv_welcome" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageView"
-            android:layout_below="@+id/tv_welcome"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
+            <TextView
+                style="@style/QuestionnaireCaptions"
+                android:id="@+id/tv_welcome" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/textView"
-            android:typeface="sans"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:layout_centerHorizontal="true"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:layout_below="@+id/tv_welcome"
-            />
+            <ImageView
+                android:layout_below="@+id/tv_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView"
+                android:padding="5dp"
+                android:layout_margin="5dp" />
 
+            <ScrollView
+                android:layout_below="@+id/tv_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </RelativeLayout>
-
-</RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView"
+                    android:typeface="sans"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                    android:padding="5dp"
+                    android:layout_margin="5dp" />
+            </ScrollView>
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>
