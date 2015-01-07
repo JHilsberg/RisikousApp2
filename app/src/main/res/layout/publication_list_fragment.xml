@@ -21,11 +21,4 @@
             android:id="@+id/publicationList" />
 
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/loading_spinner"
-        style="?android:progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
 </FrameLayout>

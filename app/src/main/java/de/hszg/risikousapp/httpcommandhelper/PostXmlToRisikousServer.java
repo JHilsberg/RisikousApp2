@@ -9,6 +9,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -31,8 +34,8 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
             return sendPost(actions[0], actions[1]);
         } catch (IOException e) {
             Log.e("Post-Error", "Fehler beimn senden der Daten");
+            return "error";
         }
-        return "";
     }
 
     /**
@@ -61,12 +64,14 @@ public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
         String HOST = "94.101.38.155";
         String PATH = "/RisikousRESTful/rest/";
         String url = PROTOCOL + "://" + HOST + PATH;
+        HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
 
         StringEntity stringEntity = new StringEntity(payload);
         stringEntity.setContentEncoding("UTF-8");
         stringEntity.setContentType("application/xml");
 
-        HttpClient client = new DefaultHttpClient();
+        HttpClient client = new DefaultHttpClient(httpParams);
         HttpPost request = new HttpPost(url + action);
         request.setEntity(stringEntity);
         HttpResponse response = client.execute(request);

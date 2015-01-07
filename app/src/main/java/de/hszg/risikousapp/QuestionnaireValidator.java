@@ -16,6 +16,7 @@ import de.hszg.risikousapp.xmlSerializer.QuestionnaireXmlSerializer;
 
 /**
  * Class to validate the required fields in the questionnaire.
+ * If validation is successful report is send to risikous server.
  */
 public class QuestionnaireValidator {
 

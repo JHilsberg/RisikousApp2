@@ -100,6 +100,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             setAllTextAndReportingAreas();
         }
         fragmentStartedMoreThanOneTime = true;
+
         setListeners(getView());
     }
 
@@ -124,6 +125,8 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
                     .beginTransaction().replace(R.id.content_frame,
                     QuestionnaireFragment.newInstance(),
                     QuestionnaireFragment.TAG).commit();
+        } else if (v.getId() == R.id.returnToQuestionnaire){
+            goBackToQuestionnaire();
         }
     }
 
@@ -193,8 +196,13 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             @Override
             protected void onPostExecute(String result) {
                 questionnaireSkeleton = result;
-                QuestionnaireSkeleton questionnaireParser = new QuestionnaireSkeleton(questionnaireSkeleton);
-                new QuestionnaireElementsTextSetter(questionnaireParser, getActivity());
+                if (result.equals("error")){
+                    showErrorMessage();
+                }else{
+                    QuestionnaireSkeleton questionnaireParser = new QuestionnaireSkeleton(questionnaireSkeleton);
+                    new QuestionnaireElementsTextSetter(questionnaireParser, getActivity());
+                }
+
             }
         }.execute("questionnaire");
 
@@ -202,9 +210,13 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             @Override
             protected void onPostExecute(String result) {
                 reportingAreas = result;
-                ReportingAreas reportingAreasParser = new ReportingAreas(reportingAreas);
-                setReportingAreaSpinner(reportingAreasParser);
-                getActivity().setProgressBarIndeterminateVisibility(false);
+                if (result.equals("error")){
+                    showErrorMessage();
+                }else {
+                    ReportingAreas reportingAreasParser = new ReportingAreas(reportingAreas);
+                    setReportingAreaSpinner(reportingAreasParser);
+                    getActivity().setProgressBarIndeterminateVisibility(false);
+                }
             }
         }.execute("reportingareas");
     }
@@ -235,11 +247,13 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         fileUpload.setOnClickListener(this);
         Button newQuestionnaire = (Button) view.findViewById(R.id.newQuestionnaire);
         newQuestionnaire.setOnClickListener(this);
+        Button tryAgain = (Button) view.findViewById(R.id.returnToQuestionnaire);
+        tryAgain.setOnClickListener(this);
     }
 
     /**
      * Add the reporting area list to the spinner, set onItemListener.
-     * @param areas parser for reporting  areas XML
+     * @param areas parser for reporting areas
      */
     private void setReportingAreaSpinner(ReportingAreas areas) {
         Spinner reportingAreaSpinner = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
@@ -280,9 +294,8 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     }
 
     /**
-     * Change view to a confirmation page.
+     * Change view to a confirmation page, after sending the questionnaire.
      */
-
     public void setSendView() {
         View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
         questionnaireContentView.setVisibility(View.GONE);
@@ -290,6 +303,28 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         View sentView = getActivity().findViewById(R.id.sentView);
         sentView.setVisibility(View.VISIBLE);
     }
+
+    /**
+     * Shows error message when connection to risikous server timed out.
+     */
+    public void showErrorMessage(){
+        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
+        questionnaireContentView.setVisibility(View.GONE);
+
+        View errorView = getActivity().findViewById(R.id.connectionErrorView);
+        errorView.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Reload the questionnaire, if there ws a connection error.
+     */
+    public void goBackToQuestionnaire(){
+        startAsyncTasks();
+
+        View questionnaireContentView = getActivity().findViewById(R.id.questionnaireContent);
+        questionnaireContentView.setVisibility(View.VISIBLE);
+
+        View errorView = getActivity().findViewById(R.id.connectionErrorView);
+        errorView.setVisibility(View.GONE);
+    }
 }
-
-

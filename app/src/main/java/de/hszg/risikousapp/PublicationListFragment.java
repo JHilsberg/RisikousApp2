@@ -17,9 +17,6 @@ import de.hszg.risikousapp.xmlParser.PublicationList;
 public class PublicationListFragment extends Fragment {
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
 
-    private View publicationListView;
-    private View loadingView;
-
     public PublicationListFragment() {}
 
     public static PublicationListFragment newInstance() {
@@ -32,22 +29,22 @@ public class PublicationListFragment extends Fragment {
         setRetainInstance(true);
     }
 
+    @Override
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
 
-        publicationListView = getView().findViewById(R.id.publicationListLayout);
-        loadingView = getView().findViewById(R.id.loading_spinner);
-
-        publicationListView.setVisibility(View.GONE);
 
         new GetXmlFromRisikous() {
             @Override
+            protected void onPreExecute(){
+                getActivity().setProgressBarIndeterminateVisibility(true);
+            }
+
+            @Override
             public void onPostExecute(String result) {
                 PublicationList parser = new PublicationList(result);
-                setdata(parser);
-
-                loadingView.setVisibility(View.GONE);
-                publicationListView.setVisibility(View.VISIBLE);
+                setPublications(parser);
+                getActivity().setProgressBarIndeterminateVisibility(false);
             }
         }.execute("publications");
     }
@@ -59,7 +56,7 @@ public class PublicationListFragment extends Fragment {
         return rootView;
     }
 
-    public void setdata(PublicationList publications){
+    public void setPublications(PublicationList publications){
         final ListView listView;
         final ArrayList<PublicationForList> searchResults = publications.getData();
         listView  = (ListView) getActivity().findViewById(R.id.publicationList);

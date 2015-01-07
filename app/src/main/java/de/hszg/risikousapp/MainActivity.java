@@ -4,7 +4,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.content.res.Configuration;
-import android.os.Handler;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -16,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -28,7 +26,7 @@ public class MainActivity extends FragmentActivity {
 	
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
-	private String[] mDrawerItmes;
+	private String[] mDrawerItems;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +36,15 @@ public class MainActivity extends FragmentActivity {
 		
 		mTitle = mDrawerTitle = getTitle();
 		
-		mDrawerItmes = getResources().getStringArray(R.array.drawer_titles);
+		mDrawerItems = getResources().getStringArray(R.array.drawer_titles);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		
-		// set a custom shadow that overlays the main content when the drawer oepns
+		// set a custom shadow that overlays the main content when the drawer opens
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,  GravityCompat.START);
 		
 		// Add items to the ListView
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mDrawerItmes));
+		mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mDrawerItems));
 		// Set the OnItemClickListener so something happens when a 
 		// user clicks on an item.
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -100,7 +98,6 @@ public class MainActivity extends FragmentActivity {
 	 * When using the ActionBarDrawerToggle, you must call it during onPostCreate()
 	 * and onConfigurationChanged()
 	 */
-	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -149,7 +146,7 @@ public class MainActivity extends FragmentActivity {
                             .beginTransaction()
                             .replace(R.id.content_frame,
                                     ConnectionErrorFragment.newInstance(),
-                                    ConnectionErrorFragment.TAG).commit();
+                                    ConnectionErrorFragment.TAG).addToBackStack("connection-error").commit();
                 }
                 break;
             case 2:
@@ -165,7 +162,7 @@ public class MainActivity extends FragmentActivity {
                             .beginTransaction()
                             .replace(R.id.content_frame,
                                     ConnectionErrorFragment.newInstance(),
-                                    ConnectionErrorFragment.TAG).commit();
+                                    ConnectionErrorFragment.TAG).addToBackStack("connection-error").commit();
                 }
 
         }
