@@ -16,6 +16,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import de.hszg.risikousapp.connectionError.ConnectionErrorFragment;
+import de.hszg.risikousapp.publicationList.PublicationListFragment;
+import de.hszg.risikousapp.questionnaire.QuestionnaireFragment;
+import de.hszg.risikousapp.welcome.WelcomeFragment;
+
 public class MainActivity extends FragmentActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
