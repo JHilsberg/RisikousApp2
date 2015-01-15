@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Risikoustheme" >
         <activity
-            android:name="de.hszg.risikousapp.MainActivity"
+            android:name=".RisikousActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

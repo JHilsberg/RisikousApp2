@@ -67,4 +67,12 @@ public class ConnectionErrorFragment extends Fragment implements View.OnClickLis
         }
     }
 
+    /**
+     * pop the back stack to avoid overlapping fragments
+     */
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
 }

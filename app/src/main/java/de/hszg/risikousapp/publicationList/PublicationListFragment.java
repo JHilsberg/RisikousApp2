@@ -60,7 +60,7 @@ public class PublicationListFragment extends Fragment {
     }
 
     /**
-     * Sets the captions of all questionnaire elements, when view is restored.
+     * Generates the publication list view, when view is restored.
      * For example after changing the orientation.
      * @param onSavedInstance
      */

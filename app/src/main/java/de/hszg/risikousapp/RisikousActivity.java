@@ -21,9 +21,9 @@ import de.hszg.risikousapp.publicationList.PublicationListFragment;
 import de.hszg.risikousapp.questionnaire.QuestionnaireFragment;
 import de.hszg.risikousapp.welcome.WelcomeFragment;
 
-public class MainActivity extends FragmentActivity {
+public class RisikousActivity extends FragmentActivity {
 
-	private static final String TAG = MainActivity.class.getSimpleName();
+	private static final String TAG = RisikousActivity.class.getSimpleName();
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -33,6 +33,13 @@ public class MainActivity extends FragmentActivity {
 	private CharSequence mTitle;
 	private String[] mDrawerItems;
 
+    /**
+     * Start the App and initialize the navigation drawer.
+     * Set a custom shadow that overlays the main content when the drawer opens,
+     * set the OnItemClickListener so something happens when a user clicks on an item in the navigation drawer.
+     * Enable ActionBar app icon to behave as action to toggle nav drawer.
+     * @param savedInstanceState
+     */
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,17 +51,12 @@ public class MainActivity extends FragmentActivity {
 		mDrawerItems = getResources().getStringArray(R.array.drawer_titles);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		
-		// set a custom shadow that overlays the main content when the drawer opens
+
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,  GravityCompat.START);
-		
-		// Add items to the ListView
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mDrawerItems));
-		// Set the OnItemClickListener so something happens when a 
-		// user clicks on an item.
+
+		mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, mDrawerItems));
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-		
-		// Enable ActionBar app icon to behave as action to toggle nav drawer
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 
@@ -66,12 +68,12 @@ public class MainActivity extends FragmentActivity {
 				) {
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(mTitle);
-				invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu
+				invalidateOptionsMenu();
 			}
 			
 			public void onDrawerOpened(View drawerView) {
 				getActionBar().setTitle(mDrawerTitle);
-				invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu
+				invalidateOptionsMenu();
 			}
 		};
 		
