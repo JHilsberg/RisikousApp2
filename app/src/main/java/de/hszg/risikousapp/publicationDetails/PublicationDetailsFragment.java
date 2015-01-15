@@ -1,5 +1,7 @@
 package de.hszg.risikousapp.publicationDetails;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -43,6 +45,7 @@ public class PublicationDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -55,6 +58,15 @@ public class PublicationDetailsFragment extends Fragment {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         return v;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser) {
+            Activity a = getActivity();
+            if(a != null) a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

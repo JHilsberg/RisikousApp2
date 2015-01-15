@@ -18,7 +18,7 @@ import de.hszg.risikousapp.publicationList.PublicationForList;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Created by besitzer on 17.12.14.
+ * Parses the xml from risikous server to get a list of all publications.
  */
 public class PublicationListParser {
 
@@ -32,6 +32,11 @@ public class PublicationListParser {
         xpath = XPathFactory.newInstance().newXPath();
     }
 
+    /**
+     * Method to get a node list of all nodes for the selected element.
+     * @param element
+     * @return node list
+     */
     private NodeList getPublicationNodeList(String element) {
         String expression = "/publications/publication/" + element;
 
@@ -45,6 +50,10 @@ public class PublicationListParser {
         return null;
     }
 
+    /**
+     * Select all nodes of a publication xml, save them in a PublicationForList and generates an ArrayList with all publications.
+     * @return array list with publications
+     */
     public ArrayList<PublicationForList> getData() {
         NodeList areasNodeListid = getPublicationNodeList("id");
         NodeList areasNodeListTitle = getPublicationNodeList("title");
@@ -53,7 +62,7 @@ public class PublicationListParser {
         NodeList areasNodeListComments = getPublicationNodeList("numberOfComments");
         NodeList areasNodeListentryDate = getPublicationNodeList("entryDate");
 
-        ArrayList<PublicationForList> PublicationForList = new ArrayList<PublicationForList>();
+        ArrayList<PublicationForList> PublicationForList = new ArrayList<>();
 
         for (int i = 0; i < areasNodeListid.getLength(); i++) {
 

@@ -2,10 +2,9 @@ package de.hszg.risikousapp.publicationList;
 
 
 /**
- * Created by besitzer on 18.12.14.
+ * Model class for a publication that is shown in the PublicationListFragment
  */
 public class PublicationForList {
-
 
     private String id;
     private String title;

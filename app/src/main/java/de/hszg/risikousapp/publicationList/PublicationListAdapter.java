@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import de.hszg.risikousapp.R;
-import de.hszg.risikousapp.publicationList.PublicationForList;
 
         import static de.hszg.risikousapp.R.layout.publication_item;
 
+/**
+ * Adapter class for the publication list. Get elements out of the publication model and shows them in the list.
+ */
 public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
     private ArrayList<PublicationForList> publicationList;
     private LayoutInflater mInflater;
@@ -28,6 +30,13 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
         mInflater = LayoutInflater.from(context);
     }
 
+    /**
+     * Returns a view element for one publication.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -71,21 +80,35 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
         return convertView;
     }
 
+    /**
+     * @return size of publication list
+     */
     @Override
     public int getCount() {
         return publicationList.size();
     }
 
+    /**
+     * @param position
+     * @return publication at the selected position
+     */
     @Override
     public PublicationForList getItem(int position) {
         return publicationList.get(position);
     }
 
+    /**
+     * @param position
+     * @return id
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    /**
+     * static inner class to use ViewHolder pattern
+     */
     static class ViewHolder {
         TextView title;
         TextView date;
