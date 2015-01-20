@@ -46,9 +46,9 @@ public class AnswerFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_answers, container, false);
-        generateAnswerList();
         return rootView;
     }
+
 
     /**
      * Generates the publication list view, when view is restored.
@@ -58,6 +58,7 @@ public class AnswerFragment extends Fragment{
     @Override
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
+        generateAnswerList();
     }
 
     public void generateAnswerList(){
