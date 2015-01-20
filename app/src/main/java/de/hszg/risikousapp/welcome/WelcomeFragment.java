@@ -13,15 +13,16 @@ import android.widget.TextView;
 
 import de.hszg.risikousapp.R;
 
+/**
+ * Fragment that shows a welcome screen with info about the risikous system.
+ */
 public class WelcomeFragment extends Fragment {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
      * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-     * will keep every loaded fragment in memory. If this becomes too memory
-     * intensive, it may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     * will keep every loaded fragment in memory.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -32,16 +33,29 @@ public class WelcomeFragment extends Fragment {
      */
     ViewPager mViewPager;
 
-
+    /**
+     * Make an new instance of the fragment.
+     * @return new instance of welcome fragment
+     */
     public static WelcomeFragment newInstance() {
         return new WelcomeFragment();
     }
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Creates view for tab-view below the action bar.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view for tabs
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.title_strip, container, false);
@@ -56,7 +70,7 @@ public class WelcomeFragment extends Fragment {
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
+     * one of the tabs.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -64,11 +78,15 @@ public class WelcomeFragment extends Fragment {
             super(fm);
         }
 
+        /**
+         * getItem is called to instantiate the fragment for the given page.
+         * Return a TabbedView with the page number as its lone argument.
+         * @param position
+         * @return TabbedView
+         */
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a TabbedView (defined as a static inner class
-            // below) with the page number as its lone argument.
+            //
             Fragment fragment = new TabbedView();
             Bundle args = new Bundle();
             args.putInt(TabbedView.ARG_SECTION_NUMBER, position + 1);
@@ -76,12 +94,20 @@ public class WelcomeFragment extends Fragment {
             return fragment;
         }
 
+        /**
+         * show 4 total pages
+         * @return number of tabs
+         */
         @Override
         public int getCount() {
-            // Show 4 total pages.
             return 4;
         }
 
+        /**
+         * Sets the titles of the tabs.
+         * @param position
+         * @return
+         */
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
@@ -99,8 +125,7 @@ public class WelcomeFragment extends Fragment {
     }
 
     /**
-     * A dummy fragment representing a section of the app, but that simply
-     * displays dummy text.
+     * A fragment representing a tab of the app, that show different info about risikous.
      */
     public static class TabbedView extends Fragment {
         /**
@@ -109,6 +134,13 @@ public class WelcomeFragment extends Fragment {
          */
         public static final String ARG_SECTION_NUMBER = "section_number";
 
+        /**
+         * Create views for all 4 tabs.
+         * @param inflater
+         * @param container
+         * @param savedInstanceState
+         * @return view of selected tab
+         */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {

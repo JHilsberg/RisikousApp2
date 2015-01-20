@@ -24,6 +24,7 @@ public class QuestionnaireValidator {
     private QuestionnaireXmlSerializer serializer;
 
     /**
+     * Constructor, starts the validation.
      * @param appContext
      */
     public QuestionnaireValidator(FragmentActivity appContext) {

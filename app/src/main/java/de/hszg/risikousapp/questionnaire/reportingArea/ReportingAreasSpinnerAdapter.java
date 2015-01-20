@@ -10,35 +10,61 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import de.hszg.risikousapp.R;
-import de.hszg.risikousapp.questionnaire.reportingArea.ReportingArea;
 
 /**
- * Created by Julian on 17.12.2014.
+ * Adapter class for publication areas spinner.
  */
-public class ReportingAreasSpinAdapter extends ArrayAdapter<ReportingArea> {
+public class ReportingAreasSpinnerAdapter extends ArrayAdapter<ReportingArea> {
 
     private Context context;
     private ArrayList<ReportingArea> reportingAreas;
 
-    public ReportingAreasSpinAdapter(Context context, int textViewResourceId,
-                                     ArrayList<ReportingArea> reportingAreas) {
+    /**
+     * constructor, set context and reporting area list as class variables
+     * @param context
+     * @param textViewResourceId
+     * @param reportingAreas
+     */
+    public ReportingAreasSpinnerAdapter(Context context, int textViewResourceId,
+                                        ArrayList<ReportingArea> reportingAreas) {
         super(context, textViewResourceId, reportingAreas);
         this.context = context;
         this.reportingAreas = reportingAreas;
     }
 
+    /**
+     * Get size of reporting area list.
+     * @return size
+     */
     public int getCount(){
         return reportingAreas.size();
     }
 
+    /**
+     * Get reporting area on selected position.
+     * @param position
+     * @return ReportingArea
+     */
     public ReportingArea getItem(int position){
         return reportingAreas.get(position);
     }
 
+    /**
+     * Get id of item on selected position.
+     * @param position
+     * @return
+     */
     public long getItemId(int position){
         return position;
     }
 
+    /**
+     * Create the view for the selected spinner item.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return view for a spinner item
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
@@ -49,6 +75,13 @@ public class ReportingAreasSpinAdapter extends ArrayAdapter<ReportingArea> {
         return itemLayout;
     }
 
+    /**
+     * Create view for all spinner items shown in dropdown view.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return view for a spinner item
+     */
     @Override
     public View getDropDownView(int position, View convertView,
                                 ViewGroup parent) {

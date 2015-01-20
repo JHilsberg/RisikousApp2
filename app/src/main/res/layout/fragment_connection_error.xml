@@ -14,12 +14,14 @@
         android:text="@string/openSettings"
         android:id="@+id/buttonOpenSettings"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/holo_orange_dark"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back"
         android:id="@+id/buttonBackToWelcome"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/holo_orange_dark"/>
 </LinearLayout>

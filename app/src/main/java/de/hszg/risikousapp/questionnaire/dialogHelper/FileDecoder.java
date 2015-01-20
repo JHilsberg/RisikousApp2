@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by Jens on 18.12.2014.
+ * Encodes a file selected by the user with Base64.
  */
 public class FileDecoder extends Activity {
 

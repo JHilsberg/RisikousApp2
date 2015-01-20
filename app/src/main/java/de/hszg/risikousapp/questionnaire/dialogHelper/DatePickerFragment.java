@@ -13,14 +13,21 @@ import java.util.Calendar;
 import de.hszg.risikousapp.R;
 
 /**
- * Created by Jens on 15.12.2014.
+ * Class for date picker dialog
+ * additional fragment is shown in questionnaire fragment
  */
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
+    /**
+     * initialize fragment
+     * use the current date as the default date in the picker
+     * @param savedInstanceState
+     * @return date picker dialog
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current date as the default date in the picker
+        //
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -32,6 +39,13 @@ public class DatePickerFragment extends DialogFragment
         return datePickerDialog;
     }
 
+    /**
+     * When user has selected a date, this is shown as text in the selection button in the questionnaire view.
+     * @param view
+     * @param year
+     * @param month
+     * @param day
+     */
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         Calendar c = Calendar.getInstance();

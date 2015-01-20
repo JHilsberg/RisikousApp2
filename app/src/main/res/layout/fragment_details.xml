@@ -44,7 +44,7 @@
                 style="@style/QuestionnaireEdits"
                 android:id="@+id/newComment"
                 android:inputType="textMultiLine"
-                android:hint="@string/maximumChars" />
+                android:hint="@string/maximumCharsComment" />
 
             <Button
                 android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:text="@string/button_sendComment"
                 android:layout_margin="15dp"
                 android:id="@+id/sendComment"
-                android:textColor="#000"/>
+                android:background="@android:color/holo_orange_dark"/>
         </LinearLayout>
 
     </RelativeLayout>

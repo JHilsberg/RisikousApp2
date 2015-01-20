@@ -15,7 +15,7 @@ import java.util.Date;
 
 import de.hszg.risikousapp.R;
 
-        import static de.hszg.risikousapp.R.layout.publication_item;
+import static de.hszg.risikousapp.R.layout.publication_item;
 
 /**
  * Adapter class for the publication list. Get elements out of the publication model and shows them in the list.
@@ -98,6 +98,7 @@ public  class PublicationListAdapter extends ArrayAdapter<PublicationForList> {
     }
 
     /**
+     * Returns the id of the publication at the specified position
      * @param position
      * @return id
      */

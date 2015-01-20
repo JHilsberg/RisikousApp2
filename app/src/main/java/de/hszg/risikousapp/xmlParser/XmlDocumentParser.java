@@ -8,7 +8,6 @@ import org.xml.sax.SAXException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,12 +15,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
- * Created by Julian on 11.12.2014.
+ * Class to parse XML-data with use of the {@link javax.xml.parsers.DocumentBuilder}
  */
 public class XmlDocumentParser {
 
     private Document xmlDoc;
 
+    /**
+     * Parse given Xml-Data as String with parse()-method of {@link javax.xml.parsers.DocumentBuilder} .
+     * xml-input must have utf-8 encoding
+     * @param xmlData
+     */
     public XmlDocumentParser(String xmlData){
                 ByteArrayInputStream xmlStream = null;
 
@@ -51,6 +55,10 @@ public class XmlDocumentParser {
         }
     }
 
+    /**
+     * Get parsed document.
+     * @return Document with parsed XML
+     */
     public Document getXmlDoc(){
         return xmlDoc;
     }

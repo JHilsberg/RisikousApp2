@@ -3,15 +3,7 @@ package de.hszg.risikousapp.questionnaire;
 import android.util.Log;
 
 import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.io.StringReader;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -20,13 +12,18 @@ import javax.xml.xpath.XPathFactory;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Created by Julian on 08.12.2014.
+ * Get elements of the questionnaire skeleton, that is provided by the risikous server,
+ * using XPath.
  */
 public class QuestionnaireSkeletonParser {
 
     private Document questionnaireDoc;
     private XPath xpath;
 
+    /**
+     * Constructor, instantiate XmlDocumentParser and XPath.
+     * @param questionnaireXml
+     */
     public QuestionnaireSkeletonParser(String questionnaireXml) {
         XmlDocumentParser parser = new XmlDocumentParser(questionnaireXml);
         questionnaireDoc = parser.getXmlDoc();
@@ -34,6 +31,11 @@ public class QuestionnaireSkeletonParser {
         xpath = XPathFactory.newInstance().newXPath();
     }
 
+    /**
+     * Get the caption text for the referred questionnaire element.
+     * @param questionnaireElementName
+     * @return String caption
+     */
     public String getQuestionCaption(String questionnaireElementName){
         try {
             return (String) xpath.evaluate("string(//" + questionnaireElementName + "/@text)", questionnaireDoc,
@@ -44,6 +46,11 @@ public class QuestionnaireSkeletonParser {
         return "";
     }
 
+    /**
+     * Get the maximum allowed characters for the referred questionnaire element.
+     * @param questionnaireElement
+     * @return int max chars
+     */
     public int getAnswerMaxChars(String questionnaireElement) {
         try {
             return Integer.parseInt( (String) xpath.evaluate("string(//"+ questionnaireElement +"/@maximumOfCharacters)", questionnaireDoc,
@@ -56,6 +63,11 @@ public class QuestionnaireSkeletonParser {
         return 0;
     }
 
+    /**
+     * Get the status if the element is required.
+     * @param questionnaireElement
+     * @return boolean required status
+     */
     public Boolean getRequiredStatus(String questionnaireElement) {
         try {
             return (Boolean) xpath.evaluate("string(//"+ questionnaireElement +"/@required)", questionnaireDoc,

@@ -12,11 +12,10 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import de.hszg.risikousapp.publicationDetails.comments.Comment;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Parsing xml file from server to get all comments for a specific publication.
+ * Get all comments for a specific publication using Xpath.
  */
 public class CommentsParser {
     private Document commentDoc;

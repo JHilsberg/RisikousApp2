@@ -1,7 +1,8 @@
 package de.hszg.risikousapp.questionnaire.reportingArea;
 
 /**
- * Created by Julian on 17.12.2014.
+ * model class for a reporting area
+ * includes long name and shortcut
  */
 public class ReportingArea {
     private String name;

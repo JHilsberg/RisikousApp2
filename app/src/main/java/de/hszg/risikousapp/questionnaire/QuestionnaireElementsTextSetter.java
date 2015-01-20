@@ -8,7 +8,8 @@ import android.widget.TextView;
 import de.hszg.risikousapp.R;
 
 /**
- * Created by Julian on 17.12.2014.
+ * Sets all descriptions and hints in the questionnaire view.
+ * Not coded in XML view file because of download from server.
  */
 public class QuestionnaireElementsTextSetter {
 
@@ -16,6 +17,12 @@ public class QuestionnaireElementsTextSetter {
     private String maxCharsLabel;
     private QuestionnaireSkeletonParser questionnaire;
 
+    /**
+     * Creates new instance of QuestionnaireTextElementsSetter
+     * and set context and QuestionnaireSkeletonParser as class variables
+     * @param questionnaire
+     * @param context
+     */
     public QuestionnaireElementsTextSetter(QuestionnaireSkeletonParser questionnaire, Activity context){
         this.appContext = context;
         this.questionnaire = questionnaire;
@@ -23,7 +30,7 @@ public class QuestionnaireElementsTextSetter {
 
         setReportingAreaText();
         setIncidentDescription();
-        setRiskEstimitation();
+        setRiskEstimation();
         setPointOfTime();
         setLocation();
         setImmediateMeasure();
@@ -33,6 +40,11 @@ public class QuestionnaireElementsTextSetter {
         setContactInformation();
     }
 
+    /**
+     * Sets caption for reporting area selection.
+     * Sets required status ('*' after caption text) for this question.
+     * Sets hint with max characters allowed.
+     */
     private void setReportingAreaText() {
         TextView reportingArea = (TextView) appContext.findViewById(R.id.reportingArea);
 
@@ -40,6 +52,11 @@ public class QuestionnaireElementsTextSetter {
         addRequiredStatus(reportingArea);
     }
 
+    /**
+     * Sets caption for incident description.
+     * Sets required status ('*' after caption text) for this question.
+     * Sets hint with max characters allowed.
+     */
     private void setIncidentDescription() {
         String incidentDescriptionString = appContext.getString(R.string.incidentDescription);
         TextView incidentDescription = (TextView) appContext.findViewById(R.id.incidentDescription);
@@ -51,25 +68,36 @@ public class QuestionnaireElementsTextSetter {
         incidentDescriptionEdit.setFilters(getMaxCharsFilter(incidentDescriptionString));
     }
 
-    private void setRiskEstimitation(){
+    /**
+     * Sets caption for risk estimation and the three sub-headings.
+     * Sets required status ('*' after caption text) for this question.
+     */
+    private void setRiskEstimation(){
         TextView riskEstimation = (TextView) appContext.findViewById(R.id.riskEstimation);
-        TextView occuranceRating = (TextView) appContext.findViewById(R.id.occurrenceRating);
+        TextView occurrenceRating = (TextView) appContext.findViewById(R.id.occurrenceRating);
         TextView detectionRating = (TextView) appContext.findViewById(R.id.detectionRating);
         TextView significance = (TextView) appContext.findViewById(R.id.significance);
 
         riskEstimation.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.riskEstimation)));
         addRequiredStatus(riskEstimation);
-        occuranceRating.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.occurrenceRating)));
+        occurrenceRating.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.occurrenceRating)));
         detectionRating.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.detectionRating)));
         significance.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.significance)));
     }
 
+    /**
+     * Sets caption for point of time.
+     */
     private void setPointOfTime(){
         TextView pointOfTime = (TextView) appContext.findViewById(R.id.pointOfTime);
 
         pointOfTime.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.pointOfTime)));
     }
 
+    /**
+     * Sets caption for location question.
+     * Sets hint with max characters allowed.
+     */
     private void setLocation(){
         String locationString = appContext.getString(R.string.location);
         TextView location = (TextView) appContext.findViewById(R.id.location);
@@ -80,6 +108,10 @@ public class QuestionnaireElementsTextSetter {
         locationEdit.setFilters(getMaxCharsFilter(locationString));
     }
 
+    /**
+     * Sets caption for immediate measure.
+     * Sets hint with max characters allowed.
+     */
     private void setImmediateMeasure(){
         String immediateMeasureString = appContext.getString(R.string.immediateMeasure);
         TextView immediateMeasure = (TextView) appContext.findViewById(R.id.immediateMeasure);
@@ -91,6 +123,10 @@ public class QuestionnaireElementsTextSetter {
         immediateMeasureEdit.setFilters(getMaxCharsFilter(immediateMeasureString));
     }
 
+    /**
+     * Sets caption for consequences.
+     * Sets hint with max characters allowed.
+     */
     private void setConsequences (){
         String consequencesString = appContext.getString(R.string.consequences);
         TextView consequences = (TextView) appContext.findViewById(R.id.consequences);
@@ -101,6 +137,10 @@ public class QuestionnaireElementsTextSetter {
         consequencesEdit.setFilters(getMaxCharsFilter(consequencesString));
     }
 
+    /**
+     * Set caption for opinion of reporter and the three sub-headings.
+     * Sets hints for each EditText-Field with max characters allowed.
+     */
     private void setOpinionOfReporter (){
         TextView opinionOfReporter = (TextView) appContext.findViewById(R.id.opinionOfReporter);
 
@@ -131,12 +171,19 @@ public class QuestionnaireElementsTextSetter {
         additionalNotes.setFilters(getMaxCharsFilter(additionalNotesString));
     }
 
+    /**
+     * Sets caption for upload file option.
+     */
     private void setUploadFileText (){
         TextView uploadFileCaption = (TextView) appContext.findViewById(R.id.filesCaption);
 
         uploadFileCaption.setText(questionnaire.getQuestionCaption(appContext.getString(R.string.files)));
     }
 
+    /**
+     * Sets caption for contact information.
+     * Sets hint with max characters allowed.
+     */
     private void setContactInformation (){
         String contactInformationString = appContext.getString(R.string.contactInformation);
         TextView contactInformation = (TextView) appContext.findViewById(R.id.contactInformation);
@@ -147,12 +194,21 @@ public class QuestionnaireElementsTextSetter {
         contactInformationEdit.setFilters(getMaxCharsFilter(contactInformationString));
     }
 
+    /**
+     * Adds '*' after text for required questions.
+     * @param textView
+     */
     private void addRequiredStatus(TextView textView) {
         if(questionnaire.getRequiredStatus(appContext.getString(R.string.reportingArea))){
             textView.append("*");
         }
     }
 
+    /**
+     * Input filter, to limit the characters the user can write in the field.
+     * @param element
+     * @return filter array with chars input filter
+     */
     private InputFilter[] getMaxCharsFilter(String element){
         InputFilter[] filterArray = new InputFilter[1];
         filterArray[0] = new InputFilter.LengthFilter(questionnaire.getAnswerMaxChars(element));

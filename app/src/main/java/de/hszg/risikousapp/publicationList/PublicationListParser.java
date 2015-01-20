@@ -7,18 +7,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
-import java.lang.String;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import de.hszg.risikousapp.publicationList.PublicationForList;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Parses the xml from risikous server to get a list of all publications.
+ * Get a list of all publications out of the xml-message from the server using XPath.
  */
 public class PublicationListParser {
 

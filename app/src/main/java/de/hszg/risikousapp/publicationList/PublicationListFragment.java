@@ -10,9 +10,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import de.hszg.risikousapp.publicationDetails.PublicationDetailsFragment;
 import de.hszg.risikousapp.R;
 import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
+import de.hszg.risikousapp.publicationDetails.PublicationDetailsFragment;
 import de.hszg.risikousapp.questionnaire.QuestionnaireFragment;
 
 /**
@@ -99,7 +99,7 @@ public class PublicationListFragment extends Fragment {
     }
 
     /**
-     * Generate publications as list view, set on itemClick to select a publication.
+     * Generate publications as list view, set on itemClickListener to select a publication.
      * @param publications downloaded publication xml
      */
     public void generatePublicationList(String publications){

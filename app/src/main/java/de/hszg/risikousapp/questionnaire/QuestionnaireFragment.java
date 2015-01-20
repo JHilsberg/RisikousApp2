@@ -22,13 +22,13 @@ import com.ipaulpro.afilechooser.utils.FileUtils;
 import java.util.ArrayList;
 
 import de.hszg.risikousapp.R;
+import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.questionnaire.dialogHelper.DatePickerFragment;
 import de.hszg.risikousapp.questionnaire.dialogHelper.FileDecoder;
 import de.hszg.risikousapp.questionnaire.dialogHelper.TimePickerFragment;
-import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.questionnaire.reportingArea.ReportingArea;
 import de.hszg.risikousapp.questionnaire.reportingArea.ReportingAreasParser;
-import de.hszg.risikousapp.questionnaire.reportingArea.ReportingAreasSpinAdapter;
+import de.hszg.risikousapp.questionnaire.reportingArea.ReportingAreasSpinnerAdapter;
 
 /**
  * Fragment that shows the questionnaire.
@@ -262,7 +262,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         Spinner reportingAreaSpinner = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
         final ArrayList<ReportingArea> reportingAreas = areas.getReportingAreas();
 
-        final ArrayAdapter spinnerArrayAdapter = new ReportingAreasSpinAdapter(getActivity(),
+        final ArrayAdapter spinnerArrayAdapter = new ReportingAreasSpinnerAdapter(getActivity(),
                 android.R.layout.simple_spinner_item, reportingAreas);
         reportingAreaSpinner.setAdapter(spinnerArrayAdapter);
 
@@ -319,7 +319,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     }
 
     /**
-     * Reload the questionnaire, if there ws a connection error.
+     * Reload the questionnaire, if there was a connection error.
      */
     public void goBackToQuestionnaire(){
         downloadQuestionnaireSkeletonAndReportingAreas();

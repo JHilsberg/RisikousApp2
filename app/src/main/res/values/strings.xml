@@ -101,5 +101,6 @@
     <string name="openSettings">Einstellungen öffnen</string>
     <string name="errorWhileConnecting">Während der Verbindung mit dem Risikous Server ist ein Fehler aufgetreten.</string>
     <string name="tryAgain">Nochmal versuchen</string>
+    <string name="maximumCharsComment">Maximale Zeichenzahl: 1000</string>
 
 </resources>

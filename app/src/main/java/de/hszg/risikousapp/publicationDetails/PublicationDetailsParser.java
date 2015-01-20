@@ -12,7 +12,7 @@ import javax.xml.xpath.XPathFactory;
 import de.hszg.risikousapp.xmlParser.XmlDocumentParser;
 
 /**
- * Xml Parser to get the publication details.
+ * Get the publication details.
  */
 public class PublicationDetailsParser {
     private Document publicationDoc;
@@ -20,6 +20,10 @@ public class PublicationDetailsParser {
 
     private PublicationForDetails publication;
 
+    /**
+     * Create new instances of XmlDocumentParser an XPath
+     * @param publicationXml
+     */
     public PublicationDetailsParser(String publicationXml){
             XmlDocumentParser parser = new XmlDocumentParser(publicationXml);
             publicationDoc = parser.getXmlDoc();

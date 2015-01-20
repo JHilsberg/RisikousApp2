@@ -1,7 +1,5 @@
 package de.hszg.risikousapp.publicationDetails;
 
-import java.util.ArrayList;
-
 /**
  * Model of a publication for the detail view.
  */

@@ -17,9 +17,8 @@ import de.hszg.risikousapp.questionnaire.reportingArea.ReportingArea;
 
 
 /**
- * Created by Julian on 17.12.2014.
+ * Creates an XML-Message with all elements the user put in the questionnaire.
  */
-
 public class QuestionnaireXmlSerializer {
 
     private Activity appContext;
@@ -27,6 +26,12 @@ public class QuestionnaireXmlSerializer {
     private String xmlAsString;
     private XmlSerializer serializer;
 
+    /**
+     * Constructor, instantiates ByteArrayOutputStream and XmlSerializer
+     * Start and finish XML-Document, start all add methods.
+     * @param appContext
+     * @throws IOException
+     */
     public QuestionnaireXmlSerializer(Activity appContext) throws IOException {
         this.appContext = appContext;
         this.xmlData = new ByteArrayOutputStream();
@@ -52,11 +57,19 @@ public class QuestionnaireXmlSerializer {
         finishDocument();
     }
 
+    /**
+     * Get XML data as String
+     * @return string with xml message
+     */
     public String getXmlAsString(){
         xmlAsString = xmlData.toString();
         return xmlAsString;
     }
 
+    /**
+     * Adds reporting area to XML message.
+     * @throws IOException
+     */
     private void addReportingArea() throws IOException {
         Spinner reportingAreasSelection = (Spinner) appContext.findViewById(R.id.reportingAreaSelection);
         ReportingArea reportingArea= (ReportingArea) reportingAreasSelection.getAdapter().getItem(reportingAreasSelection.getSelectedItemPosition());
@@ -64,11 +77,19 @@ public class QuestionnaireXmlSerializer {
         makeNode(appContext.getString(R.string.reportingArea), reportingArea.getShortcut());
     }
 
+    /**
+     * Adds incident description to XML message.
+     * @throws IOException
+     */
     private void addIncidentDescription() throws IOException{
         EditText incidentDescriptionEdit = (EditText) appContext.findViewById(R.id.incidentDescriptionEdit);
         makeNode(appContext.getString(R.string.incidentDescription), incidentDescriptionEdit.getText().toString());
     }
 
+    /**
+     * Adds risk estimation start- and end-tag to XML message.
+     * @throws IOException
+     */
     private void addRiskEstimation() throws IOException{
         serializer.startTag(null, appContext.getString(R.string.riskEstimation));
         addOccurrenceRating();
@@ -77,6 +98,10 @@ public class QuestionnaireXmlSerializer {
         serializer.endTag(null, appContext.getString(R.string.riskEstimation));
     }
 
+    /**
+     * Adds occurrence rating selection to XML message.
+     * @throws IOException
+     */
     private void addOccurrenceRating() throws IOException{
         RadioGroup occurrenceRatingGroup = (RadioGroup) appContext.findViewById(R.id.occurrenceRatingGroup);
 
@@ -93,6 +118,10 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Adds detection rating selection to XML message.
+     * @throws IOException
+     */
     private void addDetectionRating() throws IOException{
         RadioGroup detectionRatingGroup = (RadioGroup) appContext.findViewById(R.id.detectionRatingGroup);
 
@@ -108,7 +137,10 @@ public class QuestionnaireXmlSerializer {
                 break;
         }
     }
-
+    /**
+     * Adds significance selection to XML message.
+     * @throws IOException
+     */
     private void addSignificance() throws IOException{
         RadioGroup significanceGroup = (RadioGroup) appContext.findViewById(R.id.significanceGroup);
 
@@ -125,6 +157,10 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Adds point of time (date and time) to XML message, if selected by the user.
+     * @throws IOException
+     */
     private void addPointOfTime() throws IOException{
         String pointOfTime = appContext.getString(R.string.pointOfTime);
 
@@ -148,6 +184,10 @@ public class QuestionnaireXmlSerializer {
 
     }
 
+    /**
+     * Adds location to XML message, if given by the user.
+     * @throws IOException
+     */
     private void addLocation() throws IOException{
         EditText location = (EditText) appContext.findViewById(R.id.locationEdit);
 
@@ -156,6 +196,10 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Adds immediate measure to XML message, if given by the user.
+     * @throws IOException
+     */
     private void addImmediateMeasure() throws IOException{
         EditText immediateMeasure = (EditText) appContext.findViewById(R.id.immediateMeasureEdit);
 
@@ -164,6 +208,10 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Adds consequences to XML message, if given by the user.
+     * @throws IOException
+     */
     private void addConsequences() throws IOException{
         EditText consequences = (EditText) appContext.findViewById(R.id.consequencesEdit);
 
@@ -172,6 +220,10 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Adds opinion of reporter (personal factors, organizational factors, additional notes) to XML message, if given by the user.
+     * @throws IOException
+     */
     private void addOpinionOfReporter() throws IOException{
         String opinion = appContext.getString(R.string.opinionOfReporter);
 
@@ -186,6 +238,10 @@ public class QuestionnaireXmlSerializer {
         serializer.endTag(null, opinion);
     }
 
+    /**
+     * Adds file in base64-encoding to XML message, if any is selected by the user.
+     * @throws IOException
+     */
     private void addFile() throws IOException{
         serializer.startTag(null, appContext.getString(R.string.files));
         makeNode("file", "File in Base 64");
@@ -193,6 +249,10 @@ public class QuestionnaireXmlSerializer {
         //TODO addFiles
     }
 
+    /**
+     * Adds contact info to XML message, if given by the user.
+     * @throws IOException
+     */
     private void addContactInfo() throws IOException{
         EditText contactInfo = (EditText) appContext.findViewById(R.id.contactInformationEdit);
 
@@ -201,6 +261,11 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Checks if user has written something into the referred EditText-field.
+     * @param edit
+     * @return true if user has written something into the field
+     */
     private boolean checkIfFieldEdited(EditText edit){
         if (edit.getText().toString().trim().length() > 0){
             return true;
@@ -209,6 +274,11 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Checks if user has selected a date.
+     * @param date
+     * @return true if user has selected a date
+     */
     private boolean checkIfDateIsSet(Button date){
         if (date.getText().equals(appContext.getString(R.string.button_dateChoose))) {
             return false;
@@ -217,6 +287,11 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Checks if user has selected a time.
+     * @param time
+     * @return true if user has selected a time
+     */
     private boolean checkIfTimeIsSet(Button time){
         if (time.getText().equals(appContext.getString(R.string.button_timeChoose))){
             return false;
@@ -225,12 +300,22 @@ public class QuestionnaireXmlSerializer {
         }
     }
 
+    /**
+     * Makes a XML-node with the referred tag name and text.
+     * @param tagName
+     * @param text
+     * @throws IOException
+     */
     private void makeNode(String tagName, String text) throws IOException{
         serializer.startTag(null, tagName);
         serializer.text(text);
         serializer.endTag(null, tagName);
     }
 
+    /**
+     * Finishes the XML-message and closes the ByteOutputStream.
+     * @throws IOException
+     */
     private void finishDocument() throws IOException{
         serializer.endDocument();
         serializer.flush();

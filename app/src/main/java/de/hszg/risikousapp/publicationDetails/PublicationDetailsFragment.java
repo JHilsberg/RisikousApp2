@@ -31,6 +31,7 @@ import de.hszg.risikousapp.publicationDetails.comments.CommentsParser;
 /**
  * Fragment that shows the details and comments of a publication.
  */
+//TODO javadoc
 public class PublicationDetailsFragment extends Fragment {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
