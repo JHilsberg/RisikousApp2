@@ -15,16 +15,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_above="@+id/commentslayout">
+                android:layout_above="@+id/commentsLayout">
 
                 <TextView
                     style="@style/QuestionnaireCaptions"
-                    android:text="Kommentare"/>
+                    android:text="@string/comments"/>
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/commmentView" />
+                    android:id="@+id/commentView" />
             </LinearLayout>
 
         <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:id="@+id/commentslayout">
+            android:id="@+id/commentsLayout">
 
             <TextView
                 style="@style/QuestionnaireCaptions"
@@ -43,7 +43,7 @@
                 style="@style/QuestionnaireEdits"
                 android:id="@+id/newComment"
                 android:inputType="textMultiLine"
-                android:hint="Maximale Zeichenzahl: 1000" />
+                android:hint="@string/maximumChars" />
 
             <Button
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
 
         <TextView
             style="@style/QuestionnaireCaptions"
-            android:text="Veröffentlichung"
+            android:text="@string/publication"
             android:id="@+id/publication" />
 
         <ScrollView

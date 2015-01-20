@@ -23,31 +23,31 @@ public class XmlDocumentParser {
     private Document xmlDoc;
 
     public XmlDocumentParser(String xmlData){
-        ByteArrayInputStream xmlStream = null;
+                ByteArrayInputStream xmlStream = null;
 
-        try {
-            xmlStream = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            Log.e("Codierung", "Die Codierung wird nicht unterstützt");
-        }
+                try {
+                    xmlStream = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    Log.e("Codierung", "Die Codierung wird nicht unterstützt");
+                }
 
-        InputSource source = new InputSource(xmlStream);
+                InputSource source = new InputSource(xmlStream);
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = null;
-        try {
-            builder = factory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        try {
-            xmlDoc = builder.parse(source);
-        } catch (SAXException e) {
-            Log.e("Parsing", "Builder failed");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = null;
+                try {
+                    builder = factory.newDocumentBuilder();
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    xmlDoc = builder.parse(source);
+                } catch (SAXException e) {
+                    Log.e("Parsing", "Builder failed");
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
         }
     }
 

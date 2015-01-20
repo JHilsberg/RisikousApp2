@@ -21,6 +21,10 @@ import de.hszg.risikousapp.publicationList.PublicationListFragment;
 import de.hszg.risikousapp.questionnaire.QuestionnaireFragment;
 import de.hszg.risikousapp.welcome.WelcomeFragment;
 
+/**
+ * main activity
+ * implements "slide-in" navigation
+ */
 public class RisikousActivity extends FragmentActivity {
 
 	private static final String TAG = RisikousActivity.class.getSimpleName();
@@ -100,15 +104,17 @@ public class RisikousActivity extends FragmentActivity {
 	}
 	
 	/*
-	 * When using the ActionBarDrawerToggle, you must call it during onPostCreate()
-	 * and onConfigurationChanged()
+	 * to use the ActionBarDrawerToggle (open navigation through press on action bar)
 	 */
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		mDrawerToggle.syncState();
 	}
-	
+
+    /*
+	 * to use the ActionBarDrawerToggle
+	 */
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);

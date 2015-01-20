@@ -116,7 +116,7 @@ public class PublicationDetailsFragment extends Fragment {
 
             LinearLayout detailView = (LinearLayout) rootView.findViewById(R.id.detailView);
             final RelativeLayout commentLayout = (RelativeLayout) rootView.findViewById(R.id.commentLayout);
-            final ListView commentView = (ListView) rootView.findViewById(R.id.commmentView);
+            final ListView commentView = (ListView) rootView.findViewById(R.id.commentView);
 
             detailView.setVisibility(View.INVISIBLE);
             commentLayout.setVisibility(View.INVISIBLE);

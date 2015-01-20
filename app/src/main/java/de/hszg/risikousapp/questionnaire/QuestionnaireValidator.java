@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import de.hszg.risikousapp.R;
-import de.hszg.risikousapp.httpHelper.PostXmlToRisikousServer;
+import de.hszg.risikousapp.httpHelper.PostXmlToRisikous;
 
 /**
  * Class to validate the required fields in the questionnaire.
@@ -54,7 +54,7 @@ public class QuestionnaireValidator {
                 e.printStackTrace();
             }
 
-            new PostXmlToRisikousServer(){
+            new PostXmlToRisikous(){
                 @Override
                 protected void onPreExecute(){
                     appContext.setProgressBarIndeterminateVisibility(true);

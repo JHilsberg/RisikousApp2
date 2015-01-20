@@ -21,12 +21,12 @@ public class PublicationDetailsParser {
     private PublicationForDetails publication;
 
     public PublicationDetailsParser(String publicationXml){
-        XmlDocumentParser parser = new XmlDocumentParser(publicationXml);
-        publicationDoc = parser.getXmlDoc();
+            XmlDocumentParser parser = new XmlDocumentParser(publicationXml);
+            publicationDoc = parser.getXmlDoc();
 
-        xpath = XPathFactory.newInstance().newXPath();
+            xpath = XPathFactory.newInstance().newXPath();
 
-        getAllPublicationElements();
+            getAllPublicationElements();
     }
 
     /**

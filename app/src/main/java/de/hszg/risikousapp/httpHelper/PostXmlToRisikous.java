@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * Class to post xml data to the risikous server.
  */
-public class PostXmlToRisikousServer extends AsyncTask<String, Void, String> {
+public class PostXmlToRisikous extends AsyncTask<String, Void, String> {
 
     /**
      * Start http post as an async task.
