@@ -47,6 +47,7 @@ public class AnswerFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_answers, container, false);
+        generateAnswerList();
         return rootView;
     }
 
@@ -61,11 +62,7 @@ public class AnswerFragment extends Fragment{
     }
 
     public void generateAnswerList(){
-
-        ListView listView;
-
-        listView  = (ListView) getActivity().findViewById(R.id.answerList);
+        ListView listView  = (ListView) getActivity().findViewById(R.id.answerList);
         listView.setAdapter(new CommentAdapter(getActivity(), R.layout.comment_item, listOfAnswers));
-
     }
 }
