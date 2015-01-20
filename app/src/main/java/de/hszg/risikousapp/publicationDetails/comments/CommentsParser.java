@@ -46,10 +46,10 @@ public class CommentsParser {
     }
 
     private ArrayList<Comment> getListOfAnswers() {
-        String s = "listOfAnswers/comment";
-        NodeList commentNodeListAuthor = getCommentNodeList(s+"author");
-        NodeList commentNodeListText = getCommentNodeList(s+"text");
-        NodeList commentNodeListTimeStamp = getCommentNodeList(s+"timeStamp");
+        String path = "listOfAnswers/comment/";
+        NodeList commentNodeListAuthor = getCommentNodeList(path+"author");
+        NodeList commentNodeListText = getCommentNodeList(path+"text");
+        NodeList commentNodeListTimeStamp = getCommentNodeList(path+"timeStamp");
 
         ArrayList<Comment> listOfAnswers = new ArrayList<>();
 

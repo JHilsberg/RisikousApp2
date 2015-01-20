@@ -158,11 +158,11 @@ public class PublicationDetailsFragment extends Fragment {
                     commentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                            Comment answer = (Comment) commentView.getItemAtPosition(position);
+                            Comment comment = (Comment) commentView.getItemAtPosition(position);
                             getActivity().getSupportFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.content_frame,
-                                            AnswerFragment.newInstance(answer.getListOfAnswers()),
+                                            AnswerFragment.newInstance(comment.getListOfAnswers()),
                                             AnswerFragment.TAG).addToBackStack("answers").commit();
                         }
                     });

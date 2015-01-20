@@ -10,12 +10,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import de.hszg.risikousapp.R;
-import de.hszg.risikousapp.questionnaire.QuestionnaireFragment;
 
 public class AnswerFragment extends Fragment{
-    public final static String TAG = QuestionnaireFragment.class.getSimpleName();
+    public final static String TAG = AnswerFragment.class.getSimpleName();
 
-    private static ArrayList<Comment> listOfAnswers;
+    private static ArrayList<Comment> listOfAnswers = new ArrayList<>();
 
     /**
      * Returns a new Instance of a PublicationList fragment.
@@ -63,6 +62,7 @@ public class AnswerFragment extends Fragment{
 
     public void generateAnswerList(){
         ListView listView  = (ListView) getActivity().findViewById(R.id.answerList);
-        listView.setAdapter(new CommentAdapter(getActivity(), R.layout.comment_item, listOfAnswers));
+        CommentAdapter adapter = new CommentAdapter(getActivity(), R.layout.comment_item, listOfAnswers);
+        listView.setAdapter(adapter);
     }
 }
