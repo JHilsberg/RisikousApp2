@@ -106,11 +106,11 @@ public class PublicationListFragment extends Fragment {
 
         final ListView listView;
         PublicationListParser publicationListParser = new PublicationListParser(publications);
-        final ArrayList<PublicationForList> searchResults = publicationListParser.getData();
+        final ArrayList<PublicationForList> publicationList = publicationListParser.getData();
 
 
         listView  = (ListView) getActivity().findViewById(R.id.publicationList);
-        listView.setAdapter(new PublicationListAdapter(getActivity(), R.layout.publication_item,searchResults));
+        listView.setAdapter(new PublicationListAdapter(getActivity(), R.layout.publication_item, publicationList));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

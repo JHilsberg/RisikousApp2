@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -20,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import de.hszg.risikousapp.publicationDetails.comments.AnswerFragment;
 import de.hszg.risikousapp.publicationDetails.comments.CommentAdapter;
 import de.hszg.risikousapp.R;
 import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
@@ -148,10 +150,21 @@ public class PublicationDetailsFragment extends Fragment {
                     Date date = new Date();
 
                     if (commentList.isEmpty()) {
-                        commentAdapter.add(new Comment("Administrator", dateFormat.format(date), "Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben."));
+                        commentAdapter.add(new Comment("Administrator", dateFormat.format(date), "Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben.", new ArrayList<Comment>()));
                     }
 
                     commentView.setAdapter(commentAdapter);
+                    commentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                            Comment answer = (Comment) commentView.getItemAtPosition(position);
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame,
+                                            AnswerFragment.newInstance(answer.getListOfAnswers()),
+                                            AnswerFragment.TAG).addToBackStack("answers").commit();
+                        }
+                    });
                 }
             }.execute("/comments/id/" + id);
         }

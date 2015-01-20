@@ -24,7 +24,8 @@
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/commentView" />
+                    android:id="@+id/commentView"
+                    android:clickable="false" />
             </LinearLayout>
 
         <LinearLayout
@@ -62,7 +63,7 @@
 
         <TextView
             style="@style/QuestionnaireCaptions"
-            android:text="@string/publication"
+            android:text="Veröffentlichung"
             android:id="@+id/publication" />
 
         <ScrollView

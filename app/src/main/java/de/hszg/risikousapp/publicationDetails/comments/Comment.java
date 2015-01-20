@@ -1,5 +1,7 @@
 package de.hszg.risikousapp.publicationDetails.comments;
 
+import java.util.ArrayList;
+
 /**
  * Simple model class for a comment.
  */
@@ -7,11 +9,13 @@ public class Comment {
     private String author;
     private String text;
     private String timeStamp;
+    private ArrayList<Comment> listOfAnswers;
 
-    public Comment(String author, String timeStamp, String text){
+    public Comment(String author, String timeStamp, String text, ArrayList<Comment> listOfAnswers){
         this.author = author;
         this.timeStamp = timeStamp;
         this.text = text;
+        this.listOfAnswers = listOfAnswers;
     }
 
     /**
@@ -33,6 +37,13 @@ public class Comment {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * @return list of Answers (comments)
+     */
+    public ArrayList<Comment> getListOfAnswers() {
+        return listOfAnswers;
     }
 
 }

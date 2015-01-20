@@ -46,6 +46,27 @@ public class CommentsParser {
         return null;
     }
 
+    private ArrayList<Comment> getListOfAnswers() {
+        String s = "listOfAnswers/comment";
+        NodeList commentNodeListAuthor = getCommentNodeList(s+"author");
+        NodeList commentNodeListText = getCommentNodeList(s+"text");
+        NodeList commentNodeListTimeStamp = getCommentNodeList(s+"timeStamp");
+
+        ArrayList<Comment> listOfAnswers = new ArrayList<>();
+
+        for (int i = 0; i < commentNodeListText.getLength(); i++) {
+            listOfAnswers.add(
+                    new Comment(
+                            commentNodeListAuthor.item(i).getLastChild().getNodeValue(),
+                            commentNodeListTimeStamp.item(i).getLastChild().getNodeValue(),
+                            commentNodeListText.item(i).getLastChild().getNodeValue(),
+                            new ArrayList<Comment>()
+                            )
+            );
+        }
+        return listOfAnswers;
+    }
+
     /**
      * Returns a list with all comments of a publication.
      * @return arrayList with comment objects
@@ -55,6 +76,7 @@ public class CommentsParser {
         NodeList commentNodeListText = getCommentNodeList("text");
         NodeList commentNodeListTimeStamp = getCommentNodeList("timeStamp");
 
+
         ArrayList<Comment> commentList = new ArrayList<>();
 
         for (int i = 0; i < commentNodeListText.getLength(); i++) {
@@ -62,7 +84,8 @@ public class CommentsParser {
                     new Comment(
                             commentNodeListAuthor.item(i).getLastChild().getNodeValue(),
                             commentNodeListTimeStamp.item(i).getLastChild().getNodeValue(),
-                            commentNodeListText.item(i).getLastChild().getNodeValue()
+                            commentNodeListText.item(i).getLastChild().getNodeValue(),
+                            getListOfAnswers()
                     )
             );
         }
