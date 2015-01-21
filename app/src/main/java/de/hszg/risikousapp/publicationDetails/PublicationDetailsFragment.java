@@ -1,31 +1,37 @@
 package de.hszg.risikousapp.publicationDetails;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import de.hszg.risikousapp.httpHelper.PostXmlToRisikous;
 import de.hszg.risikousapp.publicationDetails.comments.AnswerFragment;
 import de.hszg.risikousapp.publicationDetails.comments.CommentAdapter;
 import de.hszg.risikousapp.R;
 import de.hszg.risikousapp.httpHelper.GetXmlFromRisikous;
 import de.hszg.risikousapp.publicationDetails.comments.Comment;
+import de.hszg.risikousapp.publicationDetails.comments.CommentSerializer;
 import de.hszg.risikousapp.publicationDetails.comments.CommentsParser;
 
 /**
@@ -63,15 +69,6 @@ public class PublicationDetailsFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser) {
-            Activity a = getActivity();
-            if(a != null) a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-    }
-
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -104,10 +101,8 @@ public class PublicationDetailsFragment extends Fragment {
         }
     }
 
-    public static class TabbedView extends Fragment {
+    public static class TabbedView extends Fragment implements View.OnClickListener {
         public static final String ARG_SECTION_NUMBER = "section_number";
-
-
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -123,6 +118,12 @@ public class PublicationDetailsFragment extends Fragment {
 
             detailView.setVisibility(View.INVISIBLE);
             commentLayout.setVisibility(View.INVISIBLE);
+
+            EditText commentEdit = (EditText) rootView.findViewById(R.id.newComment);
+            commentEdit.setFilters(getMaxCharsFilter());
+
+            Button sendComment = (Button) rootView.findViewById(R.id.sendComment);
+            sendComment.setOnClickListener(this);
 
             switch(sectionNumber) {
                 case 1:
@@ -170,6 +171,58 @@ public class PublicationDetailsFragment extends Fragment {
             }.execute("/comments/id/" + id);
         }
 
+        @Override
+        public void onClick(View view) {
+            if (view.getId() == R.id.sendComment){
+                EditText commentText = (EditText) getView().findViewById(R.id.newComment);
+                if (commentText.getText().toString().trim().length() > 0){
+                    sendComment();
+                }else{
+                    missingCommentText();
+                }
+            }
+        }
+
+        private void sendComment() {
+            String commentXml = "";
+
+            CommentSerializer serializer = null;
+            try {
+                serializer = new CommentSerializer(getView(), id);
+                commentXml = serializer.getXmlAsString();
+            } catch (IOException e) {
+                Log.e("serializer", "Fehler bei der Serialisierung");
+            }
+
+            new PostXmlToRisikous(){
+                @Override
+                protected void onPreExecute(){
+                    getActivity().setProgressBarIndeterminateVisibility(true);
+                }
+
+                @Override
+                protected void onPostExecute(String result) {
+                    Log.i("status", "" + result);
+                    getActivity().setProgressBarIndeterminateVisibility(false);
+                    if (result.equals("201")){
+                        Toast.makeText(getActivity(), "Der Kommentar wurde erfolgreich gesendet.", Toast.LENGTH_LONG).show();
+                        getActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.content_frame, newInstance(id)).commit();
+                    } else{
+                        Toast.makeText(getActivity(), "Leider ist ein Fehler aufgetreten. Probieren Sie es später nochmal.", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            }.execute("publication/addComment", commentXml);
+        }
+
+        private void missingCommentText(){
+            TextView commentCaption = (TextView) getActivity().findViewById(R.id.addComment);
+            commentCaption.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            Toast.makeText(getActivity(), "Bitte geben Sie einen Kommentar ein.", Toast.LENGTH_LONG).show();
+        }
+
         private void setText(final View rootView) {
             new GetXmlFromRisikous() {
 
@@ -206,5 +259,15 @@ public class PublicationDetailsFragment extends Fragment {
                 }
             }.execute("publication/id/" +id);
         }
+    }
+
+    /**
+     * Input filter, to limit the characters the user can write in the field.
+     * @return filter array with chars input filter
+     */
+    private static InputFilter[] getMaxCharsFilter(){
+        InputFilter[] filterArray = new InputFilter[1];
+        filterArray[0] = new InputFilter.LengthFilter(1000);
+        return filterArray;
     }
 }

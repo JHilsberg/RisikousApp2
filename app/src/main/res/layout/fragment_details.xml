@@ -42,9 +42,16 @@
 
             <EditText
                 style="@style/QuestionnaireEdits"
+                android:id="@+id/newCommentAuthor"
+                android:inputType="text"
+                android:hint="@string/commentAuthor"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                style="@style/QuestionnaireEdits"
                 android:id="@+id/newComment"
                 android:inputType="textMultiLine"
-                android:hint="@string/maximumCharsComment" />
+                android:hint="@string/commentHint" />
 
             <Button
                 android:layout_width="match_parent"
@@ -63,7 +70,7 @@
 
         <TextView
             style="@style/QuestionnaireCaptions"
-            android:text="Veröffentlichung"
+            android:text="@string/publication"
             android:id="@+id/publication" />
 
         <ScrollView

@@ -52,7 +52,7 @@ public class QuestionnaireValidator {
                 serializer = new QuestionnaireXmlSerializer(appContext);
                 questionnaireXml = serializer.getXmlAsString();
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e("serializer", "Fehler bei der Serialisierung");
             }
 
             new PostXmlToRisikous(){
