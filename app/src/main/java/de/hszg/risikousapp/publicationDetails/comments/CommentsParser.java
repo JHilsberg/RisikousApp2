@@ -26,7 +26,7 @@ public class CommentsParser {
     private XPath xpath;
 
     /**
-     *
+     * Initialize the XmlDocumnetParser and Xpath object.
      * @param commentsXml
      */
     public CommentsParser(String commentsXml) {
@@ -37,8 +37,8 @@ public class CommentsParser {
     }
 
     /**
-     *
-     * @return
+     * Get a list with all comments, including the answers
+     * @return ArrayList all comments
      */
     public ArrayList<Comment> getComments(){
         NodeList commentNodeList = getCommentNodeList();
@@ -84,8 +84,8 @@ public class CommentsParser {
     }
 
     /**
-     *
-     * @return
+     * Get all comment nodes
+     * @return node list of comments
      */
     private NodeList getCommentNodeList(){
         String expression = "/comments/comment";
@@ -100,9 +100,9 @@ public class CommentsParser {
     }
 
     /**
-     *
+     * Get a list of all answers
      * @param answers
-     * @return
+     * @return ArrayList of answers (comments)
      */
     private ArrayList<Comment> getAnswers(NodeList answers) {
         ArrayList<Comment> answerComments = new ArrayList<>();
@@ -137,8 +137,8 @@ public class CommentsParser {
     }
 
     /**
-     *
-     * @return
+     * Get a ArrayList with one element, if no answer was found for a comment
+     * @return ArrayList with one comment
      */
     private ArrayList<Comment> noAnswers() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

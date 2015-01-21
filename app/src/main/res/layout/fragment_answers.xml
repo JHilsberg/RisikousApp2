@@ -17,7 +17,7 @@
 
             <TextView
                 style="@style/QuestionnaireCaptions"
-                android:text="Antworten"/>
+                android:text="@string/answer"/>
 
             <ListView
                 android:layout_width="match_parent"
@@ -33,7 +33,7 @@
 
             <TextView
                 style="@style/QuestionnaireCaptions"
-                android:text="Antwort hinzufügen" />
+                android:text="@string/addAnswer" />
 
             <EditText
                 style="@style/QuestionnaireEdits"
@@ -43,7 +43,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Antwort abgeben"
+                android:text="@string/addAnswerButtonText"
                 android:layout_margin="15dp"
                 android:background="@android:color/holo_orange_dark"/>
         </LinearLayout>

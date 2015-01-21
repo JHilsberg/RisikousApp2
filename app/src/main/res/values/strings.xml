@@ -84,7 +84,7 @@
 
 <!-- For Details/Comment Screen !-->
     <string name="button_sendComment">Kommentar abgeben</string>
-    <string name="addCommment">Kommentar hinzufügen</string>
+    <string name="addComment">Kommentar hinzufügen</string>
     <string name="comments">Kommentare</string>
     <string name="assignedMessage">Zugeordnete Meldung</string>
     <string name="measure" >Maßnahme</string>
@@ -107,5 +107,8 @@
     <string name="id">id</string>
     <string name="author">author</string>
     <string name="commentText">text</string>
+    <string name="answer">Antworten</string>
+    <string name="addAnswer">Antwort hinzufügen</string>
+    <string name="addAnswerButtonText">Antwort abgeben</string>
 
 </resources>

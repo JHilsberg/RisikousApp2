@@ -11,14 +11,17 @@ import java.util.ArrayList;
 
 import de.hszg.risikousapp.R;
 
+/**
+ * Fragment that shows a list with all answers of the selected comment.
+ */
 public class AnswerFragment extends Fragment{
     public final static String TAG = AnswerFragment.class.getSimpleName();
 
     private static ArrayList<Comment> listOfAnswers = new ArrayList<>();
 
     /**
-     * Returns a new Instance of a PublicationList fragment.
-     * @return PublicationListFragment
+     * Returns a new Instance of a answer fragment.
+     * @return AnswerFragment
      */
     public static AnswerFragment newInstance(ArrayList<Comment> listOfAnswers) {
         AnswerFragment.listOfAnswers = listOfAnswers;
@@ -26,7 +29,6 @@ public class AnswerFragment extends Fragment{
     }
 
     /**
-     * Starts the download of the publication list. Set view elements, when view is created the first time.
      * @param savedInstanceState
      */
     @Override
@@ -51,7 +53,7 @@ public class AnswerFragment extends Fragment{
 
 
     /**
-     * Generates the publication list view, when view is restored.
+     * Generates the answer list view, when view is restored.
      * For example after changing the orientation.
      * @param onSavedInstance
      */
@@ -61,6 +63,9 @@ public class AnswerFragment extends Fragment{
         generateAnswerList();
     }
 
+    /**
+     * Generates the list view of all answers.
+     */
     public void generateAnswerList(){
         ListView listView  = (ListView) getActivity().findViewById(R.id.answerView);
         CommentAdapter adapter = new CommentAdapter(getActivity(), R.layout.comment_item, listOfAnswers);

@@ -37,7 +37,7 @@
 
             <TextView
                 style="@style/QuestionnaireCaptions"
-                android:text="@string/addCommment"
+                android:text="@string/addComment"
                 android:id="@+id/addComment" />
 
             <EditText
@@ -51,6 +51,7 @@
                 style="@style/QuestionnaireEdits"
                 android:id="@+id/newComment"
                 android:inputType="textMultiLine"
+                android:maxLines="2"
                 android:hint="@string/commentHint" />
 
             <Button

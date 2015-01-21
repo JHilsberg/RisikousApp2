@@ -69,6 +69,12 @@ public class PublicationDetailsFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
