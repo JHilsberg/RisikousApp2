@@ -1,5 +1,6 @@
 package de.hszg.risikousapp.publicationDetails;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -152,7 +154,7 @@ public class PublicationDetailsFragment extends Fragment {
                 public void onPostExecute(String result) {
                     CommentsParser parser = new CommentsParser(result);
                     ArrayList<Comment> commentList = parser.getComments();
-                    CommentAdapter commentAdapter = new CommentAdapter(getActivity(), R.layout.comment_item, commentList);
+                    final CommentAdapter commentAdapter = new CommentAdapter(getActivity(), R.layout.comment_item, commentList);
 
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                     Date date = new Date();
@@ -169,7 +171,7 @@ public class PublicationDetailsFragment extends Fragment {
                             getActivity().getSupportFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.content_frame,
-                                            AnswerFragment.newInstance(comment.getListOfAnswers()),
+                                            AnswerFragment.newInstance(comment.getListOfAnswers(), comment.getId()),
                                             AnswerFragment.TAG).addToBackStack("answers").commit();
                         }
                     });
@@ -182,6 +184,7 @@ public class PublicationDetailsFragment extends Fragment {
             if (view.getId() == R.id.sendComment){
                 EditText commentText = (EditText) getView().findViewById(R.id.newComment);
                 if (commentText.getText().toString().trim().length() > 0){
+                    hideKeyboard();
                     sendComment();
                 }else{
                     missingCommentText();
@@ -189,12 +192,20 @@ public class PublicationDetailsFragment extends Fragment {
             }
         }
 
+        private void hideKeyboard(){
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+
         private void sendComment() {
             String commentXml = "";
-
             CommentSerializer serializer = null;
+            EditText author = (EditText) getView().findViewById(R.id.newCommentAuthor);
+            EditText commentText = (EditText) getView().findViewById(R.id.newComment);
+
             try {
-                serializer = new CommentSerializer(getView(), id);
+                serializer = new CommentSerializer(id, author.getText().toString(), commentText.getText().toString());
                 commentXml = serializer.getXmlAsString();
             } catch (IOException e) {
                 Log.e("serializer", "Fehler bei der Serialisierung");
@@ -223,6 +234,9 @@ public class PublicationDetailsFragment extends Fragment {
             }.execute("publication/addComment", commentXml);
         }
 
+        /**
+         * Shows an error message, if user has forgot to write a answer.
+         */
         private void missingCommentText(){
             TextView commentCaption = (TextView) getActivity().findViewById(R.id.addComment);
             commentCaption.setTextColor(getResources().getColor(android.R.color.holo_red_dark));

@@ -1,36 +1,35 @@
 package de.hszg.risikousapp.publicationDetails.comments;
 
 import android.util.Xml;
-import android.view.View;
-import android.widget.EditText;
 
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import de.hszg.risikousapp.R;
-
 /**
- * Created by Julian on 21.01.2015.
+ * Create xml message for comments and answers.
  */
 public class CommentSerializer {
-    private View rootView;
     private ByteArrayOutputStream xmlData;
     private String xmlAsString;
     private XmlSerializer serializer;
-    private String publicationId;
+    private String id;
+    private String author;
+    private String text;
 
     /**
      * Constructor, instantiates ByteArrayOutputStream and XmlSerializer
      * Start and finish XML-Document, start all add methods.
      * @throws java.io.IOException
      */
-    public CommentSerializer(View rootView, String id) throws IOException {
-        this.rootView = rootView;
+    public CommentSerializer(String id, String author, String text) throws IOException {
+        this.id = id;
+        this.author = author;
+        this.text = text;
+
         this.xmlData = new ByteArrayOutputStream();
         this.serializer = Xml.newSerializer();
-        this.publicationId = id;
 
         serializer.setOutput(xmlData, "UTF-8");
         serializer.startDocument(null, true);
@@ -38,7 +37,7 @@ public class CommentSerializer {
 
         serializer.startTag(null, "comment");
 
-        addPublicationId();
+        addId();
         addAuthor();
         addText();
         finishDocument();
@@ -53,33 +52,16 @@ public class CommentSerializer {
         return xmlAsString;
     }
 
-    private void addPublicationId()throws IOException{
-        makeNode("id", publicationId);
+    private void addId()throws IOException{
+        makeNode("id", id);
     }
 
     private void addAuthor() throws IOException{
-        EditText author = (EditText) rootView.findViewById(R.id.newCommentAuthor);
-        if(checkIfFieldEdited(author)){
-           makeNode("author", author.getText().toString());
-        }
+           makeNode("author", this.author);
     }
 
     private void addText() throws IOException{
-        EditText commentText = (EditText) rootView.findViewById(R.id.newComment);
-        makeNode("text", commentText.getText().toString());
-    }
-
-    /**
-     * Checks if user has written something into the referred EditText-field.
-     * @param edit
-     * @return true if user has written something into the field
-     */
-    private boolean checkIfFieldEdited(EditText edit){
-        if (edit.getText().toString().trim().length() > 0){
-            return true;
-        }else{
-            return false;
-        }
+        makeNode("text", this.text);
     }
 
     /**

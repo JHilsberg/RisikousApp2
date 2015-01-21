@@ -110,5 +110,6 @@
     <string name="answer">Antworten</string>
     <string name="addAnswer">Antwort hinzufügen</string>
     <string name="addAnswerButtonText">Antwort abgeben</string>
+    <string name="answerHint">Ihre Antwort:</string>
 
 </resources>

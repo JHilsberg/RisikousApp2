@@ -129,9 +129,9 @@ public class CommentsParser {
                         break;
                 }
             }
+            Comment answerComment = new Comment(id, author, timeStamp , text);
+            answerComments.add(answerComment);
         }
-        Comment answerComment = new Comment(id, author, timeStamp , text);
-        answerComments.add(answerComment);
 
         return answerComments;
     }
