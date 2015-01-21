@@ -151,7 +151,7 @@ public class PublicationDetailsFragment extends Fragment {
                     Date date = new Date();
 
                     if (commentList.isEmpty()) {
-                        commentAdapter.add(new Comment("Administrator", dateFormat.format(date), "Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben.", new ArrayList<Comment>()));
+                        commentAdapter.add(new Comment("Administrator", dateFormat.format(date), "Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben."));
                     }
 
                     commentView.setAdapter(commentAdapter);

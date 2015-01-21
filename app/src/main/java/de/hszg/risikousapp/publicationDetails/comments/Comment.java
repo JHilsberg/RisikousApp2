@@ -11,11 +11,10 @@ public class Comment {
     private String timeStamp;
     private ArrayList<Comment> listOfAnswers;
 
-    public Comment(String author, String timeStamp, String text, ArrayList<Comment> listOfAnswers){
+    public Comment(String author, String timeStamp, String text){
         this.author = author;
         this.timeStamp = timeStamp;
         this.text = text;
-        this.listOfAnswers = listOfAnswers;
     }
 
     /**
@@ -44,6 +43,10 @@ public class Comment {
      */
     public ArrayList<Comment> getListOfAnswers() {
         return listOfAnswers;
+    }
+
+    public void setListOfAnswers(ArrayList<Comment> listOfAnswers) {
+        this.listOfAnswers = listOfAnswers;
     }
 
 }

@@ -58,8 +58,7 @@ public class CommentsParser {
                     new Comment(
                             commentNodeListAuthor.item(i).getLastChild().getNodeValue(),
                             commentNodeListTimeStamp.item(i).getLastChild().getNodeValue(),
-                            commentNodeListText.item(i).getLastChild().getNodeValue(),
-                            new ArrayList<Comment>()
+                            commentNodeListText.item(i).getLastChild().getNodeValue()
                             )
             );
         }
@@ -75,18 +74,16 @@ public class CommentsParser {
         NodeList commentNodeListText = getCommentNodeList("text");
         NodeList commentNodeListTimeStamp = getCommentNodeList("timeStamp");
 
-
         ArrayList<Comment> commentList = new ArrayList<>();
 
         for (int i = 0; i < commentNodeListText.getLength(); i++) {
-            commentList.add(
-                    new Comment(
+            Comment comment = new Comment(
                             commentNodeListAuthor.item(i).getLastChild().getNodeValue(),
                             commentNodeListTimeStamp.item(i).getLastChild().getNodeValue(),
-                            commentNodeListText.item(i).getLastChild().getNodeValue(),
-                            getListOfAnswers()
-                    )
-            );
+                            commentNodeListText.item(i).getLastChild().getNodeValue()
+                    );
+            comment.setListOfAnswers(getListOfAnswers());
+            commentList.add(comment);
         }
         return commentList;
     }
