@@ -37,21 +37,31 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     public View getView(int position, View convertView, ViewGroup parent){
         convertView = mInflater.inflate(R.layout.comment_item, null);
         ViewHolder viewHolder = new ViewHolder();
+        ArrayList<Comment> listOfAnswers = commentList.get(position).getListOfAnswers();
 
         String outputDate = "";
         String inputDate = commentList.get(position).getTimeStamp();
+        SimpleDateFormat dateFormat  = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
 
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(inputDate);
-            outputDate = new SimpleDateFormat("dd.MM.yyyy, HH:mm").format(date);
+            outputDate = dateFormat.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
+
         viewHolder.commentHeader = (TextView) convertView.findViewById(R.id.commentHeader);
         viewHolder.comment = (TextView) convertView.findViewById(R.id.comment);
+        viewHolder.answers = (TextView) convertView.findViewById(R.id.answers);
         viewHolder.commentHeader.setText(commentList.get(position).getAuthor() + " schrieb am " + outputDate);
         viewHolder.comment.setText(commentList.get(position).getText());
+
+        if (listOfAnswers.isEmpty()){
+            listOfAnswers.add(new Comment("Administrator", dateFormat.format(new Date()), "Zu diesem Kommentar wurde noch keine Antwort abgegeben.", new ArrayList<Comment>()));
+        } else {
+            viewHolder.answers.setText("Antworten: " + listOfAnswers.size());
+        }
 
         return convertView;
     }
@@ -85,5 +95,6 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     static class ViewHolder {
         TextView commentHeader;
         TextView comment;
+        TextView answers;
     }
 }

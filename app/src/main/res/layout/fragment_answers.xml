@@ -2,22 +2,50 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <LinearLayout
-        android:id="@+id/answerLayout"
-        style="@style/QuestionnaireLayout">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            style="@style/QuestionnaireCaptions"
-            android:text="Antworten"/>
-
-        <ListView
+        <LinearLayout
+            style="@style/QuestionnaireLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="#336699"
-            android:dividerHeight="1sp"
-            android:fadingEdge="horizontal"
-            android:id="@+id/answerList" />
-    </LinearLayout>
+            android:layout_alignParentTop="true">
+
+            <TextView
+                style="@style/QuestionnaireCaptions"
+                android:text="Antworten"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/answerView"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/QuestionnaireLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                style="@style/QuestionnaireCaptions"
+                android:text="Antwort hinzufügen" />
+
+            <EditText
+                style="@style/QuestionnaireEdits"
+                android:inputType="textMultiLine"
+                android:hint="@string/maximumCharsComment" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Antwort abgeben"
+                android:layout_margin="15dp"
+                android:background="@android:color/holo_orange_dark"/>
+        </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

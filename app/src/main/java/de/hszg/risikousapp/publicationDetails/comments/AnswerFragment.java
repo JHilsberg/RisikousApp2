@@ -62,7 +62,7 @@ public class AnswerFragment extends Fragment{
     }
 
     public void generateAnswerList(){
-        ListView listView  = (ListView) getActivity().findViewById(R.id.answerList);
+        ListView listView  = (ListView) getActivity().findViewById(R.id.answerView);
         CommentAdapter adapter = new CommentAdapter(getActivity(), R.layout.comment_item, listOfAnswers);
         listView.setAdapter(adapter);
     }
