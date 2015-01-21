@@ -178,7 +178,6 @@ public class RisikousActivity extends FragmentActivity {
                             .replace(R.id.content_frame,
                                     PublicationListFragment.newInstance(),
                                     PublicationListFragment.TAG).commit();
-                    break;
                 }else{
                     getSupportFragmentManager()
                             .beginTransaction()
@@ -186,7 +185,7 @@ public class RisikousActivity extends FragmentActivity {
                                     ConnectionErrorFragment.newInstance(),
                                     ConnectionErrorFragment.TAG).addToBackStack("connection-error").commit();
                 }
-
+                break;
         }
     }
 

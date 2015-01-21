@@ -6,15 +6,24 @@ import java.util.ArrayList;
  * Simple model class for a comment.
  */
 public class Comment {
+    private String id;
     private String author;
     private String text;
     private String timeStamp;
     private ArrayList<Comment> listOfAnswers;
 
-    public Comment(String author, String timeStamp, String text){
+    public Comment(String id,String author, String timeStamp, String text){
+        this.id = id;
         this.author = author;
         this.timeStamp = timeStamp;
         this.text = text;
+    }
+
+    /**
+     * @return comment id
+     */
+    public String getId(){
+        return id;
     }
 
     /**

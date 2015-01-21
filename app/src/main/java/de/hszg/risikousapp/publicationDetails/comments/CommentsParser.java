@@ -3,9 +3,13 @@ package de.hszg.risikousapp.publicationDetails.comments;
 import android.util.Log;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -21,6 +25,10 @@ public class CommentsParser {
     private Document commentDoc;
     private XPath xpath;
 
+    /**
+     *
+     * @param commentsXml
+     */
     public CommentsParser(String commentsXml) {
         XmlDocumentParser parser = new XmlDocumentParser(commentsXml);
         commentDoc = parser.getXmlDoc();
@@ -29,62 +37,116 @@ public class CommentsParser {
     }
 
     /**
-     * Executes xpath expression to get the specified element as a xml node list.
-     * @param element xml element name
-     * @return node list
+     *
+     * @return
      */
-    private NodeList getCommentNodeList(String element) {
-        String expression = "/comments/comment/" + element;
+    public ArrayList<Comment> getComments(){
+        NodeList commentNodeList = getCommentNodeList();
+        ArrayList<Comment> commentList = new ArrayList<>();
+        String id = "";
+        String author = "";
+        String timeStamp = "";
+        String text = "";
+        ArrayList<Comment> answers = null;
 
-        try {
-            return (NodeList) xpath.compile(expression).evaluate(commentDoc,
-                    XPathConstants.NODESET);
-        } catch (XPathExpressionException e) {
-            Log.e("Parser", "Fehler beim Parsen der Kommentare");
+        for (int i = 0; i < commentNodeList.getLength(); i++){
+            NodeList commentChildren = commentNodeList.item(i).getChildNodes();
+            for (int j = 0; j < commentChildren.getLength(); j++){
+                switch (commentChildren.item(j).getNodeName()) {
+                    case "id" :
+                        id = commentChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "author" :
+                        author = commentChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "timeStamp" :
+                        timeStamp = commentChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "text" :
+                        text = commentChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "listOfAnswers" :
+                        answers = getAnswers(commentChildren.item(j).getChildNodes());
+                        break;
+                }
+            }
+            Comment newComment = new Comment(id, author, timeStamp , text);
+            if(answers != null){
+                newComment.setListOfAnswers(answers);
+            }else{
+                newComment.setListOfAnswers(noAnswers());
+            }
+
+            commentList.add(newComment);
         }
-        return null;
-    }
 
-    private ArrayList<Comment> getListOfAnswers() {
-        String path = "listOfAnswers/comment/";
-        NodeList commentNodeListAuthor = getCommentNodeList(path+"author");
-        NodeList commentNodeListText = getCommentNodeList(path+"text");
-        NodeList commentNodeListTimeStamp = getCommentNodeList(path+"timeStamp");
-
-        ArrayList<Comment> listOfAnswers = new ArrayList<>();
-
-        for (int i = 0; i < commentNodeListText.getLength(); i++) {
-            listOfAnswers.add(
-                    new Comment(
-                            commentNodeListAuthor.item(i).getLastChild().getNodeValue(),
-                            commentNodeListTimeStamp.item(i).getLastChild().getNodeValue(),
-                            commentNodeListText.item(i).getLastChild().getNodeValue()
-                            )
-            );
-        }
-        return listOfAnswers;
+        return commentList;
     }
 
     /**
-     * Returns a list with all comments of a publication.
-     * @return arrayList with comment objects
+     *
+     * @return
      */
-    public ArrayList<Comment> getCommentList() {
-        NodeList commentNodeListAuthor = getCommentNodeList("author");
-        NodeList commentNodeListText = getCommentNodeList("text");
-        NodeList commentNodeListTimeStamp = getCommentNodeList("timeStamp");
+    private NodeList getCommentNodeList(){
+        String expression = "/comments/comment";
 
-        ArrayList<Comment> commentList = new ArrayList<>();
-
-        for (int i = 0; i < commentNodeListText.getLength(); i++) {
-            Comment comment = new Comment(
-                            commentNodeListAuthor.item(i).getLastChild().getNodeValue(),
-                            commentNodeListTimeStamp.item(i).getLastChild().getNodeValue(),
-                            commentNodeListText.item(i).getLastChild().getNodeValue()
-                    );
-            comment.setListOfAnswers(getListOfAnswers());
-            commentList.add(comment);
+        try {
+            return (NodeList) xpath.compile(expression).evaluate(commentDoc, XPathConstants.NODESET);
+        } catch (XPathExpressionException e) {
+            Log.e("Parser", "Fehler beim Parsen der Kommentare");
         }
-        return commentList;
+
+        return null;
+    }
+
+    /**
+     *
+     * @param answers
+     * @return
+     */
+    private ArrayList<Comment> getAnswers(NodeList answers) {
+        ArrayList<Comment> answerComments = new ArrayList<>();
+        String id = "";
+        String author = "";
+        String timeStamp = "";
+        String text = "";
+
+        for (int i = 0; i < answers.getLength(); i++) {
+            NodeList answerChildren = answers.item(i).getChildNodes();
+            for (int j = 0; j < answerChildren.getLength(); j++) {
+                switch (answerChildren.item(j).getNodeName()) {
+                    case "id":
+                        id = answerChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "author":
+                        author = answerChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "timeStamp":
+                        timeStamp = answerChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                    case "text":
+                        text = answerChildren.item(j).getLastChild().getNodeValue();
+                        break;
+                }
+            }
+        }
+        Comment answerComment = new Comment(id, author, timeStamp , text);
+        answerComments.add(answerComment);
+
+        return answerComments;
+    }
+
+    /**
+     *
+     * @return
+     */
+    private ArrayList<Comment> noAnswers() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = new Date();
+
+        Comment noAnswerComment = new Comment("00", "admin", dateFormat.format(date), "Aktuell sind keine Antworten für diesen Kommentar vorhanden.");
+        ArrayList<Comment> answerList = new ArrayList<>();
+        answerList.add(noAnswerComment);
+        return answerList;
     }
 }

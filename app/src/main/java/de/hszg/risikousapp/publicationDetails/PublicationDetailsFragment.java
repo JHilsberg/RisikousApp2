@@ -145,14 +145,14 @@ public class PublicationDetailsFragment extends Fragment {
                 @Override
                 public void onPostExecute(String result) {
                     CommentsParser parser = new CommentsParser(result);
-                    ArrayList<Comment> commentList = parser.getCommentList();
+                    ArrayList<Comment> commentList = parser.getComments();
                     CommentAdapter commentAdapter = new CommentAdapter(getActivity(), R.layout.comment_item, commentList);
 
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                     Date date = new Date();
 
                     if (commentList.isEmpty()) {
-                        commentAdapter.add(new Comment("Administrator", dateFormat.format(date), "Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben."));
+                        commentAdapter.add(new Comment("000" ,"Administrator", dateFormat.format(date), "Zu dieser Veröffentlichung wurde noch kein Kommentar abgegeben."));
                     }
 
                     commentView.setAdapter(commentAdapter);
