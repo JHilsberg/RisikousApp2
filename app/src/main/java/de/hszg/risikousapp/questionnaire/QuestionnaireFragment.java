@@ -82,10 +82,12 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
             Button dateButton = (Button) rootView.findViewById(R.id.dateChoose);
             Button timeButton = (Button) rootView.findViewById(R.id.timeChoose);
             Spinner reportingAreas = (Spinner) rootView.findViewById(R.id.reportingAreaSelection);
+            Button fileButton = (Button) rootView.findViewById(R.id.fileUpload);
 
             dateButton.setText(savedInstanceState.getCharSequence("date"));
             timeButton.setText(savedInstanceState.getCharSequence("time"));
             reportingAreas.setSelection(savedInstanceState.getInt("selectedArea"));
+            fileButton.setText(savedInstanceState.getCharSequence("fileName"));
         }
 
         return rootView;
@@ -144,10 +146,12 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
         Button dateButton = (Button) getActivity().findViewById(R.id.dateChoose);
         Button timeButton = (Button) getActivity().findViewById(R.id.timeChoose);
         Spinner reportingAreas = (Spinner) getActivity().findViewById(R.id.reportingAreaSelection);
+        Button fileButton = (Button) getActivity().findViewById(R.id.fileUpload);
 
         outState.putCharSequence("date", dateButton.getText());
         outState.putCharSequence("time", timeButton.getText());
         outState.putInt("selectedArea", reportingAreas.getSelectedItemPosition());
+        outState.putCharSequence("fileName", fileButton.getText());
     }
 
     /**
