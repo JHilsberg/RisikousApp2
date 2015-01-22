@@ -53,11 +53,9 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
 
         viewHolder.commentHeader = (TextView) convertView.findViewById(R.id.commentHeader);
         viewHolder.comment = (TextView) convertView.findViewById(R.id.comment);
-        viewHolder.answers = (TextView) convertView.findViewById(R.id.answers);
 
         viewHolder.commentHeader.setText(commentList.get(position).getAuthor() + " schrieb am " + outputDate);
         viewHolder.comment.setText(commentList.get(position).getText());
-        //viewHolder.answers.setText("Antworten: " + listOfAnswers.size());
         return convertView;
     }
 

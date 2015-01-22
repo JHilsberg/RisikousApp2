@@ -110,6 +110,11 @@
     <string name="answer">Antworten</string>
     <string name="addAnswer">Antwort hinzufügen</string>
     <string name="addAnswerButtonText">Antwort abgeben</string>
-    <string name="answerHint">Ihre Antwort:</string>
+    <string name="answerHint">Ihre Antwort</string>
+    <string name="minimum">Minimum</string>
+    <string name="average">Durchschnitt</string>
+    <string name="maximum">Maximum</string>
+    <string name="reporter">Meldender</string>
+    <string name="qmb">QMB</string>
 
 </resources>
