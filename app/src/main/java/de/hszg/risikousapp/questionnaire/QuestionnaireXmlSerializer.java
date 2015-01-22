@@ -1,6 +1,7 @@
 package de.hszg.risikousapp.questionnaire;
 
 import android.app.Activity;
+import android.util.Log;
 import android.util.Xml;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +24,9 @@ public class QuestionnaireXmlSerializer {
 
     private Activity appContext;
     private ByteArrayOutputStream xmlData;
-    private String xmlAsString;
     private XmlSerializer serializer;
+    private String file;
+    private String fileName;
 
     /**
      * Constructor, instantiates ByteArrayOutputStream and XmlSerializer
@@ -32,10 +34,12 @@ public class QuestionnaireXmlSerializer {
      * @param appContext
      * @throws IOException
      */
-    public QuestionnaireXmlSerializer(Activity appContext) throws IOException {
+    public QuestionnaireXmlSerializer(Activity appContext, String file, String fileName) throws IOException {
         this.appContext = appContext;
         this.xmlData = new ByteArrayOutputStream();
         this.serializer = Xml.newSerializer();
+        this.file = file;
+        this.fileName = fileName;
 
         serializer.setOutput(xmlData, "UTF-8");
         serializer.startDocument(null, true);
@@ -51,7 +55,7 @@ public class QuestionnaireXmlSerializer {
         addImmediateMeasure();
         addConsequences();
         addOpinionOfReporter();
-        //addFile();
+        addFile();
         addContactInfo();
 
         finishDocument();
@@ -62,7 +66,8 @@ public class QuestionnaireXmlSerializer {
      * @return string with xml message
      */
     public String getXmlAsString(){
-        xmlAsString = xmlData.toString();
+        String xmlAsString = xmlData.toString();
+        Log.i("Meldung", xmlAsString);
         return xmlAsString;
     }
 
@@ -239,14 +244,17 @@ public class QuestionnaireXmlSerializer {
     }
 
     /**
-     * Adds file in base64-encoding to XML message, if any is selected by the user.
+     * Adds file in base64-encoding to XML message, if one is selected by the user.
      * @throws IOException
      */
     private void addFile() throws IOException{
-        serializer.startTag(null, appContext.getString(R.string.files));
-        makeNode("file", "File in Base 64");
-        serializer.endTag(null, appContext.getString(R.string.files));
-        //TODO addFiles
+        if (!file.equals("")){
+            serializer.startTag(null, appContext.getString(R.string.files));
+            serializer.startTag(null, "file").attribute(null, "name", fileName).attribute(null, "encoding", "Base64");
+            serializer.text(file);
+            serializer.endTag(null, "file");
+            serializer.endTag(null, appContext.getString(R.string.files));
+        }
     }
 
     /**

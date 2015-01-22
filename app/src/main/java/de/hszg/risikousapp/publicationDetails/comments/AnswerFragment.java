@@ -58,7 +58,12 @@ public class AnswerFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_answers, container, false);
+
+        if(id.equals("")){
+            rootView.findViewById(R.id.newAnswerLayout).setVisibility(View.INVISIBLE);
+        }
         rootView.findViewById(R.id.sendAnswerButton).setOnClickListener(this);
+
         return rootView;
     }
 
@@ -92,7 +97,7 @@ public class AnswerFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * Serializes the answer xml and sends the answer to the risikous server.
+     * Serializes the answer-xml and sends the answer to the risikous server.
      */
     private void sendAnswer() {
         String answerXml = "";

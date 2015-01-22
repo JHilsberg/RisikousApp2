@@ -38,6 +38,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     public final static String TAG = QuestionnaireFragment.class.getSimpleName();
     public final static int REQUEST_CODE = 6384;
     public String base64File= "";
+    private String fileName = "";
 
     private static final String TAG_FC = "FileChooserActivity";
 
@@ -114,7 +115,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     @Override
         public void onClick(View v) {
         if (v.getId() == R.id.sendQuestionnaire) {
-            new QuestionnaireValidator(getActivity());
+            new QuestionnaireValidator(getActivity(), base64File, fileName);
         } else if (v.getId() == R.id.dateChoose) {
             DialogFragment newFragment = new DatePickerFragment();
             newFragment.show(getActivity().getFragmentManager(), "datePicker");
@@ -150,7 +151,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     }
 
     /**
-     * Get the selected file from the file chooser activity.
+     * Get the selected file coded in Base64 from the file chooser activity.
      * @param requestCode
      * @param resultCode
      * @param data
@@ -168,12 +169,12 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
                         try {
                             // Get the file path from the URI
                             final String path = FileUtils.getPath(getActivity().getApplicationContext(), uri);
-                            final String fileName = path.substring(path.lastIndexOf("/") + 1);
+                            fileName = path.substring(path.lastIndexOf("/") + 1);
 
                             Button file = (Button) getActivity().findViewById(R.id.fileUpload);
-                            file.setText(path);
-                            Toast.makeText(getActivity().getApplicationContext(), "Ausgewählte Datei: " + fileName, Toast.LENGTH_LONG).show();
-                            FileDecoder fileDecoder = new FileDecoder(fileName);
+                            file.setText(fileName);
+
+                            FileDecoder fileDecoder = new FileDecoder(path);
                             base64File = fileDecoder.getFile();
                         } catch (Exception e) {
                             Log.e("FileChooser", "File select error", e);

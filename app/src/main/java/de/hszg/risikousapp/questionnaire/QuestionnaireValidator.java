@@ -21,14 +21,18 @@ import de.hszg.risikousapp.httpHelper.PostXmlToRisikous;
 public class QuestionnaireValidator {
 
     private FragmentActivity appContext;
+    private String file;
+    private String fileName;
     private QuestionnaireXmlSerializer serializer;
 
     /**
      * Constructor, starts the validation.
      * @param appContext
      */
-    public QuestionnaireValidator(FragmentActivity appContext) {
+    public QuestionnaireValidator(FragmentActivity appContext, String file, String fileName) {
         this.appContext = appContext;
+        this.file = file;
+        this.fileName = fileName;
         checkRequiredFields();
     }
 
@@ -49,7 +53,7 @@ public class QuestionnaireValidator {
             Log.i("validate", "validation success - data ready to send");
 
             try {
-                serializer = new QuestionnaireXmlSerializer(appContext);
+                serializer = new QuestionnaireXmlSerializer(appContext, file, fileName);
                 questionnaireXml = serializer.getXmlAsString();
             } catch (IOException e) {
                 Log.e("serializer", "Fehler bei der Serialisierung");

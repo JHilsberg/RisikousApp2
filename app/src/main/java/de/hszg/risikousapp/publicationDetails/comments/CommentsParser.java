@@ -137,7 +137,7 @@ public class CommentsParser {
     }
 
     /**
-     * Get a ArrayList with one element, if no answer was found for a comment
+     * Get a ArrayList with one element, if no answer was found for a comment.
      * @return ArrayList with one comment
      */
     private ArrayList<Comment> noAnswers() {
