@@ -138,7 +138,7 @@ public class PublicationDetailsFragment extends Fragment {
                     commentLayout.setVisibility(View.GONE);
                     detailView.setVisibility(View.VISIBLE);
                     setText(rootView);
-                break;
+                    break;
                 case 2:
                     detailView.setVisibility(View.GONE);
                     commentLayout.setVisibility(View.VISIBLE);
@@ -168,11 +168,13 @@ public class PublicationDetailsFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                             Comment comment = (Comment) commentView.getItemAtPosition(position);
-                            getActivity().getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.content_frame,
-                                            AnswerFragment.newInstance(comment.getListOfAnswers(), comment.getId()),
-                                            AnswerFragment.TAG).addToBackStack("answers").commit();
+                            if (!comment.getId().equals("000")){
+                                getActivity().getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.content_frame,
+                                                AnswerFragment.newInstance(comment.getListOfAnswers(), comment.getId()),
+                                                AnswerFragment.TAG).addToBackStack("answers").commit();
+                            }
                         }
                     });
                 }
