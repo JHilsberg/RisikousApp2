@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * Create xml message for comments and answers.
+ * Create xml message to send comments and answers.
  */
 public class CommentSerializer {
     private ByteArrayOutputStream xmlData;
@@ -21,7 +21,10 @@ public class CommentSerializer {
     /**
      * Constructor, instantiates ByteArrayOutputStream and XmlSerializer
      * Start and finish XML-Document, start all add methods.
-     * @throws java.io.IOException
+     * @param id of publication or comment
+     * @param author
+     * @param text for comment or answer
+     * @throws IOException
      */
     public CommentSerializer(String id, String author, String text) throws IOException {
         this.id = id;
@@ -52,14 +55,26 @@ public class CommentSerializer {
         return xmlAsString;
     }
 
+    /**
+     * Add comment-id to xml
+     * @throws IOException
+     */
     private void addId()throws IOException{
         makeNode("id", id);
     }
 
+    /**
+     * add author to xml
+     * @throws IOException
+     */
     private void addAuthor() throws IOException{
            makeNode("author", this.author);
     }
 
+    /**
+     * add answer text to xml
+     * @throws IOException
+     */
     private void addText() throws IOException{
         makeNode("text", this.text);
     }

@@ -151,7 +151,7 @@ public class QuestionnaireFragment extends Fragment implements View.OnClickListe
     }
 
     /**
-     * Get the selected file coded in Base64 from the file chooser activity.
+     * Get the selected file from the file chooser activity and encode it in Base64.
      * @param requestCode
      * @param resultCode
      * @param data

@@ -39,26 +39,44 @@ import de.hszg.risikousapp.publicationDetails.comments.CommentsParser;
 /**
  * Fragment that shows the details and comments of a publication.
  */
-//TODO javadoc
+
 public class PublicationDetailsFragment extends Fragment {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     public static final String TAG = PublicationDetailsFragment.class.getSimpleName();
     ViewPager mViewPager;
 
+    /**
+     * id of the selected publication
+     */
     private static String id;
 
+    /**
+     * Fragment to show details and the comments of the selected publication.
+     * @param id of selected publication
+     * @return PublicationDetailsFragment
+     */
     public static PublicationDetailsFragment newInstance(String id) {
         PublicationDetailsFragment.id = id;
         return new PublicationDetailsFragment();
     }
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
     }
 
+    /**
+     * Create view with PagerAdapter to implement tabbed view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return root view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.title_strip, container, false);
@@ -71,18 +89,23 @@ public class PublicationDetailsFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        getActivity().getSupportFragmentManager().popBackStack();
-    }
-
+    /**
+     * Inner class for tab functionality.
+     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        /**
+         * @param fm {@link android.support.v4.app.FragmentManager}
+         */
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
+        /**
+         * Return the fragment for the selected tab (details- or comments-view).
+         * @param position
+         * @return
+         */
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = new TabbedView();
@@ -92,11 +115,19 @@ public class PublicationDetailsFragment extends Fragment {
             return fragment;
         }
 
+        /**
+         * @return number of tabs
+         */
         @Override
         public int getCount() {
             return 2;
         }
 
+        /**
+         * Sets the tab titles
+         * @param position
+         * @return title names
+         */
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
@@ -109,9 +140,25 @@ public class PublicationDetailsFragment extends Fragment {
         }
     }
 
+    /**
+     * Inner class that represents a nested fragment of one tab.
+     */
     public static class TabbedView extends Fragment implements View.OnClickListener {
         public static final String ARG_SECTION_NUMBER = "section_number";
 
+        @Override
+        public void onCreate(Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            setRetainInstance(false);
+        }
+
+        /**
+         * Create root view, change view after tab has changed.
+         * @param inflater
+         * @param container
+         * @param savedInstanceState
+         * @return root view
+         */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -148,6 +195,11 @@ public class PublicationDetailsFragment extends Fragment {
             return rootView;
         }
 
+        /**
+         * Load all comments of the selected publication and shows them in the ListView, add OnClickListener to each comment view.
+         * If comment is not released yet, no OnClickListener is set.
+         * @param commentView
+         */
         private void loadComments(final ListView commentView) {
             new GetXmlFromRisikous() {
                 @Override
@@ -181,6 +233,10 @@ public class PublicationDetailsFragment extends Fragment {
             }.execute("/comments/id/" + id);
         }
 
+        /**
+         * Add OnClickListener to send comment button.
+         * @param view
+         */
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.sendComment){
@@ -194,12 +250,19 @@ public class PublicationDetailsFragment extends Fragment {
             }
         }
 
+        /**
+         * Hide keyboard after comment was sent.
+         */
         private void hideKeyboard(){
             InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
+        /**
+         * Send a comment to the Risikous server.
+         * Serializes the inputs with the {@link de.hszg.risikousapp.publicationDetails.comments.CommentSerializer}
+         */
         private void sendComment() {
             String commentXml = "";
             CommentSerializer serializer = null;
@@ -245,6 +308,10 @@ public class PublicationDetailsFragment extends Fragment {
             Toast.makeText(getActivity(), "Bitte geben Sie einen Kommentar ein.", Toast.LENGTH_LONG).show();
         }
 
+        /**
+         * Download publication details and set all elements in the view.
+         * @param rootView
+         */
         private void setText(final View rootView) {
             new GetXmlFromRisikous() {
 
@@ -284,7 +351,7 @@ public class PublicationDetailsFragment extends Fragment {
     }
 
     /**
-     * Input filter, to limit the characters the user can write in the field.
+     * Input filter, to limit the characters the user can write into the field.
      * @return filter array with chars input filter
      */
     private static InputFilter[] getMaxCharsFilter(){

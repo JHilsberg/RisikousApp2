@@ -18,6 +18,9 @@ public class FileDecoder extends Activity {
 
     private String fileBase64;
 
+    /**
+     * @param filePath path to selected file
+     */
     public FileDecoder(String filePath) {
         File file = new File(filePath);
         FileInputStream fileInputStream = null ;
@@ -42,6 +45,9 @@ public class FileDecoder extends Activity {
         fileBase64 = Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
+    /**
+     * @return file encoded in Base64
+     */
     public String getFile() {
         return fileBase64;
     }

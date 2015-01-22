@@ -123,7 +123,7 @@ public class AnswerFragment extends Fragment implements View.OnClickListener {
                 Log.i("status", "" + result);
                 getActivity().setProgressBarIndeterminateVisibility(false);
                 if (result.equals("201")){
-                    Toast.makeText(getActivity(), "Der Kommentar wurde erfolgreich gesendet.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Die Antwort wurde erfolgreich gesendet.", Toast.LENGTH_LONG).show();
                 } else{
                     Toast.makeText(getActivity(), "Leider ist ein Fehler aufgetreten. Probieren Sie es später nochmal.", Toast.LENGTH_LONG).show();
                 }

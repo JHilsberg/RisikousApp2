@@ -32,6 +32,8 @@ public class QuestionnaireXmlSerializer {
      * Constructor, instantiates ByteArrayOutputStream and XmlSerializer
      * Start and finish XML-Document, start all add methods.
      * @param appContext
+     * @param file
+     * @param fileName
      * @throws IOException
      */
     public QuestionnaireXmlSerializer(Activity appContext, String file, String fileName) throws IOException {
@@ -244,7 +246,8 @@ public class QuestionnaireXmlSerializer {
     }
 
     /**
-     * Adds file in base64-encoding to XML message, if one is selected by the user.
+     * Adds file in Base64-encoding to XML message, if one is selected by the user.
+     * Attributes are the encoding and the file name.
      * @throws IOException
      */
     private void addFile() throws IOException{

@@ -28,6 +28,8 @@ public class QuestionnaireValidator {
     /**
      * Constructor, starts the validation.
      * @param appContext
+     * @param file
+     * @param fileName
      */
     public QuestionnaireValidator(FragmentActivity appContext, String file, String fileName) {
         this.appContext = appContext;

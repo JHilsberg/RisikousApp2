@@ -37,7 +37,6 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
     public View getView(int position, View convertView, ViewGroup parent){
         convertView = mInflater.inflate(R.layout.comment_item, null);
         ViewHolder viewHolder = new ViewHolder();
-        ArrayList<Comment> listOfAnswers = commentList.get(position).getListOfAnswers();
 
         String outputDate = "";
         String inputDate = commentList.get(position).getTimeStamp();
